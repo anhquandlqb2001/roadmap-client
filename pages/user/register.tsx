@@ -7,6 +7,7 @@ import formError from "../../lib/util/formError";
 import 'antd/dist/antd.css';
 
 import '../../styles/form.module.css'
+import { LOGIN_LOCAL_ENDPOINT } from "../../lib/util/constant";
 
 export type ValidateStatus = {
   validateStatus: "" | "success" | "warning" | "error" | "validating";
@@ -28,7 +29,8 @@ const Register = () => {
       const response: AxiosResponse<any> = await UserAPI.login({
         email: values.email,
         password: values.password,
-      });
+        provider: "local"
+      }, LOGIN_LOCAL_ENDPOINT);
 
       if (response.data.errors) {
         return formError(response.data.errors, setValidateEmail, setvalidatePassword);
