@@ -46,10 +46,10 @@ function findVal(object, key) {
 const ReactMap = () => {
   const [data, setData] = useState({});
   useEffect(() => {
-    axios.get("/").then((result) => {
-      setData(result.data.roadmap);
-      console.log(result.data.roadmap);
-    });
+    // axios.get("/").then((result) => {
+    //   setData(result.data.roadmap);
+    //   console.log(result.data.roadmap);
+    // });
   }, []);
 
   const fillMap = () => {
