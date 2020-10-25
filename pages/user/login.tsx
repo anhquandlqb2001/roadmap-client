@@ -12,6 +12,7 @@ import {
   LOGIN_FACEBOOK_ENDPOINT,
   LOGIN_LOCAL_ENDPOINT,
 } from "../../lib/util/constant";
+import {useRouter} from 'next/router'
 
 export type ValidateStatus = {
   validateStatus: "" | "success" | "warning" | "error" | "validating";
@@ -19,6 +20,7 @@ export type ValidateStatus = {
 };
 
 const Login = () => {
+  const router = useRouter()
   const [validateEmail, setValidateEmail] = useState<ValidateStatus>({
     validateStatus: "",
     message: "",
@@ -38,7 +40,7 @@ const Login = () => {
         },
         LOGIN_LOCAL_ENDPOINT
       );
-
+        
       if (response.data.errors) {
         return formError(
           response.data.errors,
@@ -46,14 +48,13 @@ const Login = () => {
           setvalidatePassword
         );
       }
+      router.push("/")
 
-      console.log("im here");
     } catch (error) {
       console.log(error);
     }
   };
   const facebookResponse = async (data: FacebookResponseType) => {
-    console.log(data);
     try {
       const response: AxiosResponse<any> = await UserAPI.login(
         {

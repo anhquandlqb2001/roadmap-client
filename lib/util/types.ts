@@ -21,3 +21,8 @@ export type FacebookResponseType = {
   },
   userID: string
 }
+
+export type ValidateStatus = {
+  validateStatus: "" | "success" | "warning" | "error" | "validating";
+  message: string;
+};
