@@ -1,3 +1,5 @@
+import { type } from "os";
+
 export type DataToServerType = {
   email: string,
   password?: string,
@@ -20,4 +22,14 @@ export type FacebookResponseType = {
     }
   },
   userID: string
+}
+
+export type ValidateStatus = {
+  validateStatus: "" | "success" | "warning" | "error" | "validating";
+  message: string;
+};
+
+export type UserType = undefined | {
+  email: string,
+  extend?: any
 }
