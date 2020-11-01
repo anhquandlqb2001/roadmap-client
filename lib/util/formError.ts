@@ -1,17 +1,22 @@
-import { InternalNamePath } from "antd/lib/form/interface";
-import { Dispatch, SetStateAction } from "react";
-import { ValidateStatus } from "../../pages/user/login";
+import React from "react";
+import { ValidateField, ValidateFields } from "../../components/LoginForm";
 
-type ErrorType = {
-  name: "email" | "password",
-  errors: InternalNamePath
-}
+interface ErrorType extends ValidateField {
+  name: "email" | "password";
+};
 
-const formError = (errorsMap: ErrorType[], setValidateEmail?: Dispatch<SetStateAction<ValidateStatus>>, setValidatePassword?: Dispatch<SetStateAction<ValidateStatus>>) => {
-  errorsMap.map(error => {
-    error.name[0] === "email" && setValidateEmail({validateStatus: "error", message: (error.errors[0] as any)})
-    error.name[0] === "password" && setValidatePassword({validateStatus: "error", message: (error.errors[0] as any)})
-  })
-}
+const formError = (
+  errors: ErrorType[],
+  setValidateField: React.Dispatch<React.SetStateAction<ValidateFields>>
+) => {
+  const errorFields: Record<string, object> = {}
+  errors.map((field) => {
+    errorFields[field.name] = {
+      errors: field.errors[0],
+      validateStatus: field.validateStatus
+    }
+  });
+  setValidateField((errorFields as any))
+};
 
-export default formError
+export default formError;
