@@ -47,7 +47,6 @@ const LoginForm = () => {
           password: "",
         }}
         onSubmit={async (values, { setErrors, setSubmitting }) => {
-          console.log(values);
           await onFinish(values, setErrors);
           setSubmitting(false);
         }}

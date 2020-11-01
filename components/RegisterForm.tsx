@@ -15,25 +15,16 @@ const checkRetypePassword = (
   rePwd,
   fn: any
 ) => {
-  const error: Record<string, object> = {}
+  const error: Record<string, string> = {}
   if (rePwd.length !== 0) {
     if (rePwd !== pwd) {
-      error['repassword'] = {
-        errors: 'Mat khau phai trung',
-        validateStatus: 'error',
-      }
+      error['repassword'] = 'Mat khau phai trung'
     } else {
-      error['repassword'] = {
-        errors: '',
-        validateStatus: 'success',
-      }
+      error['repassword'] = ""
       return false
     }
   } else {
-    error['repassword'] = {
-      errors: null,
-      validateStatus: 'success',
-    }
+    error['repassword'] = null
   }
   fn(error as any)
   return true

@@ -1,11 +1,10 @@
 const errorsMap = (errors) => {
-  const errorFields: Record<string, object> = {};
+  const errorFields: Record<string, string> = {};
   errors.map((field) => {
-    errorFields[field.name] = {
-      errors: field.errors[0],
-      validateStatus: field.validateStatus,
-    };
+    errorFields[field.name] = field.errors;
   });
+  console.log(errorFields);
+  
   return errorFields;
 };
 

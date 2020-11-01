@@ -15,7 +15,7 @@ const InputField = ({ label, ...props }: InputFieldProps) => {
     <FormControl error={!!error} >
       <InputLabel htmlFor={props.name}>{label}</InputLabel>
       <Input id={props.name} {...props} {...field} />
-      {error && <FormHelperText>{(error as any).errors}</FormHelperText>}
+      {error && <FormHelperText>{error}</FormHelperText>}
     </FormControl>
   );
 };
