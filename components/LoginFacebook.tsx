@@ -4,8 +4,8 @@ import { LOGIN_FACEBOOK_ENDPOINT } from "../lib/util/constant";
 import { AxiosResponse } from "axios";
 import UserAPI from "../lib/api/user";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
-import Button from "antd/lib/button";
-import FacebookOutlined from "@ant-design/icons/FacebookOutlined";
+import MyButton from "./MyButton";
+import Facebook from "@material-ui/icons/Facebook";
 
 
 const LoginFacebook = () => {
@@ -34,14 +34,10 @@ const LoginFacebook = () => {
   return (
     <FacebookLogin
       appId="1284184291945657"
-      // autoLoad={true}
       fields="name,email,picture"
       callback={facebookResponse}
-      render={(renderProps) => (
-        <Button type="primary" loading={loading} icon={<FacebookOutlined />} onClick={() => {
-          setLoading(true)
-          renderProps.onClick()
-        }}>Dang nhap voi Facebook</Button>
+      render={(renderProps: { onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void; }) => (
+        <MyButton color="primary" onClick={renderProps.onClick} label="Dang nhap voi Facebook" loading={loading} icon={<Facebook />} />
       )}
     />
   );

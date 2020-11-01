@@ -1,7 +1,6 @@
 import LoginForm from "../../components/LoginForm";
 import Head from "next/head";
 import Wrapper from "../../components/Wrapper";
-import LoginFacebook from "../../components/LoginFacebook";
 
 const Login = () => {
   return (
@@ -11,13 +10,10 @@ const Login = () => {
         <meta name="description" content="Dang nhap de trai nghiem tot hon!" />
       </Head>
       <Wrapper>
-        <>
-          <LoginForm />
-          <LoginFacebook />
-        </>
+        <LoginForm />
       </Wrapper>
     </>
   );
-}
+};
 
-export default Login
+export default Login;
