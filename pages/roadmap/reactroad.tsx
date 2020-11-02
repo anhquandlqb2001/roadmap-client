@@ -1,7 +1,7 @@
+import { GetServerSideProps } from "next";
 import React from "react";
-import axios from "axios";
 import ReactMap from "../../components/ReactMap";
-import RoadMapAPI from "../../lib/api/road";
+import UserAPI from "../../lib/api/user";
 
 const recursiveChangeObject = (obj, searchKey, valueChange) => {
   Object.keys(obj).forEach((key) => {
@@ -48,6 +48,15 @@ function findVal(object, key) {
 const ReactRoad = () => {
   const [data, setData] = React.useState({});
 
+  React.useEffect(() => {
+    const fetchMap = async () => {
+      const response = await UserAPI.get_react_map();
+      console.log(response);
+      setData(response.data.data);
+    };
+    fetchMap();
+  }, []);
+
   const fillMap = () => {
     const childField = recursiveReadAllSmallestChildField(data, []);
     childField.map((child) => {
@@ -72,21 +81,13 @@ const ReactRoad = () => {
     const fieldChange = e.currentTarget.getAttribute("aria-label");
     const currentValue = findVal(data, fieldChange);
     setData(recursiveChangeObject(data, fieldChange, !currentValue));
-    await axios
-      .post("/", {
-        username: "quanprolazer",
-        field: fieldChange,
-        currentValue: currentValue,
-      })
-      .then((result) => console.log(result.data));
-
+    await UserAPI.change_field_react_map({field: fieldChange, currentValue}).then(result => console.log(result.data))
     fillMap();
   };
 
   return (
     <>
       <ReactMap handleClick={handleClick} />
-      <button onClick={() => RoadMapAPI.start()}>start</button>
     </>
   );
 };

@@ -1,5 +1,11 @@
 import axios from "../util/axios.config";
-import { CURRENT_USER_ENDPOINT, REGISTER_LOCAL_ENDPOINT } from "../util/constant";
+import {
+  CHANGE_FIELD_REACT_MAP_ENDPOINT,
+  CURRENT_USER_ENDPOINT,
+  GET_REACT_MAP_ENDPOINT,
+  REGISTER_LOCAL_ENDPOINT,
+  START_REACT_MAP_ENDPOINT,
+} from "../util/constant";
 import { DataToServerType } from "../util/types";
 
 class UserAPI {
@@ -33,12 +39,36 @@ class UserAPI {
   async current() {
     try {
       console.log(CURRENT_USER_ENDPOINT);
-      
+
       const response = await axios.get(CURRENT_USER_ENDPOINT);
       return response;
     } catch (error) {
       return error.response;
     }
+  }
+
+  async start_react() {
+    try {
+      const response = await axios.post(START_REACT_MAP_ENDPOINT);
+      return response;
+    } catch (error) {}
+  }
+
+  async get_react_map() {
+    try {
+      const response = await axios.get(GET_REACT_MAP_ENDPOINT);
+      return response;
+    } catch (error) {}
+  }
+
+  async change_field_react_map({ field, currentValue }) {
+    try {
+      const response = await axios.post(CHANGE_FIELD_REACT_MAP_ENDPOINT, {
+        field,
+        currentValue,
+      });
+      return response;
+    } catch (error) {}
   }
 }
 
