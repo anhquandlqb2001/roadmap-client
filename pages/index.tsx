@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import ReactMap from "../components/reactmap";
+import ReactMap from "../components/ReactMap";
 import { UserContext } from "../lib/util/userContext";
 const Home = () => {
   const user = useContext(UserContext);
@@ -7,7 +7,6 @@ const Home = () => {
   
   return (
     <div>
-      <ReactMap />
     </div>
   );
 };

@@ -32,6 +32,8 @@ class UserAPI {
 
   async current() {
     try {
+      console.log(CURRENT_USER_ENDPOINT);
+      
       const response = await axios.get(CURRENT_USER_ENDPOINT);
       return response;
     } catch (error) {
