@@ -1,6 +1,6 @@
-import LoginForm from "../../components/LoginForm";
+import LoginForm from "../../components/login/LoginForm";
 import Head from "next/head";
-import Wrapper from "../../components/Wrapper";
+import Wrapper from "../../components/common/Wrapper";
 
 const Login = () => {
   return (

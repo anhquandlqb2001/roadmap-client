@@ -1,46 +1,16 @@
-import UserAPI from "../lib/api/user";
 import React from "react";
-import errorsMap from "../lib/util/errorsMap";
-import "../styles/form.module.css";
-import { CURRENT_USER_ENDPOINT, LOGIN_LOCAL_ENDPOINT } from "../lib/util/constant";
-import { useRouter } from "next/router";
 import { Form, Formik } from "formik";
-import InputField from "./InputField";
+import InputField from "../common/InputField";
 import Grid from "@material-ui/core/Grid";
 import LoginFacebook from "./LoginFacebook";
-import MyButton from "./MyButton";
-import Box from "./Box";
+import MyButton from "../common/MyButton";
+import Box from "../common/Box";
 import Link from "next/link";
-import { EProvider } from "../lib/util/types";
-import {mutate} from 'swr'
+import { onSubmitLogin } from "./service";
+import { useRouter } from 'next/router'
 
 const LoginForm = () => {
-  const router = useRouter();
-
-  const onFinish = async (
-    values: { email: string; password: string },
-    setErrors
-  ) => {
-    try {
-      const { data } = await UserAPI.login(
-        LOGIN_LOCAL_ENDPOINT,
-        {
-          email: values.email,
-          password: values.password,
-          provider: EProvider.Local,
-        }
-      );
-
-      if (data.errors) {
-        return setErrors(errorsMap(data.errors));
-      }
-      mutate(CURRENT_USER_ENDPOINT)
-      data.success && router.push("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  const router = useRouter()
   return (
     <Grid container direction="column" justify="center" alignItems="center">
       <Formik
@@ -49,7 +19,7 @@ const LoginForm = () => {
           password: "",
         }}
         onSubmit={async (values, { setErrors, setSubmitting }) => {
-          await onFinish(values, setErrors);
+          await onSubmitLogin(values, setErrors, router);
           setSubmitting(false);
         }}
       >

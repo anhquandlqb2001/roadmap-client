@@ -1,61 +1,17 @@
-import UserAPI from "../lib/api/user";
-import { AxiosResponse } from "axios";
 import React from "react";
-import "../styles/form.module.css";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import errorsMap from "../lib/util/errorsMap";
 import { Grid, Box } from "@material-ui/core";
 import { Formik, Form } from "formik";
-import InputField from "./InputField";
-import MyButton from "./MyButton";
+import InputField from "../common/InputField";
+import MyButton from "../common/MyButton";
+import { onSubmitRegister } from "./service";
 
-const checkRetypePassword = (
-  pwd,
-  rePwd,
-  fn: any
-) => {
-  const error: Record<string, string> = {}
-  if (rePwd.length !== 0) {
-    if (rePwd !== pwd) {
-      error['repassword'] = 'Mat khau phai trung'
-    } else {
-      error['repassword'] = ""
-      return false
-    }
-  } else {
-    error['repassword'] = null
-  }
-  fn(error as any)
-  return true
-};
 
 const RegisterForm = () => {
   const router = useRouter();
 
-  const onFinish = async (
-    values: { email: string; password: string, repassword: string },
-    setErrors
-  ) => {
-    if (checkRetypePassword(values.password, values.repassword, setErrors)) {
-      return;
-    }
-    
-    try {
-      const response: AxiosResponse<any> = await UserAPI.register({
-        email: values.email,
-        password: values.password,
-        provider: "local",
-      });
-      if (response.data.errors) {
-        return setErrors(errorsMap(response.data.errors));
-      } else {
-        router.push("/");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  
 
   return (
     <Grid container direction="column" justify="center" alignItems="center">
@@ -66,7 +22,7 @@ const RegisterForm = () => {
           repassword: "",
         }}
         onSubmit={async (values, { setErrors, setSubmitting }) => {
-          await onFinish(values, setErrors);
+          await onSubmitRegister(values, setErrors, router);
           setSubmitting(false);
         }}
       >

@@ -5,6 +5,7 @@ export enum EProvider {
 
 export type TProvider = EProvider.Facebook | EProvider.Local
 
+// du lieu dang nhap gui ve server
 export type TDataToServer = {
   email: string,
   password?: string,
@@ -45,11 +46,17 @@ export type TUser = undefined | {
 // du lieu tra ve function: current()
 export type TResponseCurrentUser = {
   success: boolean,
-  user: TUser
+  user?: TUser
 }
 
+export type TErrorResponseFromServer = {
+  name: string,
+  error: string
+}
+
+// du lieu nhan duoc tu sv login-register
 export type TResponseFromServer = {
   success: boolean,
   data?: object,
-  errors?: object
+  errors?: TErrorResponseFromServer[]
 }

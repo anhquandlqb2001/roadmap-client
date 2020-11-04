@@ -11,9 +11,6 @@ let token
 if (typeof window !== 'undefined') {
     token = localStorage.getItem("token")
 }
-console.log('token: ', token);
-
-
 if (token) {
     instance.defaults.headers.common['Authorization'] = token;
 }
