@@ -1,6 +1,4 @@
-const ReactMap = ({ handleClick }) => {
-  return (
-    <svg
+<svg
       version="1.0"
       xmlns="http://www.w3.org/2000/svg"
       width="100vw"
@@ -9261,7 +9259,3 @@ c58 -69 15 -184 -69 -182 -54 2 -77 29 -83 97 -4 45 0 60 18 85 18 26 28 31
         />
       </g>
     </svg>
-  );
-};
-
-export default ReactMap;

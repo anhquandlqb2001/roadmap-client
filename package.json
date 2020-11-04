@@ -10,13 +10,13 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
-    "antd": "^4.7.2",
     "axios": "^0.20.0",
     "formik": "^2.2.1",
     "next": "9.5.5",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-facebook-login": "^4.1.1"
+    "react-facebook-login": "^4.1.1",
+    "swr": "^0.3.8"
   },
   "proxy": "http://localhost:5000",
   "devDependencies": {

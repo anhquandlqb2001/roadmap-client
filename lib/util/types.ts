@@ -1,13 +1,18 @@
-import { type } from "os";
+export enum EProvider {
+  Facebook = "FACEBOOK",
+  Local = "LOCAL"
+}
 
-export type DataToServerType = {
+export type TProvider = EProvider.Facebook | EProvider.Local
+
+export type TDataToServer = {
   email: string,
   password?: string,
-  provider: "local" | "facebook",
+  provider: TProvider
   extend?: any
 }
 
-export type FacebookResponseType = {
+export type TFacebookResponse = {
   accessToken: string,
   data_access_expiration_time: number,
   email: string,
@@ -24,12 +29,27 @@ export type FacebookResponseType = {
   userID: string
 }
 
-export type ValidateStatus = {
+export type TValidateStatus = {
   validateStatus: "" | "success" | "warning" | "error" | "validating";
   message: string;
 };
 
-export type UserType = undefined | {
+// nguoi dung 
+export type TUser = undefined | {
   email: string,
-  extend?: any
+  jwt?: string,
+  extend?: any,
+  provider: TProvider
+}
+
+// du lieu tra ve function: current()
+export type TResponseCurrentUser = {
+  success: boolean,
+  user: TUser
+}
+
+export type TResponseFromServer = {
+  success: boolean,
+  data?: object,
+  errors?: object
 }

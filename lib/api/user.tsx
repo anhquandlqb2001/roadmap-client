@@ -1,4 +1,5 @@
-import axios from "../util/axios.config";
+import { AxiosResponse } from "axios";
+import axios from '../util/axios.config'
 import {
   CHANGE_FIELD_REACT_MAP_ENDPOINT,
   CURRENT_USER_ENDPOINT,
@@ -6,41 +7,42 @@ import {
   REGISTER_LOCAL_ENDPOINT,
   START_REACT_MAP_ENDPOINT,
 } from "../util/constant";
-import { DataToServerType } from "../util/types";
+import { TDataToServer, TResponseCurrentUser, TResponseFromServer, TUser } from "../util/types";
 
 class UserAPI {
-  async login(data: DataToServerType, endpoint: string) {
+  async login(
+    endpoint: string,
+    data: TDataToServer
+  ): Promise<AxiosResponse<TResponseFromServer>> {
     try {
-      const response = await axios.post(endpoint, {
+      const response = await axios.post<TResponseFromServer>(endpoint, {
         email: data.email,
         password: data.password,
         provider: data.provider,
         extend: data.extend,
-      } as DataToServerType);
+      } as TDataToServer);
       return response;
     } catch (error) {
       return error.response;
     }
   }
 
-  async register(data: DataToServerType) {
+  async register(data: TDataToServer) {
     try {
       const response = await axios.post(REGISTER_LOCAL_ENDPOINT, {
         email: data.email,
         password: data.password,
         provider: data.provider,
-      } as DataToServerType);
+      } as TDataToServer);
       return response;
     } catch (error) {
       return error.response;
     }
   }
 
-  async current() {
+  async current(url): Promise<AxiosResponse<TResponseCurrentUser>> {
     try {
-      console.log(CURRENT_USER_ENDPOINT);
-
-      const response = await axios.get(CURRENT_USER_ENDPOINT);
+      const response = await axios.get(url);
       return response;
     } catch (error) {
       return error.response;

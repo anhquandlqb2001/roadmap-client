@@ -1,7 +1,7 @@
-import { GetServerSideProps } from "next";
 import React from "react";
 import ReactMap from "../../components/ReactMap";
 import UserAPI from "../../lib/api/user";
+import { UserContext } from "../../lib/util/userContext";
 
 const recursiveChangeObject = (obj, searchKey, valueChange) => {
   Object.keys(obj).forEach((key) => {
@@ -47,6 +47,10 @@ function findVal(object, key) {
 
 const ReactRoad = () => {
   const [data, setData] = React.useState({});
+
+
+  const user = React.useContext(UserContext);
+  console.log(user);
 
   React.useEffect(() => {
     const fetchMap = async () => {

@@ -1,9 +1,8 @@
 import UserAPI from "../lib/api/user";
-import { AxiosResponse } from "axios";
 import React from "react";
 import errorsMap from "../lib/util/errorsMap";
 import "../styles/form.module.css";
-import { LOGIN_LOCAL_ENDPOINT } from "../lib/util/constant";
+import { CURRENT_USER_ENDPOINT, LOGIN_LOCAL_ENDPOINT } from "../lib/util/constant";
 import { useRouter } from "next/router";
 import { Form, Formik } from "formik";
 import InputField from "./InputField";
@@ -12,6 +11,8 @@ import LoginFacebook from "./LoginFacebook";
 import MyButton from "./MyButton";
 import Box from "./Box";
 import Link from "next/link";
+import { EProvider } from "../lib/util/types";
+import {mutate} from 'swr'
 
 const LoginForm = () => {
   const router = useRouter();
@@ -21,19 +22,20 @@ const LoginForm = () => {
     setErrors
   ) => {
     try {
-      const response: AxiosResponse<any> = await UserAPI.login(
+      const { data } = await UserAPI.login(
+        LOGIN_LOCAL_ENDPOINT,
         {
           email: values.email,
           password: values.password,
-          provider: "local",
-        },
-        LOGIN_LOCAL_ENDPOINT
+          provider: EProvider.Local,
+        }
       );
 
-      if (response.data.errors) {
-        return setErrors(errorsMap(response.data.errors));
+      if (data.errors) {
+        return setErrors(errorsMap(data.errors));
       }
-      router.push("/");
+      mutate(CURRENT_USER_ENDPOINT)
+      data.success && router.push("/");
     } catch (error) {
       console.log(error);
     }

@@ -1,18 +1,34 @@
-import { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import UserAPI from "../api/user";
-import { UserType } from "./types";
+import { TUser } from "./types";
+import useSWR from "swr";
+import axios from "./axios.config";
+
+const fetcher = async (url) => {
+  try {
+    const response = await axios.get(url);
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+};
 
 const useCurrent = () => {
-  const [data, setData] = useState<UserType>(null);
-  useEffect(() => {
-    const fetchData = async () => {
-      const response: AxiosResponse = await UserAPI.current();
-      setData(response.data);
+  // const [data, setData] = useState<TUser>(null);
+  const { data, error } = useSWR("/api/node/user/current", UserAPI.current);
+  
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const response = await UserAPI.current();
+  //     response.data.success && setData(response.data.user);
+  //   };
+  //   fetchData();
+  // }, []);
+  
+    if (!data?.data.success) {
+      return null
     }
-    fetchData()
-  }, []);
-  return data;
+    return data?.data.user;
 };
 
 export default useCurrent;
