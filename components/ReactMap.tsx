@@ -1,9 +1,17 @@
-const ReactMap = ({ handleClick }) => {
+import { MouseEvent } from "react";
+
+type MapProps = {
+  handleClick: (e: MouseEvent<SVGPathElement, globalThis.MouseEvent>) => void;
+  width?: string;
+  height?: string;
+};
+
+const ReactMap = ({ handleClick, width = "100vw" }: MapProps) => {
   return (
     <svg
       version="1.0"
       xmlns="http://www.w3.org/2000/svg"
-      width="100vw"
+      width={width}
       // height="6496.000000pt"
       viewBox="0 0 5276.000000 6496.000000"
       preserveAspectRatio="xMidYMid meet"

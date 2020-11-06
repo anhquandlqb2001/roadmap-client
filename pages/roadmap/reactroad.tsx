@@ -1,6 +1,7 @@
 import React from "react";
 import ReactMap from "../../components/ReactMap";
 import UserAPI from "../../lib/api/user";
+import { EMap } from "../../lib/util/types";
 import { UserContext } from "../../lib/util/userContext";
 
 const recursiveChangeObject = (obj, searchKey, valueChange) => {
@@ -48,16 +49,15 @@ function findVal(object, key) {
 const ReactRoad = () => {
   const [data, setData] = React.useState({});
 
-
   const user = React.useContext(UserContext);
   console.log(user);
 
   React.useEffect(() => {
     const fetchMap = async () => {
-      const response = await UserAPI.get_react_map();
-      console.log(response);
-      setData(response.data.data);
+      const response = await UserAPI.get_map(EMap.React);
+      setData(response.data.map);
     };
+
     fetchMap();
   }, []);
 
@@ -85,7 +85,11 @@ const ReactRoad = () => {
     const fieldChange = e.currentTarget.getAttribute("aria-label");
     const currentValue = findVal(data, fieldChange);
     setData(recursiveChangeObject(data, fieldChange, !currentValue));
-    await UserAPI.change_field_react_map({field: fieldChange, currentValue}).then(result => console.log(result.data))
+    await UserAPI.change_field_map({
+      mapName: EMap.React,
+      field: fieldChange,
+      currentValue,
+    }).then((result) => console.log(result.data));
     fillMap();
   };
 

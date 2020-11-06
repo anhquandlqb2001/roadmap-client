@@ -11,8 +11,6 @@ import { onSubmitRegister } from "./service";
 const RegisterForm = () => {
   const router = useRouter();
 
-  
-
   return (
     <Grid container direction="column" justify="center" alignItems="center">
       <Formik

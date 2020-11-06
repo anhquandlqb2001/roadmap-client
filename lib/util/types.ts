@@ -60,3 +60,10 @@ export type TResponseFromServer = {
   data?: object,
   errors?: TErrorResponseFromServer[]
 }
+
+
+export enum EMap  {
+  React = "REACT",
+  FrontEnd = "FRONT_END",
+  BackEnd = "BACK_END"
+}
