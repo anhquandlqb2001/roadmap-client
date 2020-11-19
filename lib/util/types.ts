@@ -57,7 +57,11 @@ export type TErrorResponseFromServer = {
 // du lieu nhan duoc tu sv login-register
 export type TResponseFromServer = {
   success: boolean,
-  data?: object,
+  data?: {
+    jwt: string,
+    provider: string,
+    email: string
+  },
   errors?: TErrorResponseFromServer[]
 }
 

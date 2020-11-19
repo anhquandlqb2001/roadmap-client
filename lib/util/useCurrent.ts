@@ -1,6 +1,6 @@
 import UserAPI from "../api/user";
 import useSWR from "swr";
-import { CURRENT_USER_ENDPOINT } from "./constant";
+import { CURRENT_USER_ENDPOINT } from "./endpoints.constant";
 
 
 const useCurrent = () => {

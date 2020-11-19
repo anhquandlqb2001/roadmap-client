@@ -9,7 +9,7 @@ const LoginFacebook = () => {
   
   return (
     <FacebookLogin
-      appId="1284184291945657"
+      appId="1063989997381980"
       fields="name,email,picture"
       callback={user => facebookResponse(user, setLoading)}
       render={(renderProps: {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SERVER_ENDPOINT } from './constant';
+import { SERVER_ENDPOINT } from './endpoints.constant';
 
 const instance = axios.create({
     baseURL: SERVER_ENDPOINT,

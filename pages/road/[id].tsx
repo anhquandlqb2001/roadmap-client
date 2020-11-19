@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactMap from "../../components/ReactMap";
-import UserAPI from "../../lib/api/user";
-import { EMap } from "../../lib/util/types";
-import { UserContext } from "../../lib/util/userContext";
+import RoadAPI from "../../lib/api/road";
+import { withRouter } from "next/router";
+import { ROAD_ENDPOINT } from "../../lib/util/endpoints.constant";
 
 const recursiveChangeObject = (obj, searchKey, valueChange) => {
   Object.keys(obj).forEach((key) => {
@@ -46,26 +46,34 @@ function findVal(object, key) {
   return value;
 }
 
-const ReactRoad = () => {
-  const [data, setData] = React.useState({});
+const ReactRoad = ({router}) => {
+  const [ownerMapID, setOwnerMapID] = useState(null);
+  const [road, setRoad] = useState({})
 
-  const user = React.useContext(UserContext);
-  console.log(user);
+  const mapID = router.query.id
+
+  if (mapID === "undefined") {
+    return null
+  }
 
   React.useEffect(() => {
     const fetchMap = async () => {
-      const response = await UserAPI.get_map(EMap.React);
-      setData(response.data.map);
+      const response = await RoadAPI.get_map(`${ROAD_ENDPOINT}/${mapID}`);
+      setRoad(response.data.data.map);
+      response.data.data?.ownerMapID && setOwnerMapID(response.data.data?.ownerMapID)
     };
-
-    fetchMap();
-  }, []);
+    try {
+      fetchMap();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [mapID]);
 
   const fillMap = () => {
-    const childField = recursiveReadAllSmallestChildField(data, []);
+    const childField = recursiveReadAllSmallestChildField(road, []);
     childField.map((child) => {
       const pathElement = document.querySelector<HTMLElement>(
-        `[aria-label="${child.field}"]`
+        `[name="${child.field}"]`
       );
       if (pathElement && child.value === true) {
         pathElement.style.fill = "green";
@@ -75,22 +83,31 @@ const ReactRoad = () => {
     });
   };
 
+  console.log("re-render");
+  
+
   React.useEffect(() => {
     fillMap();
-  }, [data]);
+  }, [road]);
 
   const handleClick = async (
     e: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => {
-    const fieldChange = e.currentTarget.getAttribute("aria-label");
-    const currentValue = findVal(data, fieldChange);
-    setData(recursiveChangeObject(data, fieldChange, !currentValue));
-    await UserAPI.change_field_map({
-      mapName: EMap.React,
-      field: fieldChange,
-      currentValue,
-    }).then((result) => console.log(result.data));
-    fillMap();
+    const fieldChange = e.currentTarget.getAttribute("name");
+    const currentValue = findVal(road, fieldChange);
+    setRoad(recursiveChangeObject(road, fieldChange, !currentValue));
+    await RoadAPI.change_field_map(
+      mapID,
+      ownerMapID,
+      fieldChange,
+      currentValue
+    ).then((result) => {
+      console.log(result.data)
+      if (!result.data.success) {
+        return;
+      }
+      fillMap();
+    });
   };
 
   return (
@@ -100,4 +117,5 @@ const ReactRoad = () => {
   );
 };
 
-export default ReactRoad;
+
+export default withRouter(ReactRoad);

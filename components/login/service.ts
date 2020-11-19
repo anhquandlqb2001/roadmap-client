@@ -3,7 +3,7 @@ import {
   CURRENT_USER_ENDPOINT,
   LOGIN_FACEBOOK_ENDPOINT,
   LOGIN_LOCAL_ENDPOINT,
-} from "../../lib/util/constant";
+} from "../../lib/util/endpoints.constant";
 import UserAPI from "../../lib/api/user";
 import { mutate } from "swr";
 import errorsMap from "../../lib/util/errorsMap";
@@ -48,6 +48,9 @@ export const onSubmitLogin = async (
 
     if (data.errors) {
       return setErrors(errorsMap(data.errors));
+    }
+    if (!data.success) {
+      return;
     }
     mutate(CURRENT_USER_ENDPOINT);
     data.success && router.push("/");
