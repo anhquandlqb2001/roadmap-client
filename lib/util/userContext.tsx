@@ -5,8 +5,8 @@ export const UserContext = createContext<TUser | undefined>(null);
 
 const UserProvider = ({ children }) => {
   const user = useCurrent();
-  if (user?.jwt) {
-    localStorage.setItem("token", user.jwt)
+  if (user?.user?.user?.jwt) {
+    localStorage.setItem("token", user.user.user.jwt)
   }
   return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
 };

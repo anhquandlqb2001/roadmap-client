@@ -9,6 +9,8 @@ class RoadMapAPI {
   async start_map(mapID) {
     try {
       const response = await axios.put(`${ROAD_ENDPOINT}/${mapID}/start`);
+      console.log(response.data);
+      
       return response;
     } catch (error) {
       console.log("error in userAPI:, ", error);
@@ -18,6 +20,8 @@ class RoadMapAPI {
   async get_map(url) {
     try {
       const response = await axios.get(url);
+      console.log(response);
+      
       return response;
     } catch (error) {
       console.log("error in userAPI:, ", error);

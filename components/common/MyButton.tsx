@@ -12,7 +12,7 @@ const MyButton = ({ icon, label, loading, type, onClick, ...props }: MyButtonPro
   let extend
   if (icon) {
     extend = !loading && icon
-  } 
+  }
 
   return (
     <Button
