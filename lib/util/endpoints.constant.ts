@@ -14,7 +14,7 @@ export const LOGIN_LOCAL_ENDPOINT = `${ENDPOINT}/user/login_local`
 // dang nhap facebook
 export const LOGIN_FACEBOOK_ENDPOINT = `${ENDPOINT}/user/login_facebook`
 // dang ky
-export const REGISTER_LOCAL_ENDPOINT = `${ENDPOINT}/user/register.php`
+export const REGISTER_LOCAL_ENDPOINT = `${ENDPOINT}/user/register`
 // du lieu ng dung
 export const CURRENT_USER_ENDPOINT = `${ENDPOINT}/user/current`
 

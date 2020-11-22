@@ -36,26 +36,27 @@ export type TValidateStatus = {
 };
 
 // nguoi dung
-export type TUser =
+export type TUserData =
   | {
-      user: {
-        email: string;
-        jwt?: string;
-        extend?: any;
-        provider: TProvider;
-      };
-      map: {
-        ownerMapID: [];
-        mapHasStarted: [];
-      };
+      email: string;
+      jwt?: string;
+      extend?: any;
+      provider: TProvider;
+    }
+  | undefined;
+
+export type TMapData =
+  | {
+      ownerMapID: [];
+      mapHasStarted: [];
     }
   | undefined;
 
 // du lieu tra ve function: current()
 export type TResponseCurrentUser = {
   success: boolean;
-  user?: TUser;
-  map: any;
+  user?: TUserData;
+  map: TMapData;
 };
 
 export type TErrorResponseFromServer = {

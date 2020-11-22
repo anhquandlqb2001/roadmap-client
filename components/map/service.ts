@@ -1,10 +1,8 @@
 export const recursiveChangeObject = (obj, searchKey, valueChange) => {
   Object.keys(obj).forEach((key) => {
     const value = obj[key];
-    console.log("key: ", key);
-    
-    if (key === searchKey && typeof value !== "object") {
-      obj[key] = valueChange;
+    if (key === searchKey && value.hasOwnProperty("value")) {
+      obj[key].value = valueChange;
     } else if (typeof value === "object") {
       recursiveChangeObject(value, searchKey, valueChange);
     }
@@ -16,8 +14,8 @@ export const recursiveReadAllSmallestChildField = (obj, arr) => {
   Object.keys(obj).forEach((key) => {
     const value = obj[key];
     const val = findVal(obj, key);
-    if (typeof val !== "object") {
-      arr.push({ field: key, value: val });
+    if (val.hasOwnProperty("value")) {
+      arr.push({ field: key, value: val.value, resources: val?.resources });
     }
     if (typeof value !== "object") {
     } else if (typeof value === "object") {

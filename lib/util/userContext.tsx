@@ -1,15 +1,18 @@
 import React, { createContext } from "react";
-import { TUser } from "./types";
+import { TMapData, TUserData } from "./types";
 import useCurrent from "./useCurrent";
-export const UserContext = createContext<TUser | undefined>(null);
+
+export const UserContext = createContext<{ user: TUserData; map: TMapData }>(
+  null
+);
 
 const UserProvider = ({ children }) => {
   const user = useCurrent();
-  if (user?.user?.user?.jwt) {
-    localStorage.setItem("token", user.user.user.jwt);
+  if (user?.user.jwt) {
+    localStorage.setItem("token", user.user.jwt);
   }
   return (
-    <UserContext.Provider value={{ ...user?.map, ...user?.user }}>
+    <UserContext.Provider value={{ user: user?.user, map: user?.map }}>
       {children}
     </UserContext.Provider>
   );

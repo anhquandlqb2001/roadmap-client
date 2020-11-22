@@ -7,9 +7,9 @@ import { mutate } from "swr";
 import { CURRENT_USER_ENDPOINT } from "../lib/util/endpoints.constant";
 
 const Home = () => {
-  const user = React.useContext(UserContext);
-  const [roads, setRoads] = useState([]);
+  const { user, map } = React.useContext(UserContext);
 
+  const [roads, setRoads] = useState([]);
   useEffect(() => {
     const fetch = async () => {
       const response = await RoadAPI.get_maps_list();
@@ -18,8 +18,11 @@ const Home = () => {
     fetch();
   }, []);
 
-  const shouldRenderStartBtn = (road, btnName) => {
-    if (!user || user?.map?.mapHasStarted.find((m) => m === road._id)) {
+  const shouldRenderStartBtn = (user, road, btnName) => {
+    if (
+      !user ||
+      typeof user?.mapHasStarted.find((m) => m === road._id) === "undefined"
+    ) {
       return (
         <MyButton
           label={`Start ${btnName} road`}
@@ -34,6 +37,9 @@ const Home = () => {
   };
 
   const renderBtn = () => {
+    if (!roads) {
+      return "Khong co lo trinh nao";
+    }
     return roads.map((road) => {
       const btnName = road.name.toUpperCase();
       return (
@@ -41,10 +47,10 @@ const Home = () => {
           key={road._id}
           style={{ display: "flex", flexDirection: "column" }}
         >
-          <Link href={`/road/${road.name}/${road._id}`}>
+          <Link href={`/road/${road.name.toLowerCase()}/${road._id}`}>
             <MyButton loading={false} label={btnName}></MyButton>
           </Link>
-          {shouldRenderStartBtn(road, btnName)}
+          {shouldRenderStartBtn(map, road, btnName)}
         </div>
       );
     });

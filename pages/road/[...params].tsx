@@ -5,10 +5,24 @@ import { withRouter } from "next/router";
 import { ROAD_ENDPOINT } from "../../lib/util/endpoints.constant";
 import {
   recursiveChangeObject,
-  recursiveReadAllSmallestChildField,
   findVal,
+  recursiveReadAllSmallestChildField,
 } from "../../components/map/service";
 import DefaultErrorPage from "next/error";
+
+const fillMap = (road) => {
+  const childField = recursiveReadAllSmallestChildField(road, []);
+  childField.map((child) => {
+    const pathElement = document.querySelector<HTMLElement>(
+      `[name="${child.field}"]`
+    );
+    if (pathElement && child.value === true) {
+      pathElement.style.fill = "green";
+    } else if (pathElement) {
+      pathElement.style.fill = "";
+    }
+  });
+};
 
 const Road = ({ router }) => {
   const [ownerMapID, setOwnerMapID] = useState(null);
@@ -31,47 +45,41 @@ const Road = ({ router }) => {
       response.data.success && setLoading(false);
     };
     try {
-      if(typeof mapID !== "undefined") fetchMap();
+      if (typeof mapID !== "undefined") fetchMap();
     } catch (error) {
       console.log(error);
     }
   }, [mapID]);
 
-  const fillMap = () => {
-    const childField = recursiveReadAllSmallestChildField(road, []);
-    childField.map((child) => {
-      const pathElement = document.querySelector<HTMLElement>(
-        `[name="${child.field}"]`
-      );
-      if (pathElement && child.value === true) {
-        pathElement.style.fill = "green";
-      } else if (pathElement) {
-        pathElement.style.fill = "";
-      }
-    });
-  };
+  React.useEffect(() => fillMap(road), [road]);
 
-  React.useEffect(() => {
-    fillMap();
-  }, [road]);
+  
 
   const handleClick = async (
     e: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => {
-    const fieldChange = e.currentTarget.getAttribute("name");
+    const fieldChange = e.currentTarget.getAttribute("id");
     const currentValue = findVal(road, fieldChange);
-    setRoad(recursiveChangeObject(road, fieldChange, !currentValue));
+
+    if (e.ctrlKey) {
+      alert("redirect now");
+      return;
+    }
+    console.log(currentValue.value);
+    setRoad(recursiveChangeObject(road, fieldChange, !currentValue.value));
+    console.log(currentValue.value);
+
     await RoadAPI.change_field_map(
       mapID,
       ownerMapID,
       fieldChange,
-      currentValue
+      !currentValue.value
     ).then((result) => {
-      console.log('result: ', result);
       if (!result.data.success) {
         return;
       }
-      fillMap();
+      console.log(result.data);
+      fillMap(road);
     });
   };
 
