@@ -7,7 +7,7 @@ import {
   recursiveChangeObject,
   recursiveReadAllSmallestChildField,
   findVal,
-} from "../../lib/util/map.service";
+} from "../../components/map/service";
 import DefaultErrorPage from "next/error";
 
 const Road = ({ router }) => {

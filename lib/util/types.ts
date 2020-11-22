@@ -37,7 +37,6 @@ export type TValidateStatus = {
 
 // nguoi dung
 export type TUser =
-  | undefined
   | {
       user: {
         email: string;
@@ -49,7 +48,8 @@ export type TUser =
         ownerMapID: [];
         mapHasStarted: [];
       };
-    };
+    }
+  | undefined;
 
 // du lieu tra ve function: current()
 export type TResponseCurrentUser = {

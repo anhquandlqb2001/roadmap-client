@@ -62,7 +62,7 @@ const LoginForm = () => {
           </Form>
         )}
       </Formik>
-      <LoginFacebook />
+      {/* <LoginFacebook /> */}
     </Grid>
   );
 };

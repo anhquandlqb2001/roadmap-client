@@ -1,6 +1,8 @@
 export const recursiveChangeObject = (obj, searchKey, valueChange) => {
   Object.keys(obj).forEach((key) => {
     const value = obj[key];
+    console.log("key: ", key);
+    
     if (key === searchKey && typeof value !== "object") {
       obj[key] = valueChange;
     } else if (typeof value === "object") {

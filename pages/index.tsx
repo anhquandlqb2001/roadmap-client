@@ -9,6 +9,7 @@ import { CURRENT_USER_ENDPOINT } from "../lib/util/endpoints.constant";
 const Home = () => {
   const user = React.useContext(UserContext);
   const [roads, setRoads] = useState([]);
+
   useEffect(() => {
     const fetch = async () => {
       const response = await RoadAPI.get_maps_list();
@@ -16,6 +17,21 @@ const Home = () => {
     };
     fetch();
   }, []);
+
+  const shouldRenderStartBtn = (road, btnName) => {
+    if (!user || user?.map?.mapHasStarted.find((m) => m === road._id)) {
+      return (
+        <MyButton
+          label={`Start ${btnName} road`}
+          loading={false}
+          onClick={async () => {
+            await RoadAPI.start_map(road._id);
+            await mutate(CURRENT_USER_ENDPOINT);
+          }}
+        />
+      );
+    }
+  };
 
   const renderBtn = () => {
     return roads.map((road) => {
@@ -28,16 +44,7 @@ const Home = () => {
           <Link href={`/road/${road.name}/${road._id}`}>
             <MyButton loading={false} label={btnName}></MyButton>
           </Link>
-          {!!!(!user || user?.map?.mapHasStarted.find(m => m === road._id)) && (
-            <MyButton
-              label={`Start ${btnName} road`}
-              loading={false}
-              onClick={async () => {
-                await RoadAPI.start_map(road._id)
-                await mutate(CURRENT_USER_ENDPOINT);
-              }}
-            />
-          )}
+          {shouldRenderStartBtn(road, btnName)}
         </div>
       );
     });
