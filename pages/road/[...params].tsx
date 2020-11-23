@@ -6,26 +6,13 @@ import { ROAD_ENDPOINT } from "../../lib/util/endpoints.constant";
 import {
   recursiveChangeObject,
   findVal,
-  recursiveReadAllSmallestChildField,
+  fillMap,
 } from "../../components/map/service";
 import DefaultErrorPage from "next/error";
 
-const fillMap = (road) => {
-  const childField = recursiveReadAllSmallestChildField(road, []);
-  childField.map((child) => {
-    const pathElement = document.querySelector<HTMLElement>(
-      `[name="${child.field}"]`
-    );
-    if (pathElement && child.value === true) {
-      pathElement.style.fill = "green";
-    } else if (pathElement) {
-      pathElement.style.fill = "";
-    }
-  });
-};
+
 
 const Road = ({ router }) => {
-  const [ownerMapID, setOwnerMapID] = useState(null);
   const [road, setRoad] = useState({});
   const [loading, setLoading] = useState(true);
   const mapName = router.query.params && router.query.params[0];
@@ -39,9 +26,6 @@ const Road = ({ router }) => {
     const fetchMap = async () => {
       const response = await RoadAPI.get_map(`${ROAD_ENDPOINT}/${mapID}/info`);
       setRoad(response.data.data.map);
-      response.data.data?.ownerMapID &&
-        setOwnerMapID(response.data.data?.ownerMapID);
-
       response.data.success && setLoading(false);
     };
     try {
@@ -51,24 +35,20 @@ const Road = ({ router }) => {
     }
   }, [mapID]);
 
-  React.useEffect(() => fillMap(road), [road]);
-
-  
-
   const handleClick = async (
-    e: React.MouseEvent<SVGPathElement, MouseEvent>
+    mapID: string,
+    ownerMapID: string,
+    map,
+    e: React.MouseEvent<SVGPathElement, MouseEvent>,
   ) => {
     const fieldChange = e.currentTarget.getAttribute("id");
-    const currentValue = findVal(road, fieldChange);
-
+    const currentValue = findVal(map, fieldChange);
     if (e.ctrlKey) {
       alert("redirect now");
       return;
     }
-    console.log(currentValue.value);
-    setRoad(recursiveChangeObject(road, fieldChange, !currentValue.value));
-    console.log(currentValue.value);
 
+    setRoad(recursiveChangeObject(map, fieldChange, !currentValue.value));
     await RoadAPI.change_field_map(
       mapID,
       ownerMapID,
@@ -79,13 +59,13 @@ const Road = ({ router }) => {
         return;
       }
       console.log(result.data);
-      fillMap(road);
+      fillMap(map);
     });
   };
 
   switch (mapName) {
     case "react":
-      return <ReactMap handleClick={handleClick} />;
+      return <ReactMap mapID={mapID} handleClick={handleClick} road={road} />;
   }
 
   return <>{loading ? "Loading..." : <DefaultErrorPage statusCode={404} />}</>;

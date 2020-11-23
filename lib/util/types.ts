@@ -45,18 +45,16 @@ export type TUserData =
     }
   | undefined;
 
-export type TMapData =
-  | {
-      ownerMapID: [];
-      mapHasStarted: [];
-    }
-  | undefined;
+export type TResponseCurrentUserMap = {
+  ownerMapID: string;
+    mapHasStarted: string
+}
 
 // du lieu tra ve function: current()
 export type TResponseCurrentUser = {
   success: boolean;
   user?: TUserData;
-  map: TMapData;
+  map: TResponseCurrentUserMap[];
 };
 
 export type TErrorResponseFromServer = {

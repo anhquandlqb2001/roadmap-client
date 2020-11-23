@@ -1,22 +1,50 @@
-import { MouseEvent } from "react";
+import { MouseEvent, useRef, useEffect } from "react";
+import useCurrent from "../../lib/util/useCurrent";
+import { fillMap, findOwnerMapIDIfExist, isObjEmpty } from "./service";
 
 type MapProps = {
-  handleClick: (e: MouseEvent<SVGPathElement, globalThis.MouseEvent>) => void 
+  road: any;
+  mapID: string;
+  handleClick(
+    mapID: string,
+    ownerMapID: string,
+    road: any,
+    e: MouseEvent<SVGPathElement, globalThis.MouseEvent>
+  ): Promise<void>;
   width?: string;
   height?: string;
 };
 
-const ReactMap = ({ handleClick, width = "100vw" }: MapProps) => {
-	
-	// useEffect(() => {
-	// 	const nodeList = svgRef.current?.querySelectorAll(".node--child")
-	// 	nodeList.forEach(node => {
-	// 		node.addEventListener("click", async function (e) {
-	// 			return await handleClick(e)
-	// 		})
-	// 	});
-  // }, [])
+const ReactMap = ({
+  mapID,
+  road = {},
+  handleClick,
+  width = "100vw",
+}: MapProps) => {
+  if (isObjEmpty(road) || !mapID) return null;
+  const svgRef = useRef(null);
+  const user = useCurrent();
 
+  useEffect(() => {
+    let id = null
+    if (user) {
+      id = findOwnerMapIDIfExist(user?.map, mapID);
+    }
+
+    const nodeList = svgRef.current?.querySelectorAll(".node--child");
+      nodeList.forEach((node) => {
+        node.addEventListener("click", async function (e) {
+          if (id) {
+            return await handleClick(mapID, id, road, e);
+          }
+          return console.log("you have to login");
+        });
+      });
+  }, []);
+
+  useEffect(() => {
+    fillMap(road);
+  }, [road]);
 
   return (
     <svg
@@ -30,7 +58,7 @@ const ReactMap = ({ handleClick, width = "100vw" }: MapProps) => {
       // style={{"en"}}
       xmlSpace="preserve"
     >
-      <g>
+      <g ref={svgRef}>
         <g>
           <path
             d="M24.3,0.1h-6.2l-0.2,0.4c-0.2,0.4-0.2,0.6-0.1,10.5c0.1,9.5,0.1,17.1-0.1,50.7l-0.1,12.8l1.2,0.1
@@ -1265,12 +1293,7 @@ const ReactMap = ({ handleClick, width = "100vw" }: MapProps) => {
 		C496.7,103.8,497.1,103.8,497.3,103.9z"
           />
         </g>
-        <g
-					className="node--child"
-          name="create-react-app"
-          onClick={handleClick}
-          id="create-react-app"
-        >
+        <g className="node--child" id="create-react-app">
           <path
             d="M94.9,86.4h-2.1l-0.2,0.5c-0.2,0.5-0.2,0.5-0.1,3.7c0.1,1.9,0.1,4.3,0.1,5.6s-0.1,4.1-0.1,6.1l-0.1,3.7l0.7,0.1
 		c2.3,0.2,27.9,0.4,46.4,0.4c11,0,27.1,0,35.9,0h15.9l0.2-0.7c0.1-0.6,0.2-2.2,0.1-8.8c0-7.4,0-8.1-0.2-9.2l-0.2-1.1l-0.9-0.1
@@ -1460,7 +1483,7 @@ const ReactMap = ({ handleClick, width = "100vw" }: MapProps) => {
           />
         </g>
         <path d="M360.8,121c-0.8,0.4-1,1.1-0.5,1.6s1,0.3,1.6-0.3S361.7,120.5,360.8,121z" />
-        <g id="_x3C_Group_name_x3D__x22_Functional-Components_x22__x3E_">
+        <g id="functional-components" className="node--child">
           <path
             d="M4.4,122.1H2.3L2,122.6c-0.2,0.5-0.2,0.5-0.1,3.7c0.1,1.9,0.1,4.3,0.1,5.6S1.9,136,1.9,138l-0.1,3.7l0.7,0.1
 		c2.3,0.2,27.6,0.4,46.1,0.4c11,0,27.1,0,35.8,0h15.8l0.2-0.7c0.1-0.6,0.2-2.2,0.1-8.8c0-7.4,0-8.2-0.2-9.2l-0.2-1.1l-0.9-0.1

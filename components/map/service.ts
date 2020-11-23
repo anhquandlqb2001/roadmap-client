@@ -1,3 +1,5 @@
+import { TResponseCurrentUserMap } from "../../lib/util/types";
+
 export const recursiveChangeObject = (obj, searchKey, valueChange) => {
   Object.keys(obj).forEach((key) => {
     const value = obj[key];
@@ -39,3 +41,39 @@ export const findVal = (object, key) => {
   });
   return value;
 }
+
+export function isObjEmpty(obj) {
+  return Object.keys(obj).length === 0;
+}
+
+export const fillMap = (road) => {
+  const childField = recursiveReadAllSmallestChildField(road, []);
+  childField.map((child) => {
+    const pathElement = document.querySelector<HTMLElement>(
+      `[id="${child.field}"]`
+    );
+    if (pathElement && child.value === true) {
+      pathElement.style.fill = "green";
+    } else if (pathElement) {
+      pathElement.style.fill = "";
+    }
+  });
+};
+
+export /**
+*
+* @param map array of user map if user has login
+* @param currentMapID mapID of current map
+*/
+const findOwnerMapIDIfExist = (
+ map: TResponseCurrentUserMap[],
+ currentMapID: string
+) => {
+ let a;
+ map.forEach((m) => {
+   if (m.mapHasStarted === currentMapID) {
+     return (a = m.ownerMapID);
+   }
+ });
+ return a;
+};

@@ -6,9 +6,26 @@ import MyButton from "../components/common/MyButton";
 import { mutate } from "swr";
 import { CURRENT_USER_ENDPOINT } from "../lib/util/endpoints.constant";
 
-const Home = () => {
-  const { user, map } = React.useContext(UserContext);
+const shouldRenderStartBtn = (map, road, btnName) => {
+  if (
+    typeof map === "object" &&
+    typeof map?.find((m) => m.mapHasStarted === road._id) === "undefined"
+  ) {
+    return (
+      <MyButton
+        label={`Start ${btnName} road`}
+        loading={false}
+        onClick={async () => {
+          await RoadAPI.start_map(road._id);
+          await mutate(CURRENT_USER_ENDPOINT);
+        }}
+      />
+    );
+  }
+};
 
+const Home = () => {
+  const { map } = React.useContext(UserContext);
   const [roads, setRoads] = useState([]);
   useEffect(() => {
     const fetch = async () => {
@@ -18,23 +35,7 @@ const Home = () => {
     fetch();
   }, []);
 
-  const shouldRenderStartBtn = (user, road, btnName) => {
-    if (
-      !user ||
-      typeof user?.mapHasStarted.find((m) => m === road._id) === "undefined"
-    ) {
-      return (
-        <MyButton
-          label={`Start ${btnName} road`}
-          loading={false}
-          onClick={async () => {
-            await RoadAPI.start_map(road._id);
-            await mutate(CURRENT_USER_ENDPOINT);
-          }}
-        />
-      );
-    }
-  };
+  
 
   const renderBtn = () => {
     if (!roads) {
