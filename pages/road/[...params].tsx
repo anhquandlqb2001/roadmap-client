@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import ReactMap from "../../components/map/ReactMap";
-import RoadAPI from "../../lib/api/road";
+import ReactMap from "../../src/components/map/ReactMap";
+import RoadAPI from "../../src/lib/api/road";
 import { withRouter } from "next/router";
-import { ROAD_ENDPOINT } from "../../lib/util/endpoints.constant";
+import { ROAD_ENDPOINT } from "../../src/lib/util/endpoints.constant";
 import {
   recursiveChangeObject,
   findVal,
   fillMap,
-} from "../../components/map/service";
+} from "../../src/components/map/service";
 import DefaultErrorPage from "next/error";
 
 

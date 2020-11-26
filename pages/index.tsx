@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { UserContext } from "../lib/util/userContext";
-import RoadAPI from "../lib/api/road";
+import { UserContext } from "../src/lib/util/userContext";
+import RoadAPI from "../src/lib/api/road";
 import Link from "next/link";
-import MyButton from "../components/common/MyButton";
+import MyButton from "../src/components/common/MyButton";
 import { mutate } from "swr";
-import { CURRENT_USER_ENDPOINT } from "../lib/util/endpoints.constant";
+import { CURRENT_USER_ENDPOINT } from "../src/lib/util/endpoints.constant";
+import NavBar from "../src/components/home.page/NavBar";
+import Intro from "../src/components/home.page/Intro";
+import Main from '../src/components/home.page/Main'
 
 const shouldRenderStartBtn = (map, road, btnName) => {
   if (
@@ -35,8 +38,6 @@ const Home = () => {
     fetch();
   }, []);
 
-  
-
   const renderBtn = () => {
     if (!roads) {
       return "Khong co lo trinh nao";
@@ -57,7 +58,11 @@ const Home = () => {
     });
   };
 
-  return <div>{renderBtn()}</div>;
+  return <>
+    <NavBar />
+    <Intro />
+    <Main maps={{}} />
+  </>
 };
 
 export default Home;
