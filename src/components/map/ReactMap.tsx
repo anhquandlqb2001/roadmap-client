@@ -25,20 +25,17 @@ const ReactMap = ({
   const svgRef = useRef(null);
   const user = useCurrent();
 
-  let id = null
+  let id = null;
   useEffect(() => {
-    if (user) {
-      id = findOwnerMapIDIfExist(user?.map, mapID);
-    }
     const nodeList = svgRef.current?.querySelectorAll(".node--child");
     nodeList.forEach((node) => {
       node.addEventListener("click", async function (e) {
-          if (id) {
-            return await handleClick(mapID, id, road, e);
-          }
-          return console.log("you have to login");
-        });
+        if (!user) return console.log("Ban chua dang nhap!");
+        const id = findOwnerMapIDIfExist(user?.map, mapID)
+        if (id) return await handleClick(mapID, id, road, e);
+        return console.log("Ban chua dang ky lo trinh nay!");
       });
+    });
   }, []);
 
   useEffect(() => {
