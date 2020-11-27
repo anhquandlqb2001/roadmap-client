@@ -1,6 +1,10 @@
 {
   "plugins": [
-    ["styled-components", { "ssr": true, "displayName": true, "preprocess": false } ],
+    [
+      "styled-components",
+      { "ssr": true, "displayName": true, "preprocess": false }
+    ]
   ],
-  "presets": ["next/babel"]
+  "presets": ["next/babel"],
+  "compact": false
 }

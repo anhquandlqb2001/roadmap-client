@@ -1,5 +1,6 @@
 import axios from "../util/axios.config";
 import { ROAD_ENDPOINT } from "../util/endpoints.constant";
+import { TMapListData } from "../util/types";
 
 class RoadMapAPI {
   // async start(mapName: EMap) {
@@ -10,7 +11,7 @@ class RoadMapAPI {
     try {
       const response = await axios.put(`${ROAD_ENDPOINT}/${mapID}/start`);
       console.log(response.data);
-      
+
       return response;
     } catch (error) {
       console.log("error in userAPI:, ", error);
@@ -21,7 +22,7 @@ class RoadMapAPI {
     try {
       const response = await axios.get(url);
       console.log(response);
-      
+
       return response;
     } catch (error) {
       console.log("error in userAPI:, ", error);
@@ -30,14 +31,14 @@ class RoadMapAPI {
 
   async get_maps_list() {
     try {
-      const response = await axios.get(`${ROAD_ENDPOINT}/list`);
+      const response = await axios.get<TMapListData>(`${ROAD_ENDPOINT}/list`);
       return response;
     } catch (error) {
       console.log("error in userAPI:, ", error);
     }
   }
 
-  async change_field_map( mapID, ownerMapID, field, currentValue ) {
+  async change_field_map(mapID, ownerMapID, field, currentValue) {
     try {
       const response = await axios.put(
         `${ROAD_ENDPOINT}/${mapID}/${ownerMapID}`,

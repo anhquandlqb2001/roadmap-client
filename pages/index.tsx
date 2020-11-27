@@ -8,6 +8,7 @@ import { CURRENT_USER_ENDPOINT } from "../src/lib/util/endpoints.constant";
 import NavBar from "../src/components/home.page/NavBar";
 import Intro from "../src/components/home.page/Intro";
 import Main from '../src/components/home.page/Main'
+import { IRoad } from "../src/lib/util/types";
 
 const shouldRenderStartBtn = (map, road, btnName) => {
   if (
@@ -29,7 +30,7 @@ const shouldRenderStartBtn = (map, road, btnName) => {
 
 const Home = () => {
   const { map } = React.useContext(UserContext);
-  const [roads, setRoads] = useState([]);
+  const [roads, setRoads] = useState<IRoad[]>([]);
   useEffect(() => {
     const fetch = async () => {
       const response = await RoadAPI.get_maps_list();
@@ -61,7 +62,7 @@ const Home = () => {
   return <>
     <NavBar />
     <Intro />
-    <Main maps={{}} />
+    <Main maps={roads} />
   </>
 };
 

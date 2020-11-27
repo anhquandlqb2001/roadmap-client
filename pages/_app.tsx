@@ -3,6 +3,7 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 import UserProvider from "../src/lib/util/userContext";
 import { Normalize } from 'styled-normalize'
+import '../styles/global.css' // apply global style
 
 const theme = {
   primary: "green",
@@ -18,7 +19,7 @@ export default class App extends NextApp {
     const { Component, pageProps } = this.props;
     return (
       <ThemeProvider theme={theme}>
-        <Normalize />
+        <Normalize /> {/** nomalize css */}
         <UserProvider>
           <Component {...pageProps} />
         </UserProvider>

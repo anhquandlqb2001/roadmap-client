@@ -25,21 +25,20 @@ const ReactMap = ({
   const svgRef = useRef(null);
   const user = useCurrent();
 
+  let id = null;
   useEffect(() => {
-    let id = null
     if (user) {
       id = findOwnerMapIDIfExist(user?.map, mapID);
     }
-
     const nodeList = svgRef.current?.querySelectorAll(".node--child");
     nodeList.forEach((node) => {
       node.addEventListener("click", async function (e) {
-          if (id) {
-            return await handleClick(mapID, id, road, e);
-          }
-          return console.log("you have to login");
-        });
+        if (id) {
+          return await handleClick(mapID, id, road, e);
+        }
+        return console.log("you have to login");
       });
+    });
   }, []);
 
   useEffect(() => {

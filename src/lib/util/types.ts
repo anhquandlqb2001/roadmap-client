@@ -78,3 +78,15 @@ export enum EMap {
   FrontEnd = "FRONT_END",
   BackEnd = "BACK_END",
 }
+
+
+export interface IRoad {
+  _id: string,
+  name: string;
+  stars?: [];
+}
+
+export type TMapListData = {
+  success: boolean,
+  roads: IRoad[]
+}
