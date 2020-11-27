@@ -32,8 +32,8 @@ const ReactMap = ({
     }
 
     const nodeList = svgRef.current?.querySelectorAll(".node--child");
-      nodeList.forEach((node) => {
-        node.addEventListener("click", async function (e) {
+    nodeList.forEach((node) => {
+      node.addEventListener("click", async function (e) {
           if (id) {
             return await handleClick(mapID, id, road, e);
           }
