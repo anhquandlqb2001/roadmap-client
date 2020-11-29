@@ -7,8 +7,9 @@ import { mutate } from "swr";
 import { CURRENT_USER_ENDPOINT } from "../src/lib/util/endpoints.constant";
 import NavBar from "../src/components/home.page/NavBar";
 import Intro from "../src/components/home.page/Intro";
-import Main from '../src/components/home.page/Main'
+import Main from "../src/components/home.page/Main";
 import { IRoad } from "../src/lib/util/types";
+import { GetStaticProps } from "next";
 
 const shouldRenderStartBtn = (map, road, btnName) => {
   if (
@@ -59,11 +60,14 @@ const Home = () => {
     });
   };
 
-  return <>
-    <NavBar />
-    <Intro />
-    <Main maps={roads} />
-  </>
+  return (
+    <>
+      <NavBar />
+      <Intro />
+      <Main maps={roads} />
+    </>
+  );
 };
+
 
 export default Home;
