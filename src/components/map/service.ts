@@ -1,4 +1,4 @@
-import { TResponseCurrentUserMap } from "../../lib/util/types";
+import { TCurrentUserResponseMap } from "../../lib/api/user";
 
 export const recursiveChangeObject = (obj, searchKey, valueChange) => {
   Object.keys(obj).forEach((key) => {
@@ -66,7 +66,7 @@ export /**
 * @param currentMapID mapID of current map
 */
 const findOwnerMapIDIfExist = (
- map: TResponseCurrentUserMap[],
+ map: TCurrentUserResponseMap[],
  currentMapID: string
 ) => {
  let a;

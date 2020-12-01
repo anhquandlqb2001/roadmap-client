@@ -1,4 +1,4 @@
-import { EProvider, TFacebookResponse } from "../../lib/util/types";
+import { TFacebookResponse } from "../../lib/util/types";
 import {
   CURRENT_USER_ENDPOINT,
   LOGIN_FACEBOOK_ENDPOINT,
@@ -18,7 +18,7 @@ export const facebookResponse = async (
       endpoint: LOGIN_FACEBOOK_ENDPOINT,
       data: {
         email: user.email,
-        provider: EProvider.Facebook,
+        provider: "FACEBOOK",
         extend: {
           accessToken: user.accessToken,
           expiresIn: user.expiresIn,
@@ -48,7 +48,7 @@ export const onSubmitLogin = async (
       data: {
         email: values.email,
         password: values.password,
-        provider: EProvider.Local,
+        provider: "LOCAL",
       },
     });
 
