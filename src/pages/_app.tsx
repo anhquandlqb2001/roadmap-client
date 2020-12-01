@@ -1,7 +1,7 @@
 import NextApp from "next/app";
 import React from "react";
 import { ThemeProvider } from "styled-components";
-import UserProvider from "../src/lib/util/userContext";
+import UserProvider from "../lib/util/userContext";
 import { Normalize } from 'styled-normalize'
 import '../styles/global.css' // apply global style
 

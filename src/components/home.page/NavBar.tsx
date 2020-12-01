@@ -9,10 +9,10 @@ const NavBar = () => {
         <LogoText>ROADMAP</LogoText>
       </LogoContainer>
       <AuthContainer>
-        <Link href="/user/login" prefetch passHref>
+        <Link href="/user/login" passHref>
           <StyledLink>Đăng nhập</StyledLink>
         </Link>
-        <Link href="/user/signup" prefetch passHref>
+        <Link href="/user/signup" passHref>
           <StyledLink>Đăng ký</StyledLink>
         </Link>
       </AuthContainer>

@@ -1,7 +1,7 @@
 type ServerType = 'node' | 'php'
 
 const SERVER: ServerType = 'node'
-const ENDPOINT = `/api/${SERVER}`
+export const ENDPOINT = `/api/${SERVER}`
 export const SERVER_ENDPOINT = "http://localhost:5000"
 
 

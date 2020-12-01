@@ -79,10 +79,10 @@ export enum EMap {
   BackEnd = "BACK_END",
 }
 
-
-export interface IRoad {
+ export interface IRoad {
   _id: string,
   name: string;
+  intro: string,
   stars?: [];
 }
 

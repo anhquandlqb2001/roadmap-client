@@ -5,17 +5,17 @@ import Link from "next/link";
 type RoadButtonType = {
   href: string;
   name: string;
-  detail: string;
+  intro: string;
   disabled?: boolean;
 };
 
-const RoadButton = ({ href, name, detail, disabled }: RoadButtonType) => {
+const RoadButton = ({ href, name, intro, disabled }: RoadButtonType) => {
   return (
-    <Link href={href} prefetch passHref>
+    <Link href={href} passHref>
       <StyledLink isDisabled={disabled}>
         <TextContainer>
           <ButtonText isDisabled={disabled}>{name}</ButtonText>
-          <ButtonDetail isDisabled={disabled}>{detail}</ButtonDetail>
+          <ButtonDetail isDisabled={disabled}>{intro}</ButtonDetail>
         </TextContainer>
       </StyledLink>
     </Link>

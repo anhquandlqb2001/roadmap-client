@@ -1,6 +1,6 @@
 import Head from "next/head";
-import RegisterForm from "../../src/components/register/RegisterForm";
-import Wrapper from "../../src/components/common/Wrapper";
+import RegisterForm from "../../components/register/RegisterForm";
+import Wrapper from "../../components/common/Wrapper";
 
 const Register = () => {
   return (
