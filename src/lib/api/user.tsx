@@ -37,7 +37,7 @@ type TLoginParams = {
 };
 
 export type TCurrentUserResponseMap = {
-  ownerMapID: string;
+  ownerMapId: string;
   mapHasStarted: string;
 };
 

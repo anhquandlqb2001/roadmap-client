@@ -1,5 +1,4 @@
 import { NextRouter } from "next/router";
-import { EProvider } from "../../lib/util/types";
 import { register } from "../../lib/api/user";
 import errorsMap from "../../lib/util/errorsMap";
 
@@ -47,7 +46,7 @@ export const onSubmitRegister = async (
     const { data } = await register({
       email: values.email,
       password: values.password,
-      provider: EProvider.Local,
+      provider: "LOCAL",
     });
 
     if (data.errors) return setErrors(errorsMap(data.errors));

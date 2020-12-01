@@ -4,10 +4,10 @@ import { fillMap, findOwnerMapIDIfExist, isObjEmpty } from "./service";
 
 type MapProps = {
   road: any;
-  mapID: string;
+  mapId: string;
   handleClick(
-    mapID: string,
-    ownerMapID: string,
+    mapId: string,
+    ownerMapId: string,
     road: any,
     e: MouseEvent<SVGPathElement, globalThis.MouseEvent>
   ): Promise<void>;
@@ -16,12 +16,12 @@ type MapProps = {
 };
 
 const ReactMap = ({
-  mapID,
+  mapId,
   road = {},
   handleClick,
   width = "100vw",
 }: MapProps) => {
-  if (isObjEmpty(road) || !mapID) return null;
+  if (isObjEmpty(road) || !mapId) return null;
   const svgRef = useRef(null);
   const user = useCurrent();
 
@@ -31,8 +31,8 @@ const ReactMap = ({
     nodeList.forEach((node) => {
       node.addEventListener("click", async function (e) {
         if (!user) return console.log("Ban chua dang nhap!");
-        const id = findOwnerMapIDIfExist(user?.map, mapID)
-        if (id) return await handleClick(mapID, id, road, e);
+        const id = findOwnerMapIDIfExist(user?.map, mapId)
+        if (id) return await handleClick(mapId, id, road, e);
         return console.log("Ban chua dang ky lo trinh nay!");
       });
     });

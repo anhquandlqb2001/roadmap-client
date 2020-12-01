@@ -2,13 +2,11 @@ import axios from "../util/axios.config";
 import { ROAD_ENDPOINT } from "../util/endpoints.constant";
 import { TDefaultResponse } from "../util/types";
 
-
-
 type TGetMapResponse = TDefaultResponse & {
   data: {
     map: any;
-    has_started: boolean;
-    owner_map_id?: string;
+    hasStarted: boolean;
+    ownerMapId?: string;
   };
 };
 
@@ -25,10 +23,10 @@ type TGetMapsListResponse = {
 };
 
 export type TChangeFieldMapParams = {
-  map_id: string;
-  owner_map_id: string;
-  field_change: string;
-  current_value: boolean;
+  mapId: string;
+  ownerMapId: string;
+  fieldChange: string;
+  currentValue: boolean;
 };
 
 export const startMap = async (mapID) => {
@@ -63,17 +61,17 @@ export const getMapList = async () => {
 };
 
 export const changeFieldMap = async ({
-  map_id,
-  owner_map_id,
-  field_change,
-  current_value,
+  mapId,
+  ownerMapId,
+  fieldChange,
+  currentValue,
 }: TChangeFieldMapParams) => {
   try {
     const response = await axios.put<TDefaultResponse>(
-      `${ROAD_ENDPOINT}/${map_id}/${owner_map_id}`,
+      `${ROAD_ENDPOINT}/${mapId}/${ownerMapId}`,
       {
-        field_change,
-        current_value,
+        fieldChange,
+        currentValue,
       }
     );
     return response;

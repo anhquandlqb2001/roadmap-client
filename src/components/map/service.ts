@@ -63,16 +63,16 @@ export const fillMap = (road) => {
 export /**
 *
 * @param map array of user map if user has login
-* @param currentMapID mapID of current map
+* @param currentMapId mapID of current map
 */
 const findOwnerMapIDIfExist = (
  map: TCurrentUserResponseMap[],
- currentMapID: string
+ currentMapId: string
 ) => {
  let a;
  map.forEach((m) => {
-   if (m.mapHasStarted === currentMapID) {
-     return (a = m.ownerMapID);
+   if (m.mapHasStarted === currentMapId) {
+     return (a = m.ownerMapId);
    }
  });
  return a;

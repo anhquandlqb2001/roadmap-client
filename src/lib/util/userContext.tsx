@@ -1,8 +1,7 @@
 import React, { createContext } from "react";
-import { TMapData, TUserData } from "./types";
 import useCurrent from "./useCurrent";
 
-export const UserContext = createContext<{ user: TUserData; map: TMapData }>(
+export const UserContext = createContext<{ user, map }>(
   null
 );
 

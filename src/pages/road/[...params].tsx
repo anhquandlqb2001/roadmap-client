@@ -14,28 +14,28 @@ const Road = ({ router }) => {
   const [road, setRoad] = useState({});
   const [loading, setLoading] = useState(true);
   const mapName = router.query.params && router.query.params[0];
-  const mapID = router.query.params && router.query.params[1];
+  const mapId = router.query.params && router.query.params[1];
 
-  if (mapID === "undefined") {
+  if (mapId === "undefined") {
     return null;
   }
 
   React.useEffect(() => {
     const fetchMap = async () => {
-      const response = await getMap(`${ROAD_ENDPOINT}/${mapID}/info`);
+      const response = await getMap(`${ROAD_ENDPOINT}/${mapId}/info`);
       setRoad(response.data.data.map);
       response.data.success && setLoading(false);
     };
     try {
-      if (typeof mapID !== "undefined") fetchMap();
+      if (typeof mapId !== "undefined") fetchMap();
     } catch (error) {
       console.log(error);
     }
-  }, [mapID]);
+  }, [mapId]);
 
   const handleClick = async (
-    mapID: string,
-    ownerMapID: string,
+    mapId: string,
+    ownerMapId: string,
     map,
     e: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => {
@@ -49,10 +49,10 @@ const Road = ({ router }) => {
     setRoad(recursiveChangeObject(map, fieldChange, !currentValue.value));
 
     await changeFieldMap({
-      map_id: mapID,
-      owner_map_id: ownerMapID,
-      field_change: fieldChange,
-      current_value: !currentValue.value,
+      mapId: mapId,
+      ownerMapId: ownerMapId,
+      fieldChange: fieldChange,
+      currentValue: !currentValue.value,
     }).then((result) => {
       if (!result.data.success) {
         return;
@@ -64,7 +64,7 @@ const Road = ({ router }) => {
 
   switch (mapName) {
     case "react":
-      return <ReactMap mapID={mapID} handleClick={handleClick} road={road} />;
+      return <ReactMap mapId={mapId} handleClick={handleClick} road={road} />;
   }
 
   return <>{loading ? "Loading..." : <DefaultErrorPage statusCode={404} />}</>;
