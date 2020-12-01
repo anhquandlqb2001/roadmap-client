@@ -1,57 +1,78 @@
 import axios from "../util/axios.config";
 import { ROAD_ENDPOINT } from "../util/endpoints.constant";
-import { TMapListData } from "../util/types";
 
-class RoadMapAPI {
-  // async start(mapName: EMap) {
-  //   await axios.post(ADD_NEW_MAP_ENDPOINT, { map: mapName });
-  // }
+type TDefaultResponse = {
+  success: boolean;
+  message?: string;
+};
 
-  async start_map(mapID) {
-    try {
-      const response = await axios.put(`${ROAD_ENDPOINT}/${mapID}/start`);
-      console.log(response.data);
+type TGetMapResponse = TDefaultResponse & {
+  data: {
+    map: any;
+    has_started: boolean;
+    owner_map_id?: string;
+  };
+};
 
-      return response;
-    } catch (error) {
-      console.log("error in userAPI:, ", error);
-    }
+type TRoad = {
+  _id: string;
+  name: string;
+  intro: string;
+  stars?: [];
+};
+
+type TGetMapsListResponse = {
+  success: boolean;
+  roads: TRoad[];
+};
+
+export const startMap = async (mapID) => {
+  try {
+    const response = await axios.put<TDefaultResponse>(
+      `${ROAD_ENDPOINT}/${mapID}/start`
+    );
+    return response;
+  } catch (error) {
+    console.log("error in userAPI:, ", error);
   }
+};
 
-  async get_map(url) {
-    try {
-      const response = await axios.get(url);
-      console.log(response);
-
-      return response;
-    } catch (error) {
-      console.log("error in userAPI:, ", error);
-    }
+export const getMap = async (url: string) => {
+  try {
+    const response = await axios.get<TGetMapResponse>(url);
+    return response;
+  } catch (error) {
+    console.log("error in userAPI:, ", error);
   }
+};
 
-  async get_maps_list() {
-    try {
-      const response = await axios.get<TMapListData>(`${ROAD_ENDPOINT}/list`);
-      return response;
-    } catch (error) {
-      console.log("error in userAPI:, ", error);
-    }
+export const getMapList = async () => {
+  try {
+    const response = await axios.get<TGetMapsListResponse>(
+      `${ROAD_ENDPOINT}/list`
+    );
+    return response;
+  } catch (error) {
+    console.log("error in userAPI:, ", error);
   }
+};
 
-  async change_field_map(mapID, ownerMapID, field, currentValue) {
-    try {
-      const response = await axios.put(
-        `${ROAD_ENDPOINT}/${mapID}/${ownerMapID}`,
-        {
-          field,
-          currentValue,
-        }
-      );
-      return response;
-    } catch (error) {
-      console.log("error in userAPI:, ", error);
-    }
+export const changeFieldMap = async (
+  mapID,
+  ownerMapID,
+  field,
+  currentValue
+) => {
+  try {
+    const response = await axios.put<TDefaultResponse>(
+      `${ROAD_ENDPOINT}/${mapID}/${ownerMapID}`,
+      {
+        field,
+        currentValue,
+      }
+    );
+    return response;
+  } catch (error) {
+    console.log("error in userAPI:, ", error);
   }
-}
-
-export default new RoadMapAPI();
+};

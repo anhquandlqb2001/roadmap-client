@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactMap from "../../components/map/ReactMap";
-import RoadAPI from "../../lib/api/road";
+import { getMap, changeFieldMap } from "../../lib/api/road";
 import { withRouter } from "next/router";
 import { ROAD_ENDPOINT } from "../../lib/util/endpoints.constant";
 import {
@@ -9,8 +9,6 @@ import {
   fillMap,
 } from "../../components/map/service";
 import DefaultErrorPage from "next/error";
-
-
 
 const Road = ({ router }) => {
   const [road, setRoad] = useState({});
@@ -24,7 +22,7 @@ const Road = ({ router }) => {
 
   React.useEffect(() => {
     const fetchMap = async () => {
-      const response = await RoadAPI.get_map(`${ROAD_ENDPOINT}/${mapID}/info`);
+      const response = await getMap(`${ROAD_ENDPOINT}/${mapID}/info`);
       setRoad(response.data.data.map);
       response.data.success && setLoading(false);
     };
@@ -39,7 +37,7 @@ const Road = ({ router }) => {
     mapID: string,
     ownerMapID: string,
     map,
-    e: React.MouseEvent<SVGPathElement, MouseEvent>,
+    e: React.MouseEvent<SVGPathElement, MouseEvent>
   ) => {
     const fieldChange = e.currentTarget.getAttribute("id");
     const currentValue = findVal(map, fieldChange);
@@ -49,7 +47,8 @@ const Road = ({ router }) => {
     }
 
     setRoad(recursiveChangeObject(map, fieldChange, !currentValue.value));
-    await RoadAPI.change_field_map(
+    
+    await changeFieldMap(
       mapID,
       ownerMapID,
       fieldChange,
