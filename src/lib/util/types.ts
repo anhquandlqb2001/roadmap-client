@@ -5,6 +5,11 @@ export enum EProvider {
 
 export type TProvider = EProvider.Facebook | EProvider.Local;
 
+export type TDefaultResponse = {
+  success: boolean;
+  message?: string;
+};
+
 // du lieu dang nhap gui ve server
 export type TDataToServer = {
   email: string;

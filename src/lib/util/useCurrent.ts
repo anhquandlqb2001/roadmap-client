@@ -1,9 +1,9 @@
-import UserAPI from "../api/user";
+import { current } from "../api/user";
 import useSWR from "swr";
 import { CURRENT_USER_ENDPOINT } from "./endpoints.constant";
 
 const useCurrent = () => {
-  const { data } = useSWR(CURRENT_USER_ENDPOINT, UserAPI.current);
+  const { data } = useSWR(CURRENT_USER_ENDPOINT, current);
   if (!data?.data.success) {
     return null;
   }

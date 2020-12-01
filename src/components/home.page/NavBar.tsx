@@ -12,7 +12,7 @@ const NavBar = () => {
         <Link href="/user/login" passHref>
           <StyledLink>Đăng nhập</StyledLink>
         </Link>
-        <Link href="/user/signup" passHref>
+        <Link href="/user/register" passHref>
           <StyledLink>Đăng ký</StyledLink>
         </Link>
       </AuthContainer>

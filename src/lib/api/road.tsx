@@ -1,10 +1,8 @@
 import axios from "../util/axios.config";
 import { ROAD_ENDPOINT } from "../util/endpoints.constant";
+import { TDefaultResponse } from "../util/types";
 
-type TDefaultResponse = {
-  success: boolean;
-  message?: string;
-};
+
 
 type TGetMapResponse = TDefaultResponse & {
   data: {
