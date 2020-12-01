@@ -1,7 +1,15 @@
 import { AxiosResponse } from "axios";
 import axios from "../util/axios.config";
 import { REGISTER_LOCAL_ENDPOINT } from "../util/endpoints.constant";
-import { TDataToServer, TDefaultResponse, TProvider } from "../util/types";
+import { TDefaultResponse, TProvider } from "../util/types";
+
+type TDataToServer = {
+  email: string;
+  password?: string;
+  provider: TProvider;
+  extend?: any;
+};
+
 
 type TFormErrorResponse = {
   name: string;
@@ -12,7 +20,7 @@ type TFormErrorResponse = {
 type TFormDataResponse = TDefaultResponse & {
   data?: {
     jwt: string;
-    provider: string;
+    provider: TProvider;
     email: string;
   };
   errors?: TFormErrorResponse[];
@@ -28,6 +36,11 @@ type TLoginParams = {
   };
 };
 
+export type TCurrentUserResponseMap = {
+  ownerMapID: string;
+  mapHasStarted: string;
+};
+
 // du lieu tra ve function: current()
 type TCurrentUserResponse = {
   success: boolean;
@@ -39,7 +52,7 @@ type TCurrentUserResponse = {
         provider: TProvider;
       }
     | undefined;
-  map: { ownerMapID: string; mapHasStarted: string }[];
+  map: TCurrentUserResponseMap[];
 };
 
 export const login = async ({
