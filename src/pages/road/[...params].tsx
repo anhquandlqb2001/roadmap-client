@@ -47,13 +47,13 @@ const Road = ({ router }) => {
     }
 
     setRoad(recursiveChangeObject(map, fieldChange, !currentValue.value));
-    
-    await changeFieldMap(
-      mapID,
-      ownerMapID,
-      fieldChange,
-      !currentValue.value
-    ).then((result) => {
+
+    await changeFieldMap({
+      map_id: mapID,
+      owner_map_id: ownerMapID,
+      field_change: fieldChange,
+      current_value: !currentValue.value,
+    }).then((result) => {
       if (!result.data.success) {
         return;
       }

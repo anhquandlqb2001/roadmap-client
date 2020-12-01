@@ -26,6 +26,13 @@ type TGetMapsListResponse = {
   roads: TRoad[];
 };
 
+export type TChangeFieldMapParams = {
+  map_id: string;
+  owner_map_id: string;
+  field_change: string;
+  current_value: boolean;
+};
+
 export const startMap = async (mapID) => {
   try {
     const response = await axios.put<TDefaultResponse>(
@@ -57,18 +64,18 @@ export const getMapList = async () => {
   }
 };
 
-export const changeFieldMap = async (
-  mapID,
-  ownerMapID,
-  field,
-  currentValue
-) => {
+export const changeFieldMap = async ({
+  map_id,
+  owner_map_id,
+  field_change,
+  current_value,
+}: TChangeFieldMapParams) => {
   try {
     const response = await axios.put<TDefaultResponse>(
-      `${ROAD_ENDPOINT}/${mapID}/${ownerMapID}`,
+      `${ROAD_ENDPOINT}/${map_id}/${owner_map_id}`,
       {
-        field,
-        currentValue,
+        field_change,
+        current_value,
       }
     );
     return response;
