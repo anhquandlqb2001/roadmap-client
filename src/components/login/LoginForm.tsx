@@ -1,69 +1,121 @@
-import React from "react";
-import { Form, Formik } from "formik";
-import InputField from "../common/InputField";
-import Grid from "@material-ui/core/Grid";
-import LoginFacebook from "./LoginFacebook";
-import MyButton from "../common/MyButton";
-import Box from "../common/Box";
-import Link from "next/link";
+import {
+  TextField,
+  Button,
+  Paper,
+  Grid,
+  Box,
+  Typography,
+  Link,
+  CssBaseline,
+} from "@material-ui/core";
+import styled from "styled-components";
+
+import { Formik, Form } from "formik";
 import { onSubmitLogin } from "./service";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
+import InputField from "../common/InputField";
+import NextLink from "next/link";
+
+const GridContainer = styled(Grid)`
+  height: 100vh;
+`;
+
+const PaperStyled = styled(Paper)`
+  margin: 20px;
+  display: "flex";
+  flex-direction: "column";
+  align-items: "center";
+`;
+
+const FormContainer = styled.div`
+  width: "100%"; // Fix IE 11 issue.
+  margin-top: 20%;
+`;
+
+const SubmitBtnStyled = styled(Button)`
+  margin: 20px;
+`;
 
 const LoginForm = () => {
-  const router = useRouter()
+  const router = useRouter();
   return (
-    <Grid container direction="column" justify="center" alignItems="center">
-      <Formik
-        initialValues={{
-          email: "",
-          password: "",
-        }}
-        onSubmit={async (values, { setErrors, setSubmitting }) => {
-          await onSubmitLogin(values, setErrors, router);
-          setSubmitting(false);
-        }}
+    <GridContainer container>
+      <CssBaseline />
+      <Grid item xs={false} sm={4} md={7} />
+      <Grid
+        item
+        xs={12}
+        sm={8}
+        md={5}
+        component={PaperStyled}
+        elevation={6}
+        square
       >
-        {({ isSubmitting }) => (
-          <Form>
-            <Grid
-              container
-              direction="column"
-              justify="center"
-              alignItems="center"
+        <div>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <FormContainer>
+            <Formik
+              initialValues={{
+                email: "",
+                password: "",
+              }}
+              onSubmit={async (values, { setErrors, setSubmitting }) => {
+                await onSubmitLogin(values, setErrors, router);
+                setSubmitting(false);
+              }}
             >
-              <Box margin="10px">
-                <InputField name="email" id="email" label="Email" type="text" />
-              </Box>
-              <Box margin="10px">
-                <InputField
-                  name="password"
-                  id="password"
-                  label="Mat khau"
-                  type="password"
-                />
-              </Box>
-              <Box margin="10px">
-                <MyButton
-                  label="Dang nhap"
-                  type="submit"
-                  onClick={() => {}}
-                  loading={isSubmitting}
-                />
-              </Box>
-              <Box>
-                <>
-                  Chua co tai khoan?{" "}
-                  <Link href="/user/register">
-                    <a>Dang ky ngay!</a>
+              {({ isSubmitting }) => (
+                <Form>
+                  <InputField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email"
+                    name="email"
+                    autoComplete="email"
+                    autoFocus
+                  />
+                  <InputField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Mật khẩu"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                  />
+                  <SubmitBtnStyled
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                  >
+                    Đăng nhập
+                  </SubmitBtnStyled>
+                </Form>
+              )}
+            </Formik>
+
+            <Grid container>
+              <Grid item xs></Grid>
+              <Grid item>
+                <NextLink href="/user/register" passHref >
+                  <Link variant="body2">
+                    {"Chưa có tài khoản? Đăng ký ngay"}
                   </Link>
-                </>
-              </Box>
+                </NextLink>
+              </Grid>
             </Grid>
-          </Form>
-        )}
-      </Formik>
-      <LoginFacebook />
-    </Grid>
+          </FormContainer>
+        </div>
+      </Grid>
+    </GridContainer>
   );
 };
 

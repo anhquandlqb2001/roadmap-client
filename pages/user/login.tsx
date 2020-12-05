@@ -9,9 +9,7 @@ const Login = () => {
         <title>Dang nhap</title>
         <meta name="description" content="Dang nhap de trai nghiem tot hon!" />
       </Head>
-      <Wrapper>
-        <LoginForm />
-      </Wrapper>
+      <LoginForm />
     </>
   );
 };
