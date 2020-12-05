@@ -1,22 +1,24 @@
 import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
+import useCurrent from "../../lib/util/useCurrent";
 
 const NavBar = () => {
+  const user = useCurrent()
   return (
     <NavBarContainer>
       <Link href="/" passHref>
         <LogoContainer>
-          <LogoText>ROADMAP</LogoText>
+          <LogoText>lotrinh</LogoText>
         </LogoContainer>
       </Link>
       <AuthContainer>
-        <Link href="/user/login" passHref>
+        {!user ? <><Link href="/user/login" passHref>
           <StyledLink>Đăng nhập</StyledLink>
         </Link>
         <Link href="/user/register" passHref>
           <StyledLink>Đăng ký</StyledLink>
-        </Link>
+        </Link></> : ""}
       </AuthContainer>
     </NavBarContainer>
   );
