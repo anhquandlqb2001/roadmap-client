@@ -5,9 +5,11 @@ import styled from "styled-components";
 const NavBar = () => {
   return (
     <NavBarContainer>
-      <LogoContainer>
-        <LogoText>ROADMAP</LogoText>
-      </LogoContainer>
+      <Link href="/" passHref>
+        <LogoContainer>
+          <LogoText>ROADMAP</LogoText>
+        </LogoContainer>
+      </Link>
       <AuthContainer>
         <Link href="/user/login" passHref>
           <StyledLink>Đăng nhập</StyledLink>
@@ -36,6 +38,7 @@ const LogoContainer = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
+  cursor: pointer;
   justify-content: center;
 `;
 
@@ -43,7 +46,6 @@ const LogoText = styled.p`
   font-style: normal;
   font-weight: normal;
   font-size: 1.6rem;
-  cursor: default;
   user-select: none;
 `;
 

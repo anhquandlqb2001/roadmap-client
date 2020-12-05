@@ -13,10 +13,10 @@ const MyButton = ({ icon, label, loading, type, onClick, ...props }: MyButtonPro
   if (icon) {
     extend = !loading && icon
   }
-
+  
   return (
     <Button
-      {...props as any}
+      {...props}
       type={type}
       variant="contained"
       onClick={onClick}

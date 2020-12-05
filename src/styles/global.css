@@ -1,3 +1,7 @@
 path {
   pointer-events: bounding-box;
 }
+
+html {
+  overflow-y: scroll;
+}
