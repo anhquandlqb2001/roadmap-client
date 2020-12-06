@@ -33,7 +33,7 @@ const RegisterForm = () => {
               alignItems="center"
             >
               <Box margin="10px" key="email">
-                <InputField name="email" id="email" label="Email" type="text" />
+                <InputField required name="email" id="email" label="Email" type="text" />
               </Box>
               <Box margin="10px" key="password">
                 <InputField

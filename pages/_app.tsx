@@ -1,12 +1,28 @@
-import '../styles/global.css'
-import UserProvider from '../lib/util/userContext'
+import NextApp from "next/app";
+import React from "react";
+import { ThemeProvider } from "styled-components";
+import {createMuiTheme} from '@material-ui/core'
+import UserProvider from "../src/lib/util/userContext";
+import { Normalize } from 'styled-normalize'
+import '../src/styles/global.css' // apply global style
 
-function MyApp({ Component, pageProps }) {
-  return (
-    <UserProvider>
-      <Component {...pageProps} />
-    </UserProvider>
-  )
+export default class App extends NextApp {
+  theme = createMuiTheme()
+
+  componentDidMount() {
+    const jssStyles = document.querySelector("#jss-server-side");
+    if (jssStyles && jssStyles.parentNode)
+      jssStyles.parentNode.removeChild(jssStyles);
+  }
+  render() {
+    const { Component, pageProps } = this.props;
+    return (
+      <ThemeProvider theme={this.theme}>
+        <Normalize /> {/** nomalize css */}
+        <UserProvider>
+          <Component {...pageProps} />
+        </UserProvider>
+      </ThemeProvider>
+    );
+  }
 }
-
-export default MyApp

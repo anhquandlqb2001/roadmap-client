@@ -1,8 +1,8 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
+import Button, {ButtonProps} from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-type MyButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+type MyButtonProps = ButtonProps & {
   loading: boolean;
   label: string
   icon?: any
@@ -13,10 +13,10 @@ const MyButton = ({ icon, label, loading, type, onClick, ...props }: MyButtonPro
   if (icon) {
     extend = !loading && icon
   }
-
+  
   return (
     <Button
-      {...props as any}
+      {...props}
       type={type}
       variant="contained"
       onClick={onClick}

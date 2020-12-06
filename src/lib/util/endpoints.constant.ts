@@ -1,8 +1,12 @@
 type ServerType = 'node' | 'php'
 
 const SERVER: ServerType = 'php'
+
+const PORT = 8081
+
 const ENDPOINT = `/api/${SERVER}`
-export const SERVER_ENDPOINT = "http://localhost:8081"
+
+export const SERVER_ENDPOINT = `http://localhost:${PORT}`
 
 
 /*
@@ -22,11 +26,11 @@ export const CURRENT_USER_ENDPOINT = `${ENDPOINT}/user/current`
  * road endpoints
  */
 //
-// export const ADD_NEW_MAP_ENDPOINT = `${ENDPOINT}/road/add_map`
+export const ADD_NEW_MAP_ENDPOINT = `${ENDPOINT}/road/add_map`
 // bat dau lo trinh moi 
-// export const START_MAP_ENDPOINT = `${ENDPOINT}/road/startmap`
-// export const GET_MAP_ENDPOINT = `${ENDPOINT}/user/get_map`
-// export const CHANGE_FIELD_MAP_ENDPOINT = `${ENDPOINT}/user/`
+export const START_MAP_ENDPOINT = `${ENDPOINT}/road/startmap`
+export const GET_MAP_ENDPOINT = `${ENDPOINT}/user/get_map`
+export const CHANGE_FIELD_MAP_ENDPOINT = `${ENDPOINT}/user/`
 
 
 export const ROAD_ENDPOINT = `${ENDPOINT}/road`

@@ -1,10 +1,10 @@
-import { EProvider, TFacebookResponse } from "../../lib/util/types";
+import { TFacebookResponse } from "../../lib/util/types";
 import {
   CURRENT_USER_ENDPOINT,
   LOGIN_FACEBOOK_ENDPOINT,
   LOGIN_LOCAL_ENDPOINT,
 } from "../../lib/util/endpoints.constant";
-import UserAPI from "../../lib/api/user";
+import { login } from "../../lib/api/user";
 import { mutate } from "swr";
 import errorsMap from "../../lib/util/errorsMap";
 import { NextRouter } from "next/router";
@@ -14,15 +14,18 @@ export const facebookResponse = async (
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   try {
-    const { data } = await UserAPI.login(LOGIN_FACEBOOK_ENDPOINT, {
-      email: user.email,
-      provider: EProvider.Facebook,
-      extend: {
-        accessToken: user.accessToken,
-        expiresIn: user.expiresIn,
-        name: user.name,
-        picture: user.picture,
-      } as TFacebookResponse,
+    const { data } = await login({
+      endpoint: LOGIN_FACEBOOK_ENDPOINT,
+      data: {
+        email: user.email,
+        provider: "FACEBOOK",
+        extend: {
+          accessToken: user.accessToken,
+          expiresIn: user.expiresIn,
+          name: user.name,
+          picture: user.picture,
+        } as TFacebookResponse,
+      },
     });
     if (!data.success) {
       return alert("fail");
@@ -40,10 +43,13 @@ export const onSubmitLogin = async (
   router: NextRouter
 ) => {
   try {
-    const { data } = await UserAPI.login(LOGIN_LOCAL_ENDPOINT, {
-      email: values.email,
-      password: values.password,
-      provider: EProvider.Local,
+    const { data } = await login({
+      endpoint: LOGIN_LOCAL_ENDPOINT,
+      data: {
+        email: values.email,
+        password: values.password,
+        provider: "LOCAL",
+      },
     });
 
     if (data.errors) {
