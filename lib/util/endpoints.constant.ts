@@ -1,19 +1,19 @@
 type ServerType = 'node' | 'php'
 
-const SERVER: ServerType = 'node'
+const SERVER: ServerType = 'php'
 const ENDPOINT = `/api/${SERVER}`
-export const SERVER_ENDPOINT = "http://localhost:5000"
+export const SERVER_ENDPOINT = "http://localhost:8081"
 
 
 /*
  * user endpoints
 */
 // dang nhap local
-export const LOGIN_LOCAL_ENDPOINT = `${ENDPOINT}/user/login_local`
+export const LOGIN_LOCAL_ENDPOINT = `${ENDPOINT}/user/login_local.php`
 // dang nhap facebook
 export const LOGIN_FACEBOOK_ENDPOINT = `${ENDPOINT}/user/login_facebook`
 // dang ky
-export const REGISTER_LOCAL_ENDPOINT = `${ENDPOINT}/user/register`
+export const REGISTER_LOCAL_ENDPOINT = `${ENDPOINT}/user/register.php`
 // du lieu ng dung
 export const CURRENT_USER_ENDPOINT = `${ENDPOINT}/user/current`
 
