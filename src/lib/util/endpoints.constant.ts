@@ -30,4 +30,10 @@ export const GET_MAP_ENDPOINT = `${ENDPOINT}/user/get_map`
 export const CHANGE_FIELD_MAP_ENDPOINT = `${ENDPOINT}/user/`
 
 
-export const ROAD_ENDPOINT = `${ENDPOINT}/road`
+export const MAP_ENDPOINT = `${ENDPOINT}/road`
+
+export const MAP_SERVICE_ENDPOINT = `${ENDPOINT}/service/road`
+
+export const USER_ENDPOINT = `${ENDPOINT}/user`
+
+export const USER_SERVICE_ENDPOINT = `${ENDPOINT}/service/user`

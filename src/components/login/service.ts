@@ -3,6 +3,7 @@ import {
   CURRENT_USER_ENDPOINT,
   LOGIN_FACEBOOK_ENDPOINT,
   LOGIN_LOCAL_ENDPOINT,
+  USER_ENDPOINT,
 } from "../../lib/util/endpoints.constant";
 import { login } from "../../lib/api/user";
 import { mutate } from "swr";
@@ -44,7 +45,7 @@ export const onSubmitLogin = async (
 ) => {
   try {
     const { data } = await login({
-      endpoint: LOGIN_LOCAL_ENDPOINT,
+      endpoint: `${USER_ENDPOINT}/login_local`,
       data: {
         email: values.email,
         password: values.password,

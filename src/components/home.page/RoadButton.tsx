@@ -7,6 +7,7 @@ type RoadButtonType = {
   name: string;
   intro: string;
   disabled?: boolean;
+  id: string
 };
 
 const RoadButton = ({ href, name, intro, disabled }: RoadButtonType) => {

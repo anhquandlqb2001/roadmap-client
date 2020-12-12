@@ -42,17 +42,18 @@ const Main = ({ maps }: MainType) => {
               {maps.map((map) => (
                 <Grid xs={4} item key={map._id}>
                   <RoadButton
-                    href={`/road/${map.name.toLowerCase()}/${map._id}`}
+                    href={`/road/${map._id}`}
                     name={map.name}
+                    id={map._id}
                     intro={map.introduction}
                   />
                 </Grid>
               ))}
               <Grid xs={4} item>
-                <RoadButton href="/gg" name="PHP" intro="Lộ trình để trở thành một lập trình viên PHP" />
+                <RoadButton disabled id="123" href="/gg" name="PHP" intro="Lộ trình để trở thành một lập trình viên PHP" />
               </Grid>
               <Grid xs={4} item>
-                <RoadButton href="/gg" name="PHP" intro="Lộ trình để trở thành một lập trình viên PHP" />
+                <RoadButton id="123" href="/gg" name="PHP" intro="Lộ trình để trở thành một lập trình viên PHP" />
               </Grid>
             </Grid>
           </Box>

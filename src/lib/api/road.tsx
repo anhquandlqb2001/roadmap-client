@@ -1,5 +1,5 @@
 import axios from "../util/axios.config";
-import { ROAD_ENDPOINT } from "../util/endpoints.constant";
+import { MAP_ENDPOINT } from "../util/endpoints.constant";
 import { TDefaultResponse } from "../util/types";
 
 type TGetMapResponse = TDefaultResponse & {
@@ -32,7 +32,7 @@ export type TChangeFieldMapParams = {
 export const startMap = async (mapID) => {
   try {
     const response = await axios.put<TDefaultResponse>(
-      `${ROAD_ENDPOINT}/${mapID}/start`
+      `${MAP_ENDPOINT}/${mapID}/start`
     );
     return response;
   } catch (error) {
@@ -52,7 +52,7 @@ export const getMap = async (url: string) => {
 export const getMapList = async () => {
   try {
     const response = await axios.get<TGetMapsListResponse>(
-      `${ROAD_ENDPOINT}`
+      `${MAP_ENDPOINT}`
     );
     return response;
   } catch (error) {
@@ -79,3 +79,12 @@ export const changeFieldMap = async ({
     console.log("error in userAPI:, ", error);
   }
 };
+
+export const getMapInfo = async (id) => {
+  try {
+    return await axios.get<{success: boolean, data: {_id: string, name: string, description: object}}>(`${MAP_ENDPOINT}/${id}`)
+  } catch (error) {
+    console.log(error);
+    
+  }
+}

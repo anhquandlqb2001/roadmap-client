@@ -1,47 +1,10 @@
-import { MouseEvent, useRef, useEffect } from "react";
-import useCurrent from "../../lib/util/useCurrent";
-import { fillMap, findOwnerMapIDIfExist, isObjEmpty } from "./service";
+import { useEffect, useRef } from "react";
 
-type MapProps = {
-  road: any;
-  mapId: string;
-  handleClick(
-    mapId: string,
-    ownerMapId: string,
-    road: any,
-    e: MouseEvent<SVGPathElement, globalThis.MouseEvent>
-  ): Promise<void>;
-  width?: string;
-  height?: string;
-};
-
-const ReactMap = ({
-  mapId,
-  road = {},
-  handleClick,
-  width = "100vw",
-}: MapProps) => {
-  if (isObjEmpty(road) || !mapId) return null;
+export default function StaticMap({ cb }) {
   const svgRef = useRef(null);
-  const user = useCurrent();
-
-  let id = null;
   useEffect(() => {
-    const nodeList = svgRef.current?.querySelectorAll(".node--child");
-    nodeList.forEach((node) => {
-      node.addEventListener("click", async function (e) {
-        if (!user) return console.log("Ban chua dang nhap!");
-        const id = findOwnerMapIDIfExist(user?.map, mapId)
-        if (id) return await handleClick(mapId, id, road, e);
-        return console.log("Ban chua dang ky lo trinh nay!");
-      });
-    });
+    cb(svgRef);
   }, []);
-
-  useEffect(() => {
-    fillMap(road);
-  }, [road]);
-
   return (
     <svg
       version="1.1"
@@ -7733,6 +7696,4 @@ const ReactMap = ({
       </g>
     </svg>
   );
-};
-
-export default ReactMap;
+}
