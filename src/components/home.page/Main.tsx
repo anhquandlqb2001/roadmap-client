@@ -6,8 +6,8 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import React from "react";
-import { IRoad } from "../../lib/util/types";
 import RoadButton from "./RoadButton";
+import {TMaps} from '../../lib/api/road'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -25,7 +25,7 @@ const useStyles = makeStyles(() =>
 );
 
 type MainType = {
-  maps: IRoad[];
+  maps: TMaps[];
 };
 
 const Main = ({ maps }: MainType) => {
@@ -44,7 +44,7 @@ const Main = ({ maps }: MainType) => {
                   <RoadButton
                     href={`/road/${map.name.toLowerCase()}/${map._id}`}
                     name={map.name}
-                    intro={map.intro}
+                    intro={map.introduction}
                   />
                 </Grid>
               ))}

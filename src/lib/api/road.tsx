@@ -10,16 +10,16 @@ type TGetMapResponse = TDefaultResponse & {
   };
 };
 
-type TRoad = {
+export type TMaps = {
   _id: string;
   name: string;
-  intro: string;
+  introduction: string;
   stars?: [];
 };
 
 type TGetMapsListResponse = {
   success: boolean;
-  roads: TRoad[];
+  maps: TMaps[];
 };
 
 export type TChangeFieldMapParams = {
@@ -52,7 +52,7 @@ export const getMap = async (url: string) => {
 export const getMapList = async () => {
   try {
     const response = await axios.get<TGetMapsListResponse>(
-      `${ROAD_ENDPOINT}/list`
+      `${ROAD_ENDPOINT}`
     );
     return response;
   } catch (error) {

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import ReactMap from "../../src/components/map/ReactMap";
-import { getMap, changeFieldMap } from "../../src/lib/api/road";
+import ReactMap from "../../components/map/ReactMap";
+import { getMap, changeFieldMap } from "../../lib/api/road";
 import { withRouter } from "next/router";
-import { ROAD_ENDPOINT } from "../../src/lib/util/endpoints.constant";
+import { ROAD_ENDPOINT } from "../../lib/util/endpoints.constant";
 import {
   recursiveChangeObject,
   findVal,
   fillMap,
-} from "../../src/components/map/service";
+} from "../../components/map/service";
 import {
   Paper,
   Tabs,
@@ -16,7 +16,7 @@ import {
   Typography,
   Container,
 } from "@material-ui/core";
-import NavBar from "../../src/components/home.page/NavBar";
+import NavBar from "../../components/home.page/NavBar";
 import styled from 'styled-components'
 
 interface TabPanelProps {
