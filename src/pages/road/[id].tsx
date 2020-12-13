@@ -1,17 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import ReactMap from "../../components/map/5fb12e6e581d3b79b1362e13";
 import {
   getMap,
-  changeFieldMap,
   getMapInfo,
   getMapList,
 } from "../../lib/api/road";
 import { MAP_SERVICE_ENDPOINT } from "../../lib/util/endpoints.constant";
-import {
-  recursiveChangeObject,
-  findVal,
-  fillMap,
-} from "../../components/map/service";
 import { Paper, Box, Container } from "@material-ui/core";
 import NavBar from "../../components/home.page/NavBar";
 import styled from "styled-components";
@@ -19,16 +12,17 @@ import Map from "../../components/map/Map";
 import useCurrent from "../../lib/util/useCurrent";
 
 const Road = ({ id, description }) => {
-  const user = useCurrent()
-  const [map, setMap] = useState({})
+  const user = useCurrent();
+  const map = useRef(null);
   useEffect(() => {
     const fetchMap = async () => {
-      const response = await getMap(`${MAP_SERVICE_ENDPOINT}/${id}`)
-      response.data.success && setMap(response.data.data.map)
+      const response = await getMap(`${MAP_SERVICE_ENDPOINT}/${id}`);
+      response.data.success && (map.current = response.data.data.map)
+    };
+    if (user.user) {
+      fetchMap();
     }
-
-    fetchMap()
-  }, [user])
+  }, [user.user]);
 
   return (
     <>
@@ -97,5 +91,20 @@ export async function getStaticProps({ params }) {
     },
   };
 }
+
+// export async function getServerSideProps({params}) {
+//   const response = await getMapInfo(params.id);
+//   if (!response.data.success) {
+//     return;
+//   }
+
+//   return {
+//     props: {
+//       name: response.data.data.name,
+//       id: response.data.data._id,
+//       description: response.data.data.description || "Everything you need",
+//     },
+//   };
+// }
 
 export default Road;

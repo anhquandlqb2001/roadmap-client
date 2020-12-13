@@ -1,3 +1,5 @@
+import { RefObject } from "react";
+import { changeFieldMap } from "../../lib/api/road";
 import { TCurrentUserResponseMap } from "../../lib/api/user";
 
 export const recursiveChangeObject = (obj, searchKey, valueChange) => {
@@ -40,16 +42,16 @@ export const findVal = (object, key) => {
     }
   });
   return value;
-}
+};
 
 export function isObjEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 
-export const fillMap = (road) => {
+export const fillMap = (road, ref: RefObject<SVGSVGElement>) => {
   const childField = recursiveReadAllSmallestChildField(road, []);
   childField.map((child) => {
-    const pathElement = document.querySelector<HTMLElement>(
+    const pathElement = ref?.current?.querySelector<HTMLElement>(
       `[id="${child.field}"]`
     );
     if (pathElement && child.value === true) {
@@ -61,19 +63,56 @@ export const fillMap = (road) => {
 };
 
 export /**
-*
-* @param map array of user map if user has login
-* @param currentMapId mapID of current map
-*/
+ *
+ * @param map array of user map if user has login
+ * @param currentMapId mapID of current map
+ */
 const findOwnerMapIDIfExist = (
- map: TCurrentUserResponseMap[],
- currentMapId: string
+  map: TCurrentUserResponseMap[],
+  currentMapId: string
 ) => {
- let a;
- map.forEach((m) => {
-   if (m.mapHasStarted === currentMapId) {
-     return (a = m.ownerMapId);
-   }
- });
- return a;
+  let a;
+  map.forEach((m) => {
+    if (m.mapHasStarted === currentMapId) {
+      return (a = m.ownerMapId);
+    }
+  });
+  return a;
+};
+
+const handleClick = async (
+  mapId: string,
+  map,
+  e: React.MouseEvent<SVGPathElement, MouseEvent>,
+  ref
+) => {
+  const fieldChange = e.currentTarget.getAttribute("id");
+  const currentValue = findVal(map, fieldChange);
+  if (e.ctrlKey) {
+    alert("redirect now");
+    return;
+  }
+
+  await changeFieldMap({
+    mapId: mapId,
+    fieldChange: fieldChange,
+    currentValue: currentValue.value,
+  }).then((result) => {
+    if (!result.data.success) {
+      return;
+    }
+    fillMap(recursiveChangeObject(map, fieldChange, !currentValue.value), ref);
+  });
+};
+
+export const applyHandleClick = ({ ref, user, mapId, map }) => {
+  const nodeList = ref.current?.querySelectorAll(".node--child");
+  nodeList.forEach((node) => {
+    node.addEventListener("click", async function (e) {
+      if (!user.user) return console.log("Ban chua dang nhap!");
+      const id = findOwnerMapIDIfExist(user?.map, mapId);
+      if (id) return await handleClick(mapId, map, e, ref);
+      return console.log("Ban chua dang ky lo trinh nay!");
+    });
+  });
 };

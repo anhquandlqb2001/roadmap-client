@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export default function StaticMap({ cb }) {
+export default function StaticMap({ cb, map }) {
   const svgRef = useRef(null);
   useEffect(() => {
     cb(svgRef);
@@ -16,8 +16,12 @@ export default function StaticMap({ cb }) {
       viewBox="0 0 556.7 681.5"
       // style={{"en"}}
       xmlSpace="preserve"
+      ref={svgRef}
     >
-      <g ref={svgRef}>
+      {(async () => {
+        await import(`./img/${id}.svg`).default
+      })()}
+      <g>
         <g>
           <path
             d="M24.3,0.1h-6.2l-0.2,0.4c-0.2,0.4-0.2,0.6-0.1,10.5c0.1,9.5,0.1,17.1-0.1,50.7l-0.1,12.8l1.2,0.1

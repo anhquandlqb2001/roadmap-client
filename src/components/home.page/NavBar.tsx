@@ -13,7 +13,7 @@ const NavBar = () => {
         </LogoContainer>
       </Link>
       <AuthContainer>
-        {!user ? <><Link href="/user/login" passHref>
+        {!(user.user) ? <><Link href="/user/login" passHref>
           <StyledLink>Đăng nhập</StyledLink>
         </Link>
         <Link href="/user/register" passHref>

@@ -1,5 +1,5 @@
 import axios from "../util/axios.config";
-import { MAP_ENDPOINT } from "../util/endpoints.constant";
+import { MAP_ENDPOINT, MAP_SERVICE_ENDPOINT } from "../util/endpoints.constant";
 import { TDefaultResponse } from "../util/types";
 
 type TGetMapResponse = TDefaultResponse & {
@@ -24,7 +24,6 @@ type TGetMapsListResponse = {
 
 export type TChangeFieldMapParams = {
   mapId: string;
-  ownerMapId: string;
   fieldChange: string;
   currentValue: boolean;
 };
@@ -62,13 +61,12 @@ export const getMapList = async () => {
 
 export const changeFieldMap = async ({
   mapId,
-  ownerMapId,
   fieldChange,
   currentValue,
 }: TChangeFieldMapParams) => {
   try {
     const response = await axios.put<TDefaultResponse>(
-      `${ROAD_ENDPOINT}/${mapId}/${ownerMapId}`,
+      `${MAP_SERVICE_ENDPOINT}/${mapId}`,
       {
         fieldChange,
         currentValue,
