@@ -18,10 +18,10 @@ const Map: React.FC<MapProps> = ({
   >();
   const [loading, setLoading] = React.useState(false);
   const svgRef = useRef(null);
-  
+
   React.useEffect((): void => {
     setLoading(true);
-    const importAttributes = async (): Promise<void> => {
+    const importMap = async (): Promise<void> => {
       try {
         ImportedMapRef.current = (await import(`./img/${id}.svg`)).default;
       } catch (err) {
@@ -30,7 +30,7 @@ const Map: React.FC<MapProps> = ({
         setLoading(false);
       }
     };
-    importAttributes();
+    importMap();
   }, [id]);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const Map: React.FC<MapProps> = ({
       }
     }
     if (ImportedMapRef.current && svgRef.current) {
-      applyHandleClick({ref: svgRef, user, mapId: id, map})
+      applyHandleClick({ ref: svgRef, user, mapId: id, map });
     }
   }, [svgRef.current, map.current]);
 
@@ -50,24 +50,12 @@ const Map: React.FC<MapProps> = ({
 
     return (
       <>
-        <svg
-          version="1.1"
-          id="Layer_1"
-          xmlns="http://www.w3.org/2000/svg"
-          // xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px"
-          y="0px"
-          viewBox="0 0 556.7 681.5"
-          // style={{"en"}}
-          xmlSpace="preserve"
-          ref={svgRef}
-        >
+        <div ref={svgRef}>
           <ImportedMap {...rest} />
-        </svg>
+        </div>
       </>
     );
   }
-
   return null;
 };
 
