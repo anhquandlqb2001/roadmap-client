@@ -105,13 +105,12 @@ const handleClick = async (
   });
 };
 
-export const applyHandleClick = ({ ref, user, mapId, map }) => {
+export const applyHandleClick = ({ ref, user, mapId, map, userHasStartedMap }) => {
   const nodeList = ref.current?.querySelectorAll(".node--child");
   nodeList.forEach((node) => {
     node.addEventListener("click", async function (e) {
       if (!user.user) return console.log("Ban chua dang nhap!");
-      const id = findOwnerMapIDIfExist(user?.map, mapId);
-      if (id) return await handleClick(mapId, map, e, ref);
+      if (userHasStartedMap) return await handleClick(mapId, map, e, ref);
       return console.log("Ban chua dang ky lo trinh nay!");
     });
   });

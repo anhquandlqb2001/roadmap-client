@@ -92,7 +92,6 @@ export const current = async (
 ): Promise<AxiosResponse<TCurrentUserResponse>> => {
   try {
     const response = await axios.get<TCurrentUserResponse>(url);
-    console.log(response);
     return response;
   } catch (error) {
     console.log("error in userAPI:, ", error);

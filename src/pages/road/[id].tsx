@@ -1,28 +1,40 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  getMap,
-  getMapInfo,
-  getMapList,
-} from "../../lib/api/road";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { getMap, getMapInfo, getMapList, startMap } from "../../lib/api/road";
 import { MAP_SERVICE_ENDPOINT } from "../../lib/util/endpoints.constant";
-import { Paper, Box, Container } from "@material-ui/core";
+import { Paper, Box, Container, Button } from "@material-ui/core";
 import NavBar from "../../components/home.page/NavBar";
 import styled from "styled-components";
 import Map from "../../components/map/Map";
-import useCurrent from "../../lib/util/useCurrent";
+import { findOwnerMapIDIfExist } from "../../components/map/service";
+import { UserContext } from "../../lib/util/userContext";
 
 const Road = ({ id, description }) => {
-  const user = useCurrent();
   const map = useRef(null);
+  const [userHasStartedMap, setUserHasStartedMap] = useState(false);
+  const user = useContext(UserContext);
+
   useEffect(() => {
     const fetchMap = async () => {
       const response = await getMap(`${MAP_SERVICE_ENDPOINT}/${id}`);
-      response.data.success && (map.current = response.data.data.map)
+      response.data.success && (map.current = response.data.data.map);
     };
     if (user.user) {
       fetchMap();
+      const mapId = findOwnerMapIDIfExist(user?.map, id);
+      mapId ? setUserHasStartedMap(true) : setUserHasStartedMap(false);
     }
-  }, [user.user]);
+  }, [user.user, id]);
+
+  const onStartMap = async () => {
+    try {
+      const response = await startMap(id);
+      if (response.data.success) {
+        setUserHasStartedMap(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -31,8 +43,18 @@ const Road = ({ id, description }) => {
         <PaperStyled>
           <Intro description={description} />
         </PaperStyled>
+        {!userHasStartedMap && (
+          <Box>
+            <Button onClick={onStartMap}>Bat dau lo trinh ngay</Button>
+          </Box>
+        )}
         <Paper>
-          <Map id={id} user={user} map={map} />
+          <Map
+            id={id}
+            user={user}
+            map={map}
+            userHasStartedMap={userHasStartedMap}
+          />
         </Paper>
       </Container>
     </>
@@ -91,20 +113,4 @@ export async function getStaticProps({ params }) {
     },
   };
 }
-
-// export async function getServerSideProps({params}) {
-//   const response = await getMapInfo(params.id);
-//   if (!response.data.success) {
-//     return;
-//   }
-
-//   return {
-//     props: {
-//       name: response.data.data.name,
-//       id: response.data.data._id,
-//       description: response.data.data.description || "Everything you need",
-//     },
-//   };
-// }
-
 export default Road;

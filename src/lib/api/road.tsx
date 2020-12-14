@@ -30,8 +30,8 @@ export type TChangeFieldMapParams = {
 
 export const startMap = async (mapID) => {
   try {
-    const response = await axios.put<TDefaultResponse>(
-      `${MAP_ENDPOINT}/${mapID}/start`
+    const response = await axios.post<TDefaultResponse>(
+      `${MAP_SERVICE_ENDPOINT}/${mapID}`
     );
     return response;
   } catch (error) {
