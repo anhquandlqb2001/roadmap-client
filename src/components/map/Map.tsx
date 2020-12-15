@@ -26,7 +26,7 @@ const Map: NextPage<MapProps> = ({
     setLoading(true);
     const importMap = async (): Promise<void> => {
       try {
-        ImportedMapRef.current = (await import(`./img/${id}.svg`)).default;
+        ImportedMapRef.current = (await import(`../../../public/maps/${id}.svg`)).default;
       } catch (err) {
         throw err;
       } finally {
