@@ -2,7 +2,6 @@ import { TFacebookResponse } from "../../lib/util/types";
 import {
   CURRENT_USER_ENDPOINT,
   LOGIN_FACEBOOK_ENDPOINT,
-  LOGIN_LOCAL_ENDPOINT,
   USER_ENDPOINT,
 } from "../../lib/util/endpoints.constant";
 import { login } from "../../lib/api/user";
@@ -59,7 +58,7 @@ export const onSubmitLogin = async (
     if (!data.success) {
       return;
     }
-    mutate(CURRENT_USER_ENDPOINT);
+    mutate(`${USER_ENDPOINT}`);
     data.success && router.push("/");
   } catch (error) {
     console.log(error);

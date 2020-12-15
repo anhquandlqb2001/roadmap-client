@@ -7,7 +7,8 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import RoadButton from "./RoadButton";
-import {TMaps} from '../../lib/api/road'
+import { TMaps } from "../../lib/api/road";
+import { NextPage } from "next";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -28,7 +29,7 @@ type MainType = {
   maps: TMaps[];
 };
 
-const Main = ({ maps }: MainType) => {
+const Main: NextPage<MainType> = ({ maps }) => {
   const classes = useStyles();
   if (!maps) {
     return null;
@@ -50,10 +51,21 @@ const Main = ({ maps }: MainType) => {
                 </Grid>
               ))}
               <Grid xs={4} item>
-                <RoadButton disabled id="123" href="/gg" name="PHP" intro="Lộ trình để trở thành một lập trình viên PHP" />
+                <RoadButton
+                  disabled
+                  id="123"
+                  href="/gg"
+                  name="PHP"
+                  intro="Lộ trình để trở thành một lập trình viên PHP"
+                />
               </Grid>
               <Grid xs={4} item>
-                <RoadButton id="123" href="/gg" name="PHP" intro="Lộ trình để trở thành một lập trình viên PHP" />
+                <RoadButton
+                  id="123"
+                  href="/gg"
+                  name="PHP"
+                  intro="Lộ trình để trở thành một lập trình viên PHP"
+                />
               </Grid>
             </Grid>
           </Box>

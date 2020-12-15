@@ -80,7 +80,7 @@ const findOwnerMapIDIfExist = (
   return a;
 };
 
-const handleClick = async (
+export const handleClick = async (
   mapId: string,
   map,
   e: React.MouseEvent<SVGPathElement, MouseEvent>,
@@ -105,10 +105,17 @@ const handleClick = async (
   });
 };
 
-export const applyHandleClick = ({ ref, user, mapId, map, userHasStartedMap }) => {
+
+export const removeHandleClick = ({
+  ref,
+  user,
+  mapId,
+  map,
+  userHasStartedMap,
+}) => {
   const nodeList = ref.current?.querySelectorAll(".node--child");
   nodeList.forEach((node) => {
-    node.addEventListener("click", async function (e) {
+    node.removeEventListener("click", async function (e) {
       if (!user.user) return console.log("Ban chua dang nhap!");
       if (userHasStartedMap) return await handleClick(mapId, map, e, ref);
       return console.log("Ban chua dang ky lo trinh nay!");

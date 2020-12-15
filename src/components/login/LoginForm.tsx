@@ -8,7 +8,6 @@ import {
 } from "@material-ui/core";
 import styled from "styled-components";
 import { LockOutlined } from "@material-ui/icons";
-
 import { Formik, Form } from "formik";
 import { onSubmitLogin } from "./service";
 import { useRouter } from "next/router";
@@ -16,38 +15,6 @@ import InputField from "../common/InputField";
 import NextLink from "next/link";
 import Button from "../common/MyButton";
 
-const GridContainer = styled(Grid)`
-  height: 100vh;
-`;
-
-const PaperStyled = styled(Paper)`
-  margin: ${(props) => props.theme.spacing(8, 4)};
-  padding: ${(props) => props.theme.spacing(1)}%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const FormContainer = styled(Form)`
-  width: 100%; // Fix IE 11 issue.
-  margin-top: ${(props) => props.theme.spacing(1)}rem;
-`;
-
-const SubmitBtnStyled = styled(Button)`
-  margin: ${(props) => props.theme.spacing(3, 0, 2)} !important;
-`;
-
-const GridImage = styled(Grid)`
-  background-image: url("https://source.unsplash.com/random");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-`;
-
-const AvatarStyled = styled(Avatar)`
-  margin: ${(props) => props.theme.spacing(1)};
-  background-color: ${(props) => props.theme.palette.secondary.main};
-`;
 
 const LoginForm = () => {
   const router = useRouter();
@@ -124,5 +91,39 @@ const LoginForm = () => {
     </GridContainer>
   );
 };
+
+const GridContainer = styled(Grid)`
+  height: 100vh;
+`;
+
+const PaperStyled = styled(Paper)`
+  margin: ${(props) => props.theme.spacing(8, 4)};
+  padding: ${(props) => props.theme.spacing(1)}%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const FormContainer = styled(Form)`
+  width: 100%; // Fix IE 11 issue.
+  margin-top: ${(props) => props.theme.spacing(1)}rem;
+`;
+
+const SubmitBtnStyled = styled(Button)`
+  margin: ${(props) => props.theme.spacing(3, 0, 2)} !important;
+`;
+
+const GridImage = styled(Grid)`
+  background-image: url("https://source.unsplash.com/random");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+`;
+
+const AvatarStyled = styled(Avatar)`
+  margin: ${(props) => props.theme.spacing(1)};
+  background-color: ${(props) => props.theme.palette.secondary.main};
+`;
+
 
 export default LoginForm;

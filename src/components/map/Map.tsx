@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import { fillMap, applyHandleClick, findOwnerMapIDIfExist, isObjEmpty } from "./service";
+import React from "react";
+import { NextPage } from "next";
+import { fillMap, isObjEmpty, handleClick } from "./service";
 
 interface MapProps extends React.SVGProps<SVGSVGElement> {
   id: string;
@@ -8,7 +9,7 @@ interface MapProps extends React.SVGProps<SVGSVGElement> {
   userHasStartedMap: boolean;
 }
 
-const Map: React.FC<MapProps> = ({
+const Map: NextPage<MapProps> = ({
   user,
   map,
   id,
@@ -16,11 +17,10 @@ const Map: React.FC<MapProps> = ({
   ...rest
 }): JSX.Element | null => {
   const ImportedMapRef = React.useRef<
-    React.FC<React.SVGProps<SVGSVGElement>>
+    NextPage<React.SVGProps<SVGSVGElement>>
   >();
-  const [loading, setLoading] = React.useState(false);
-
-  const svgRef = useRef(null);
+  const [loading, setLoading] = React.useState(() => false);
+  const svgRef = React.useRef(null);
 
   React.useEffect((): void => {
     setLoading(true);
@@ -34,20 +34,37 @@ const Map: React.FC<MapProps> = ({
       }
     };
     importMap();
-  }, [id]);
+  }, []);
 
-  useEffect(() => {
+  const onClickKey = async (
+    e: React.MouseEvent<SVGPathElement>
+  ): Promise<void> => {
+    if (!user.user) return console.log("Ban chua dang nhap!");
+    if (userHasStartedMap) return await handleClick(id, map, e, svgRef);
+    return console.log("Ban chua dang ky lo trinh nay!");
+  };
+
+  React.useEffect(() => {
     if (ImportedMapRef.current && svgRef.current) {
       if (!isObjEmpty(map)) {
         userHasStartedMap && fillMap(map, svgRef);
-        applyHandleClick({ ref: svgRef, user, mapId: id, map, userHasStartedMap });
+        const nodeList = svgRef.current?.querySelectorAll(".node--child");
+        nodeList.forEach((node) => {
+          node.addEventListener("click", onClickKey);
+        });
       }
     }
-  }, [svgRef.current, map.current]);
+
+    return () => {
+      const nodeList = svgRef.current?.querySelectorAll(".node--child");
+      nodeList.forEach((node) => {
+        node.removeEventListener("click", onClickKey);
+      });
+    };
+  }, [ImportedMapRef.current]);
 
   if (!loading && ImportedMapRef.current) {
     const { current: ImportedMap } = ImportedMapRef;
-
     return (
       <>
         <div ref={svgRef}>

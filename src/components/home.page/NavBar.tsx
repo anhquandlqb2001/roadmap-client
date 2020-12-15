@@ -1,10 +1,20 @@
 import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import useCurrent from "../../lib/util/useCurrent";
+import { NextPage } from "next";
 
-const NavBar = () => {
-  const user = useCurrent()
+interface Props {
+  profile
+}
+
+const NavBar: NextPage<Props> = ({ profile }) => {
+  const [delayed, setDelayed] = React.useState(true);
+
+  React.useEffect(() => {
+    const timeout = setTimeout(() => setDelayed(false), 300);
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <NavBarContainer>
       <Link href="/" passHref>
@@ -13,14 +23,25 @@ const NavBar = () => {
         </LogoContainer>
       </Link>
       <AuthContainer>
-        {!(user.user) ? <><Link href="/user/login" passHref>
-          <StyledLink>Đăng nhập</StyledLink>
-        </Link>
-        <Link href="/user/register" passHref>
-          <StyledLink>Đăng ký</StyledLink>
-        </Link></> : ""}
+        {!delayed ? (<Authenticate user={profile.user} />) : null}
       </AuthContainer>
     </NavBarContainer>
+  );
+};
+
+const Authenticate = ({ user }) => {
+  if (user) {
+    return null;
+  }
+  return (
+    <>
+      <Link href="/user/login" passHref>
+        <StyledLink>Đăng nhập</StyledLink>
+      </Link>
+      <Link href="/user/register" passHref>
+        <StyledLink>Đăng ký</StyledLink>
+      </Link>
+    </>
   );
 };
 

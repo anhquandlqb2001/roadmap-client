@@ -91,6 +91,8 @@ export const current = async (
   url: string
 ): Promise<AxiosResponse<TCurrentUserResponse>> => {
   try {
+    console.log(url);
+    
     const response = await axios.get<TCurrentUserResponse>(url);
     return response;
   } catch (error) {
