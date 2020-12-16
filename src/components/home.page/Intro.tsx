@@ -1,15 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 
-const Intro = () => {
+interface Props {
+  intro: string;
+  detail: string;
+}
+
+const Intro: React.FC<Props> = ({
+  intro,
+  detail,
+}) => {
   return (
     <IntroContainer>
       <div>
-        <IntroText>LỘ TRÌNH HỌC TẬP DÀNH CHO LẬP TRÌNH VIÊN</IntroText>
-        <IntroDetail>
-          cung cấp các tài liệu và từng bước cụ thể để học một ngôn ngữ, công
-          nghệ
-        </IntroDetail>
+        <IntroText>{intro}</IntroText>
+        <IntroDetail>{detail}</IntroDetail>
       </div>
     </IntroContainer>
   );
