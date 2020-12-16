@@ -1,13 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import { NextPage } from "next";
-
 interface Props {
   profile
 }
 
-const NavBar: NextPage<Props> = ({ profile }) => {
+const NavBar: React.FC<Props> = ({ profile }) => {
   const [delayed, setDelayed] = React.useState(true);
 
   React.useEffect(() => {
