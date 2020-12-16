@@ -1,4 +1,4 @@
-import React, { RefObject } from "react";
+import React from "react";
 import { fillMap, isObjEmpty, handleClick } from "./service";
 
 interface MapProps extends React.SVGProps<SVGSVGElement> {
@@ -18,7 +18,6 @@ const Map: React.FC<MapProps> = ({
   const ImportedMapRef = React.useRef<
     React.FC<React.SVGProps<SVGSVGElement>>
   >();
-
   const [loading, setLoading] = React.useState(() => false);
   const applyEventRef = React.useRef<boolean>(false);
   const svgRef = React.useRef(null);
@@ -60,12 +59,16 @@ const Map: React.FC<MapProps> = ({
     }
 
     return () => {
-      const nodeList = svgRef.current?.querySelectorAll(".node--child");
-      nodeList.forEach((node) => {
-        node.removeEventListener("click", onClickKey);
-      });
+      if (ImportedMapRef.current && svgRef.current) {
+        if (!isObjEmpty(map)) {
+          const nodeList = svgRef.current?.querySelectorAll(".node--child");
+          nodeList.forEach((node) => {
+            node.removeEventListener("click", onClickKey);
+          });
+        }
+      }
     };
-  }, [ImportedMapRef.current]);
+  }, [ImportedMapRef.current, userHasStartedMap]);
 
   if (!loading && ImportedMapRef.current) {
     applyEventRef.current = true;

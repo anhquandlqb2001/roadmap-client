@@ -35,6 +35,8 @@ const Road: React.FC<Props> = ({ id, description, name }) => {
     };
     if (profile.user) {
       const mapId = findOwnerMapIDIfExist(profile?.map, id);
+      console.log(mapId);
+      
       mapId ? setUserHasStartedMap(true) : setUserHasStartedMap(false);
       return fetchMap();
     }
