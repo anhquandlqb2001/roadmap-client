@@ -48,7 +48,7 @@ export function isObjEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 
-export const fillMap = (road, ref: RefObject<SVGSVGElement>) => {
+export const fillMap = (road, ref: RefObject<SVGElement>) => {
   const childField = recursiveReadAllSmallestChildField(road, []);
   childField.map((child) => {
     const pathElement = ref?.current?.querySelector<HTMLElement>(

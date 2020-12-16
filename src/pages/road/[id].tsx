@@ -12,9 +12,8 @@ import { UserContext } from "../../lib/util/userContext";
 const Road = ({ id, description }) => {
   const map = React.useRef(null);
   const profile = React.useContext(UserContext);
-
-  const [userHasStartedMap, setUserHasStartedMap] = React.useState(false);
-  const [delayed, setDelayed] = React.useState(true);
+  const [userHasStartedMap, setUserHasStartedMap] = React.useState<boolean>(false);
+  const [delayed, setDelayed] = React.useState<boolean>(true);
 
   React.useEffect(() => {
     const timeout = setTimeout(() => setDelayed(false), 600);
@@ -71,7 +70,7 @@ const Road = ({ id, description }) => {
           ) : (
             <Map
               id={id}
-              user={profile}
+              profile={profile}
               map={map}
               userHasStartedMap={userHasStartedMap}
             />

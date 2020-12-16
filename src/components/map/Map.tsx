@@ -1,15 +1,15 @@
-import React from "react";
+import React, { RefObject } from "react";
 import { fillMap, isObjEmpty, handleClick } from "./service";
 
 interface MapProps extends React.SVGProps<SVGSVGElement> {
   id: string;
-  user: any;
+  profile: any;
   map: any;
   userHasStartedMap: boolean;
 }
 
 const Map: React.FC<MapProps> = ({
-  user,
+  profile,
   map,
   id,
   userHasStartedMap,
@@ -18,14 +18,18 @@ const Map: React.FC<MapProps> = ({
   const ImportedMapRef = React.useRef<
     React.FC<React.SVGProps<SVGSVGElement>>
   >();
+
   const [loading, setLoading] = React.useState(() => false);
+  const applyEventRef = React.useRef<boolean>(false);
   const svgRef = React.useRef(null);
 
   React.useEffect((): void => {
     setLoading(true);
     const importMap = async (): Promise<void> => {
       try {
-        ImportedMapRef.current = (await import(`../../../public/maps/${id}.svg`)).default;
+        ImportedMapRef.current = (
+          await import(`../../../public/maps/${id}.svg`)
+        ).default;
       } catch (err) {
         throw err;
       } finally {
@@ -38,12 +42,13 @@ const Map: React.FC<MapProps> = ({
   const onClickKey = async (
     e: React.MouseEvent<SVGPathElement>
   ): Promise<void> => {
-    if (!user.user) return console.log("Ban chua dang nhap!");
-    if (userHasStartedMap) return await handleClick(id, {...map}, e, svgRef);
+    if (!profile.user) return console.log("Ban chua dang nhap!");
+    if (userHasStartedMap) return await handleClick(id, { ...map }, e, svgRef);
     return console.log("Ban chua dang ky lo trinh nay!");
   };
 
   React.useEffect(() => {
+    if (!applyEventRef.current) return;
     if (ImportedMapRef.current && svgRef.current) {
       if (!isObjEmpty(map)) {
         userHasStartedMap && fillMap(map, svgRef);
@@ -63,6 +68,7 @@ const Map: React.FC<MapProps> = ({
   }, [ImportedMapRef.current]);
 
   if (!loading && ImportedMapRef.current) {
+    applyEventRef.current = true;
     const { current: ImportedMap } = ImportedMapRef;
     return (
       <>
@@ -72,6 +78,7 @@ const Map: React.FC<MapProps> = ({
       </>
     );
   }
+
   return null;
 };
 
