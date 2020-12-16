@@ -2,7 +2,6 @@ import React from "react";
 import { getMap, getMapInfo, getMapList, startMap } from "../../lib/api/road";
 import { MAP_SERVICE_ENDPOINT } from "../../lib/util/endpoints.constant";
 import { Paper, Box, Container, Button } from "@material-ui/core";
-import NavBar from "../../components/home.page/NavBar";
 import styled from "styled-components";
 import Map from "../../components/map/Map";
 import { findOwnerMapIDIfExist } from "../../components/map/service";
@@ -11,9 +10,9 @@ import { UserContext } from "../../lib/util/userContext";
 import Layout from "../../components/common/Layout";
 
 interface Props {
-  name: string,
-  id: string,
-  description: string
+  name: string;
+  id: string;
+  description: string;
 }
 
 const Road: React.FC<Props> = ({ id, description, name }) => {
@@ -53,7 +52,11 @@ const Road: React.FC<Props> = ({ id, description, name }) => {
   };
 
   return (
-    <Layout profile={profile} title={name} content="Lo trinh hoc tap danh cho lap trinh vien" >
+    <Layout
+      profile={profile}
+      title={name}
+      content="Lo trinh hoc tap danh cho lap trinh vien"
+    >
       <Container maxWidth="xl">
         <PaperStyled>
           <Intro description={description} />

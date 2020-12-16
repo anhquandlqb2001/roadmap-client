@@ -54,10 +54,14 @@ export const fillMap = (road, ref: RefObject<SVGElement>) => {
     const pathElement = ref?.current?.querySelector<HTMLElement>(
       `[id="${child.field}"]`
     );
-    if (pathElement && child.value === true) {
-      pathElement.style.fill = "green";
-    } else if (pathElement) {
-      pathElement.style.fill = "";
+    if (pathElement) {
+      if (pathElement && child.value === true) {
+        pathElement.style.fill = "green";
+      } else if (pathElement) {
+        pathElement.style.fill = "";
+      }
+
+      pathElement.style.cursor = "pointer"
     }
   });
 };
@@ -104,7 +108,6 @@ export const handleClick = async (
     fillMap(recursiveChangeObject(map, fieldChange, !currentValue.value), ref);
   });
 };
-
 
 export const removeHandleClick = ({
   ref,

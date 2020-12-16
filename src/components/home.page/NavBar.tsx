@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
+
 interface Props {
   profile
 }
@@ -29,7 +30,7 @@ const NavBar: React.FC<Props> = ({ profile }) => {
 
 const Authenticate = ({ user }) => {
   if (user) {
-    return null;
+    return <h2>{user.email}</h2>;
   }
   return (
     <>
