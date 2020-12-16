@@ -8,11 +8,20 @@ import Map from "../../components/map/Map";
 import { findOwnerMapIDIfExist } from "../../components/map/service";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { UserContext } from "../../lib/util/userContext";
+import Layout from "../../components/common/Layout";
 
-const Road = ({ id, description }) => {
+interface Props {
+  name: string,
+  id: string,
+  description: string
+}
+
+const Road: React.FC<Props> = ({ id, description, name }) => {
   const map = React.useRef(null);
   const profile = React.useContext(UserContext);
-  const [userHasStartedMap, setUserHasStartedMap] = React.useState<boolean>(false);
+  const [userHasStartedMap, setUserHasStartedMap] = React.useState<boolean>(
+    false
+  );
   const [delayed, setDelayed] = React.useState<boolean>(true);
 
   React.useEffect(() => {
@@ -44,8 +53,7 @@ const Road = ({ id, description }) => {
   };
 
   return (
-    <>
-      <NavBar profile={profile} />
+    <Layout profile={profile} title={name} content="Lo trinh hoc tap danh cho lap trinh vien" >
       <Container maxWidth="xl">
         <PaperStyled>
           <Intro description={description} />
@@ -77,7 +85,7 @@ const Road = ({ id, description }) => {
           )}
         </Paper>
       </Container>
-    </>
+    </Layout>
   );
 };
 
