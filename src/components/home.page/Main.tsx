@@ -8,7 +8,6 @@ import {
 import React from "react";
 import RoadButton from "./RoadButton";
 import { TMaps } from "../../lib/api/road";
-import { NextPage } from "next";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -25,11 +24,11 @@ const useStyles = makeStyles(() =>
   })
 );
 
-type MainType = {
+type Props = {
   maps: TMaps[];
 };
 
-const Main: NextPage<MainType> = ({ maps }) => {
+const Main: React.FC<Props> = ({ maps }) => {
   const classes = useStyles();
   if (!maps) {
     return null;

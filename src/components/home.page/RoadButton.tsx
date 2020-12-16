@@ -7,30 +7,30 @@ type RoadButtonType = {
   name: string;
   intro: string;
   disabled?: boolean;
-  id: string
+  id: string;
 };
 
 const RoadButton = ({ href, name, intro, disabled }: RoadButtonType) => {
   return (
     <Link href={href} passHref>
-      <StyledLink isDisabled={disabled}>
+      <StyledLink isDisable={disabled}>
         <TextContainer>
-          <ButtonText isDisabled={disabled}>{name}</ButtonText>
-          <ButtonDetail isDisabled={disabled}>{intro}</ButtonDetail>
+          <ButtonText>{name}</ButtonText>
+          <ButtonDetail>{intro}</ButtonDetail>
         </TextContainer>
       </StyledLink>
     </Link>
   );
 };
-
-const StyledLink = styled.a`
+const StyledLink = styled.a<{ isDisable: boolean }>`
   width: 400px;
   background: #ffffff;
   box-shadow: ${(props) =>
-    props.isDisabled
-      ? "0px 2px 2px rgba(0,0,0,0.25)"
-      : "-5px 6px 4px rgba(0, 0, 0, 0.25)"};
+    props.isDisable
+      ? " rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
+      : "rgba(149, 157, 165, 0.2) 0px 8px 24px"};
 
+  color: ${(props) => props.isDisable && "rgba(0,0,0,0.15)"};
   border-radius: 5px;
   margin: 0 auto;
   text-decoration: none;
@@ -49,7 +49,6 @@ const ButtonText = styled.h4`
   font-style: normal;
   font-weight: normal;
   font-size: 26px;
-  color: ${(props) => (props.isDisabled ? "rgba(0,0,0,0.1)" : "#000000")};
   margin: 0 0 10px 0;
 `;
 
@@ -59,7 +58,6 @@ const ButtonDetail = styled.p`
   font-weight: normal;
   font-size: 18px;
   line-height: 21px;
-  color: ${(props) => (props.isDisabled ? "rgba(0,0,0,0.1)" : "#6b6b6b")};
   margin: 3px 0;
   display: block; /* or inline-block */
   text-overflow: ellipsis;

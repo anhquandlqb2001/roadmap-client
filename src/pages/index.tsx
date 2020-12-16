@@ -1,23 +1,28 @@
 import React from "react";
 import { getMapList, TMaps } from "../lib/api/road";
-import NavBar from "../components/home.page/NavBar";
 import Intro from "../components/home.page/Intro";
 import Main from "../components/home.page/Main";
 import { UserContext } from "../lib/util/userContext";
 import { NextPage } from "next";
+import Layout from "../components/common/Layout";
 
 interface Props {
-  maps: TMaps[]
+  maps: TMaps[];
 }
 
 const Home: NextPage<Props> = ({ maps }) => {
-  const profile = React.useContext(UserContext)
+  const profile = React.useContext(UserContext);
   return (
-    <>
-      <NavBar profile={profile} />
-      <Intro />
-      <Main maps={maps} />
-    </>
+    <Layout
+      title="Trang chu"
+      content="Lo trinh hoc tap danh cho lap trinh vien"
+      profile={profile}
+    >
+      <>
+        <Intro />
+        <Main maps={maps} />
+      </>
+    </Layout>
   );
 };
 
