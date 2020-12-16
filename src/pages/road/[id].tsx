@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { getMap, getMapInfo, getMapList, startMap } from "../../lib/api/road";
 import { MAP_SERVICE_ENDPOINT } from "../../lib/util/endpoints.constant";
 import { Paper, Box, Container, Button } from "@material-ui/core";
@@ -10,25 +10,26 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { UserContext } from "../../lib/util/userContext";
 
 const Road = ({ id, description }) => {
-  const map = useRef(null);
-  const [userHasStartedMap, setUserHasStartedMap] = useState(false);
+  const map = React.useRef(null);
+  const profile = React.useContext(UserContext);
+
+  const [userHasStartedMap, setUserHasStartedMap] = React.useState(false);
   const [delayed, setDelayed] = React.useState(true);
-  const profile = React.useContext(UserContext)
 
   React.useEffect(() => {
     const timeout = setTimeout(() => setDelayed(false), 600);
     return () => clearTimeout(timeout);
   }, []);
 
-  useEffect(() => {
+  React.useMemo(() => {
     const fetchMap = async () => {
       const response = await getMap(`${MAP_SERVICE_ENDPOINT}/${id}`);
       response.data.success && (map.current = response.data.data.map);
     };
     if (profile.user) {
-      fetchMap();
       const mapId = findOwnerMapIDIfExist(profile?.map, id);
       mapId ? setUserHasStartedMap(true) : setUserHasStartedMap(false);
+      return fetchMap();
     }
   }, [profile.user]);
 

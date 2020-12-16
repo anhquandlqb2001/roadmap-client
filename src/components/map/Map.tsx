@@ -1,5 +1,4 @@
 import React from "react";
-import { NextPage } from "next";
 import { fillMap, isObjEmpty, handleClick } from "./service";
 
 interface MapProps extends React.SVGProps<SVGSVGElement> {
@@ -9,7 +8,7 @@ interface MapProps extends React.SVGProps<SVGSVGElement> {
   userHasStartedMap: boolean;
 }
 
-const Map: NextPage<MapProps> = ({
+const Map: React.FC<MapProps> = ({
   user,
   map,
   id,
@@ -17,7 +16,7 @@ const Map: NextPage<MapProps> = ({
   ...rest
 }): JSX.Element | null => {
   const ImportedMapRef = React.useRef<
-    NextPage<React.SVGProps<SVGSVGElement>>
+    React.FC<React.SVGProps<SVGSVGElement>>
   >();
   const [loading, setLoading] = React.useState(() => false);
   const svgRef = React.useRef(null);
@@ -40,7 +39,7 @@ const Map: NextPage<MapProps> = ({
     e: React.MouseEvent<SVGPathElement>
   ): Promise<void> => {
     if (!user.user) return console.log("Ban chua dang nhap!");
-    if (userHasStartedMap) return await handleClick(id, map, e, svgRef);
+    if (userHasStartedMap) return await handleClick(id, {...map}, e, svgRef);
     return console.log("Ban chua dang ky lo trinh nay!");
   };
 
