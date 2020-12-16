@@ -19,7 +19,11 @@ const Home: NextPage<Props> = ({ maps }) => {
       profile={profile}
     >
       <>
-        <Intro />
+        <Intro
+          intro={"LỘ TRÌNH HỌC TẬP DÀNH CHO LẬP TRÌNH VIÊN"}
+          detail={`cung cấp các tài liệu và từng bước cụ thể để học một ngôn ngữ, công
+nghệ`}
+        />
         <Main maps={maps} />
       </>
     </Layout>
