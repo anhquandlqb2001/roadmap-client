@@ -1,4 +1,3 @@
-import { RefObject } from "react";
 import { changeFieldMap } from "../../lib/api/road";
 import { TCurrentUserResponseMap } from "../../lib/api/user";
 
