@@ -1,6 +1,6 @@
 import React from "react";
 import { getMap, getMapInfo, getMapList, startMap } from "../../lib/api/road";
-import { MAP_SERVICE_ENDPOINT } from "../../lib/util/endpoints.constant";
+import { MAP_SERVICE_ENDPOINT, USER_ENDPOINT } from "../../lib/util/endpoints.constant";
 import { Paper, Box, Container, Button } from "@material-ui/core";
 import styled from "styled-components";
 import Map from "../../components/map/Map";
@@ -8,6 +8,7 @@ import { findOwnerMapIDIfExist } from "../../components/map/service";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { UserContext } from "../../lib/util/userContext";
 import Layout from "../../components/common/Layout";
+import { mutate } from "swr";
 
 interface Props {
   name: string;
@@ -16,13 +17,13 @@ interface Props {
 }
 
 const Road: React.FC<Props> = ({ id, description, name }) => {
-  const map = React.useRef(null);
   const profile = React.useContext(UserContext);
   const [userHasStartedMap, setUserHasStartedMap] = React.useState<boolean>(
     false
-  );
-  const [delayed, setDelayed] = React.useState<boolean>(true);
-
+    );
+    const [delayed, setDelayed] = React.useState<boolean>(true);
+    const [map, setMap] = React.useState({});
+    
   React.useEffect(() => {
     const timeout = setTimeout(() => setDelayed(false), 600);
     return () => clearTimeout(timeout);
@@ -31,14 +32,14 @@ const Road: React.FC<Props> = ({ id, description, name }) => {
   React.useMemo(() => {
     const fetchMap = async () => {
       const response = await getMap(`${MAP_SERVICE_ENDPOINT}/${id}`);
-      response.data.success && (map.current = response.data.data.map);
+      response.data.success && setMap(response.data.data.map)
     };
     if (profile.user) {
+      fetchMap();
       const mapId = findOwnerMapIDIfExist(profile?.map, id);
-      console.log(mapId);
-      
       mapId ? setUserHasStartedMap(true) : setUserHasStartedMap(false);
-      return fetchMap();
+    } else {
+      setMap({})
     }
   }, [profile.user]);
 
@@ -47,6 +48,7 @@ const Road: React.FC<Props> = ({ id, description, name }) => {
       const response = await startMap(id);
       if (response.data.success) {
         setUserHasStartedMap(true);
+        mutate(`${MAP_SERVICE_ENDPOINT}/${id}`)
       }
     } catch (error) {
       console.log(error);

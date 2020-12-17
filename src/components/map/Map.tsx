@@ -50,7 +50,9 @@ const Map: React.FC<MapProps> = ({
       // node is null, if DOM node of ref had been unmounted before
     } else {
       // ref value exists
-      if (!isObjEmpty(map)) {
+      if (map) {
+        console.log("here");
+        
         userHasStartedMap && fillMap(map, node);
         const nodeList = node.querySelectorAll(".node--child");
         nodeList.forEach((btn) => {
@@ -59,36 +61,6 @@ const Map: React.FC<MapProps> = ({
       }
     }
   }, []);
-
-  React.useEffect(() => {
-    if (ref) {
-      if (map.current) {
-        userHasStartedMap && fillMap(map, ref);
-        const nodeList = ref.querySelectorAll(".node--child");
-        nodeList.forEach((btn) => {
-          btn.addEventListener("click", (e) => onClickKey(e, ref));
-        });
-      }
-    }
-
-    return () => {
-      console.log("clean 1");
-      console.log(ref);
-      
-      if (ref) {
-        console.log("clean 2");
-        if (map.current) {
-          console.log("clean 3");
-
-          userHasStartedMap && fillMap(map, ref);
-          const nodeList = ref.querySelectorAll(".node--child");
-          nodeList.forEach((btn) => {
-            btn.removeEventListener("click", (e) => onClickKey(e, ref));
-          });
-        }
-      }
-    };
-  }, [userHasStartedMap]);
 
   if (!loading && ImportedMapRef.current) {
     const { current: ImportedMap } = ImportedMapRef;

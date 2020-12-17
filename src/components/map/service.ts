@@ -48,8 +48,8 @@ export function isObjEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 
-export const fillMap = (road, node: HTMLElement) => {
-  const childField = recursiveReadAllSmallestChildField(road, []);
+export const fillMap = (map, node: HTMLElement) => {
+  const childField = recursiveReadAllSmallestChildField(map, []);
   childField.map((child) => {
     const pathElement = node.querySelector<HTMLElement>(
       `[id="${child.field}"]`
