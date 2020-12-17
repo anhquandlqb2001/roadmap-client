@@ -1,5 +1,5 @@
 import React from "react";
-import { fillMap, isObjEmpty, handleClick } from "./service";
+import { fillMap, handleClick } from "./service";
 
 interface MapProps extends React.SVGProps<SVGSVGElement> {
   id: string;
@@ -19,7 +19,7 @@ const Map: React.FC<MapProps> = ({
     React.FC<React.SVGProps<SVGSVGElement>>
   >();
   const [loading, setLoading] = React.useState(() => false);
-  const [ref, setRef] = React.useState(null);
+  const [_, setRef] = React.useState(null);
 
   React.useEffect((): void => {
     setLoading(true);
@@ -51,8 +51,6 @@ const Map: React.FC<MapProps> = ({
     } else {
       // ref value exists
       if (map) {
-        console.log("here");
-        
         userHasStartedMap && fillMap(map, node);
         const nodeList = node.querySelectorAll(".node--child");
         nodeList.forEach((btn) => {
