@@ -4,7 +4,7 @@ import { MAP_SERVICE_ENDPOINT, USER_ENDPOINT } from "../../lib/util/endpoints.co
 import { Paper, Box, Container, Button } from "@material-ui/core";
 import styled from "styled-components";
 import Map from "../../components/map/Map";
-import { findOwnerMapIDIfExist } from "../../components/map/service";
+import { findOwnerMapIDIfExist } from "../../components/map/service/service";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { UserContext } from "../../lib/util/userContext";
 import Layout from "../../components/common/Layout";

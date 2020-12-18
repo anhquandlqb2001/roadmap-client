@@ -1,5 +1,6 @@
-import { changeFieldMap } from "../../lib/api/road";
-import { TCurrentUserResponseMap } from "../../lib/api/user";
+import { changeFieldMap } from "../../../lib/api/road";
+import { TCurrentUserResponseMap } from "../../../lib/api/user";
+import AutoCompleteClass from "./autocomplete";
 
 export const recursiveChangeObject = (obj, searchKey, valueChange) => {
   Object.keys(obj).forEach((key) => {
@@ -60,9 +61,31 @@ export const fillMap = (map, node: HTMLElement) => {
         pathElement.style.fill = "";
       }
 
-      pathElement.style.cursor = "pointer"
+      pathElement.style.cursor = "pointer";
     }
   });
+};
+
+export const fillParentNode = (map, node) => {
+  const AutoComplete = new AutoCompleteClass(map);
+  const parentNodesNameComplete = AutoComplete.getParentNodeNameComplete();
+
+  const parentNodes = node.querySelectorAll(".node--parent");
+
+  [...parentNodes].map((parentNode) => {
+    // if (parentNodesNameComplete.findIndex(p => p === parentNode) !== -1) {
+    //   return;
+    // }
+    parentNode.style.fill = "";
+  });
+
+  parentNodesNameComplete.map((parentNode) => {
+    const pathElement = node.querySelector(`[id="${parentNode}"]`);
+    if (pathElement) {
+      pathElement.style.fill = "blue";
+    }
+  });
+  // console.log(parentNodesName);
 };
 
 export /**
@@ -104,7 +127,9 @@ export const handleClick = async (
     if (!result.data.success) {
       return;
     }
-    fillMap(recursiveChangeObject(map, fieldChange, !currentValue.value), ref);
+    const newMap = recursiveChangeObject(map, fieldChange, !currentValue.value);
+    fillMap(newMap, ref);
+    fillParentNode(newMap, ref);
   });
 };
 
