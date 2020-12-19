@@ -17,6 +17,7 @@ const Home: NextPage<Props> = ({ maps }) => {
       title="Trang chu"
       content="Lo trinh hoc tap danh cho lap trinh vien"
       profile={profile}
+      maxWidth={false}
     >
       <>
         <Intro

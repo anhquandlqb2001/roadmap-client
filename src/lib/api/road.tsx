@@ -86,3 +86,20 @@ export const getMapInfo = async (id) => {
     
   }
 }
+
+export const getDocumentsPath = async (mapId) => {
+  try {
+    return await axios.get(`${MAP_ENDPOINT}/docs/${mapId}`)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const getDocumentRaw = async (path) => {
+  try {
+    return await axios.get(path)
+  } catch (error) {
+    console.log(error);
+    
+  }
+}
