@@ -135,20 +135,3 @@ export const handleClick = async (
     fillParentNode(newMap, ref);
   });
 };
-
-export const removeHandleClick = ({
-  ref,
-  user,
-  mapId,
-  map,
-  userHasStartedMap,
-}) => {
-  const nodeList = ref.current?.querySelectorAll(".node--child");
-  nodeList.forEach((node) => {
-    node.removeEventListener("click", async function (e) {
-      if (!user.user) return console.log("Ban chua dang nhap!");
-      if (userHasStartedMap) return await handleClick(mapId, map, e, ref);
-      return console.log("Ban chua dang ky lo trinh nay!");
-    });
-  });
-};
