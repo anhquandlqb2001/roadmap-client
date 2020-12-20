@@ -5,3 +5,34 @@ path {
 html {
   overflow-y: scroll;
 }
+
+g.node--child,
+g.node--parent {
+  fill: black;
+}
+
+g.node--child > g.container {
+  fill: transparent !important;
+}
+
+g.node--parent > g.container {
+  fill: #999;
+}
+
+g.node--child.active > g.container {
+  fill: green !important;
+}
+
+g.node--parent.active > g.container {
+  fill: yellow !important;
+}
+
+g.node--child.active > g > g,
+g.node--parent.active > g > g {
+  fill: inherit !important;
+}
+
+g.node--child > g > g,
+g.node--parent > g > g {
+  fill: black;
+}
