@@ -6,16 +6,23 @@ import {
   getMapList,
 } from "../../lib/api/road";
 import "github-markdown-css/github-markdown.css";
-import "./index.module.css";
-import { Octokit } from "@octokit/core";
+import { UserContext } from "../../lib/util/userContext";
 
-const PHP = ({ html }) => {
+import React from 'react'
+import Documentation from "../../components/Documentation";
+
+const PHP = ({ markdown }) => {
+  const profile = React.useContext(UserContext);
+  
+
   return (
-    <Layout title="Documentation" profile={{}} content="Tai lieu lo trinh" maxWidth="lg" >
-      <div
-        className="markdown-body"
-        dangerouslySetInnerHTML={{ __html: html }}
-      ></div>
+    <Layout
+      title="Documentation"
+      profile={profile}
+      content="Tai lieu lo trinh"
+      maxWidth="lg"
+    >
+      <Documentation markdown={markdown} />
     </Layout>
   );
 };
@@ -45,15 +52,9 @@ export const getStaticProps = async ({ params }) => {
 
   const response = await getDocumentRaw(path);
 
-  const octokit = new Octokit();
-
-  const res = await octokit.request("POST /markdown", {
-    text: response.data,
-  });
-
   return {
     props: {
-      html: res.data,
+      markdown: response.data,
       id: params.id,
     },
   };

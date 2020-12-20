@@ -58,7 +58,7 @@ export const fillMap = (map, node: HTMLElement) => {
       if (pathElement && child.value === true) {
         pathElement.style.fill = "green";
       } else if (pathElement) {
-        pathElement.style.fill = "";
+        pathElement.style.fill = "black";
       }
 
       pathElement.style.cursor = "pointer";
