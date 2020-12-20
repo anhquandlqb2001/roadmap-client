@@ -2,7 +2,7 @@ import { GetStaticPaths } from "next";
 import Layout from "../../components/common/Layout";
 import {
   getDocumentRaw,
-  getDocumentsPath,
+  getDocumentPath,
   getMapList,
 } from "../../lib/api/road";
 import "github-markdown-css/github-markdown.css";
@@ -13,7 +13,6 @@ import Documentation from "../../components/Documentation";
 
 const PHP = ({ markdown }) => {
   const profile = React.useContext(UserContext);
-  
 
   return (
     <Layout
@@ -40,7 +39,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const { data } = await getDocumentsPath(params.id);
+  const { data } = await getDocumentPath(params.id);
   if (!data.success) {
     return;
   }

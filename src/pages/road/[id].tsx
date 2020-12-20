@@ -1,5 +1,5 @@
 import React from "react";
-import { getMap, getMapInfo, getMapList, startMap } from "../../lib/api/road";
+import { getDocumentPath, getMap, getMapInfo, getMapList, startMap } from "../../lib/api/road";
 import {
   MAP_SERVICE_ENDPOINT,
   USER_ENDPOINT,
@@ -17,9 +17,10 @@ interface Props {
   name: string;
   id: string;
   description: string;
+  docPath: string
 }
 
-const Road: React.FC<Props> = ({ id, description, name }) => {
+const Road: React.FC<Props> = ({ id, description, name, docPath }) => {
   const profile = React.useContext(UserContext);
   const [userHasStartedMap, setUserHasStartedMap] = React.useState<boolean>(
     false
@@ -91,6 +92,7 @@ const Road: React.FC<Props> = ({ id, description, name }) => {
               profile={profile}
               map={map}
               userHasStartedMap={userHasStartedMap}
+              docPath={docPath}
             />
           )}
         </Paper>
@@ -135,7 +137,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const response = await getMapInfo(params.id);
-  if (!response.data.success) {
+
+  const {data} = await getDocumentPath(params.id)
+  if (!response.data.success || !data.sucess) {
     return;
   }
 
@@ -144,6 +148,7 @@ export async function getStaticProps({ params }) {
       name: response.data.data.name,
       id: response.data.data._id,
       description: response.data.data.description || "Everything you need",
+      docPath: data.documentation.path
     },
   };
 }

@@ -6,6 +6,7 @@ interface MapProps extends React.SVGProps<SVGSVGElement> {
   profile: any;
   map: any;
   userHasStartedMap: boolean;
+  docPath: string
 }
 
 const Map: React.FC<MapProps> = ({
@@ -13,6 +14,7 @@ const Map: React.FC<MapProps> = ({
   map,
   id,
   userHasStartedMap,
+  docPath,
   ...rest
 }): JSX.Element | null => {
   const ImportedMapRef = React.useRef<
@@ -39,7 +41,7 @@ const Map: React.FC<MapProps> = ({
 
   const onClickKey = async (e, node): Promise<void> => {
     if (!profile.user) return console.log("Ban chua dang nhap!");
-    if (userHasStartedMap) return await handleClick(id, { ...map }, e, node);
+    if (userHasStartedMap) return await handleClick(id, { ...map }, e, docPath, node);
     return console.log("Ban chua dang ky lo trinh nay!");
   };
 

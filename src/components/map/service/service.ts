@@ -110,10 +110,13 @@ export const handleClick = async (
   mapId: string,
   map,
   e: React.MouseEvent<SVGPathElement, MouseEvent>,
+  docPath,
   ref
 ) => {
   const fieldChange = e.currentTarget.getAttribute("id");
   const currentValue = findVal(map, fieldChange);
+  console.log(fieldChange);
+  
   if (e.ctrlKey) {
     alert("redirect now");
     return;
