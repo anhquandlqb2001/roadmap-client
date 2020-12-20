@@ -1,3 +1,4 @@
+import { NextRouter } from "next/router";
 import { changeFieldMap } from "../../../lib/api/road";
 import { TCurrentUserResponseMap } from "../../../lib/api/user";
 import AutoCompleteClass from "./autocomplete";
@@ -110,15 +111,15 @@ export const handleClick = async (
   mapId: string,
   map,
   e: React.MouseEvent<SVGPathElement, MouseEvent>,
-  docPath,
-  ref
+  ref, 
+  router: NextRouter
 ) => {
   const fieldChange = e.currentTarget.getAttribute("id");
+  const fieldName = e.currentTarget.getAttribute("data-name")
   const currentValue = findVal(map, fieldChange);
-  console.log(fieldChange);
-  
+
   if (e.ctrlKey) {
-    alert("redirect now");
+    window.open(decodeURIComponent(`/docs/${mapId}#user-content-${fieldName}`))
     return;
   }
 

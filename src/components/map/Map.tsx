@@ -1,12 +1,11 @@
 import React from "react";
 import { fillMap, handleClick, fillParentNode } from "./service/service";
-
+import {useRouter} from 'next/router'
 interface MapProps extends React.SVGProps<SVGSVGElement> {
   id: string;
   profile: any;
   map: any;
   userHasStartedMap: boolean;
-  docPath: string
 }
 
 const Map: React.FC<MapProps> = ({
@@ -14,7 +13,6 @@ const Map: React.FC<MapProps> = ({
   map,
   id,
   userHasStartedMap,
-  docPath,
   ...rest
 }): JSX.Element | null => {
   const ImportedMapRef = React.useRef<
@@ -22,6 +20,8 @@ const Map: React.FC<MapProps> = ({
   >();
   const [loading, setLoading] = React.useState(() => false);
   const [_, setRef] = React.useState(null);
+
+  const router = useRouter()
 
   React.useEffect((): void => {
     setLoading(true);
@@ -39,9 +39,9 @@ const Map: React.FC<MapProps> = ({
     importMap();
   }, []);
 
-  const onClickKey = async (e, node): Promise<void> => {
+  const onClickKey = async (e, node): Promise<void | boolean> => {
     if (!profile.user) return console.log("Ban chua dang nhap!");
-    if (userHasStartedMap) return await handleClick(id, { ...map }, e, docPath, node);
+    if (userHasStartedMap) return await handleClick(id, { ...map }, e, node, router);
     return console.log("Ban chua dang ky lo trinh nay!");
   };
 

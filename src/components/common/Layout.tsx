@@ -7,7 +7,7 @@ type Props = {
   title: string;
   content: string;
   children: JSX.Element;
-  maxWidth?: false | "xl" | "xs" | "sm" | "md" | "lg",
+  maxWidth?: false | "xl" | "xs" | "sm" | "md" | "lg";
   profile;
 };
 
@@ -23,13 +23,15 @@ const Layout = ({
       <Head>
         <title>{title}</title>
         <meta name="description" content={content} />
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta charSet="utf-8" />
       </Head>
-      <main>
-        <NavBar profile={profile} />
-        <Container maxWidth={maxWidth}>{children}</Container>
-      </main>
+        <main>
+          <NavBar profile={profile} />
+          <Container maxWidth={maxWidth}>{children}</Container>
+        </main>
 
-      <footer>quanprolazer@copyright</footer>
+        <footer>quanprolazer@copyright</footer>
     </>
   );
 };

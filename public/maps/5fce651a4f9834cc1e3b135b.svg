@@ -226,7 +226,7 @@
     <rect x="203.4" y="285.12" width="93.24" height="28.34" style="fill: #fff;stroke: #000;stroke-miterlimit: 10" />
     <text transform="translate(241.51 304.01)" style="font-size: 18px;font-family: TimesNewRomanPSMT, Times New Roman">JS</text>
   </g>
-  <g id="mo-hinh-client-server" className="node--child" data-name="&lt;Group name=&quot;mo-hinh-client-server&quot;&gt;">
+  <g id="mo-hinh-client-server" className="node--child" data-name="mô-hình-client---server">
     <g className="container">
       <g>
         <path d="M613.49,124.92c-1.07.79-1.1,1-.33,2.51A3.55,3.55,0,0,0,617.8,129c1-.56,1.48-1.42,1-2.42C617.71,124.79,615.26,123.77,613.49,124.92Z" transform="translate(-260.99 -38.18)" />
