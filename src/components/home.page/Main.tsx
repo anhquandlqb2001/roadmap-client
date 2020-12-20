@@ -40,7 +40,7 @@ const Main: React.FC<Props> = ({ maps }) => {
           <Box margin="auto">
             <Grid container spacing={3} justify="center">
               {maps.map((map) => (
-                <Grid xs={4} item key={map._id}>
+                <Grid xs={"auto"} item key={map._id}>
                   <RoadButton
                     href={`/road/${map._id}`}
                     name={map.name}
@@ -49,17 +49,9 @@ const Main: React.FC<Props> = ({ maps }) => {
                   />
                 </Grid>
               ))}
-              <Grid xs={4} item>
+              <Grid xs={"auto"} item>
                 <RoadButton
                   disabled
-                  id="123"
-                  href="/gg"
-                  name="PHP"
-                  intro="Lộ trình để trở thành một lập trình viên PHP"
-                />
-              </Grid>
-              <Grid xs={4} item>
-                <RoadButton
                   id="123"
                   href="/gg"
                   name="PHP"
