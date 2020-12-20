@@ -56,9 +56,9 @@ export const fillMap = (map, node: HTMLElement) => {
     );
     if (pathElement) {
       if (pathElement && child.value === true) {
-        pathElement.style.fill = "green";
+        pathElement.classList.add("active")
       } else if (pathElement) {
-        pathElement.style.fill = "black";
+        pathElement.classList?.remove("active")
       }
 
       pathElement.style.cursor = "pointer";
@@ -76,13 +76,13 @@ export const fillParentNode = (map, node) => {
     // if (parentNodesNameComplete.findIndex(p => p === parentNode) !== -1) {
     //   return;
     // }
-    parentNode.style.fill = "";
+    parentNode.classList?.remove("active");
   });
 
   parentNodesNameComplete.map((parentNode) => {
     const pathElement = node.querySelector(`[id="${parentNode}"]`);
     if (pathElement) {
-      pathElement.style.fill = "blue";
+      pathElement.classList.add("active");
     }
   });
   // console.log(parentNodesName);
