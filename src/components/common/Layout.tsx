@@ -23,7 +23,7 @@ const Layout = ({
       <Head>
         <title>{title}</title>
         <meta name="description" content={content} />
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
         <meta charSet="utf-8" />
       </Head>
         <main>
