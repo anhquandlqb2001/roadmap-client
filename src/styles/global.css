@@ -36,3 +36,11 @@ g.node--child > g > g,
 g.node--parent > g > g {
   fill: black;
 }
+
+g.node--parent > g.container > path {
+  stroke: black;
+}
+
+g.node--parent.active > g.container > path {
+  stroke: yellow;
+}
