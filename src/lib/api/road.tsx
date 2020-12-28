@@ -59,7 +59,7 @@ export const getMapList = async () => {
   }
 };
 
-export const changeFieldMap = async ({
+export const updateMapProgress = async ({
   mapId,
   fieldChange,
   currentValue,

@@ -1,5 +1,5 @@
 import { NextRouter } from "next/router";
-import { changeFieldMap } from "../../../lib/api/road";
+import { updateMapProgress } from "../../../lib/api/road";
 import { TCurrentUserResponseMap } from "../../../lib/api/user";
 import AutoCompleteClass from "./autocomplete";
 
@@ -123,7 +123,7 @@ export const handleClick = async (
     return;
   }
 
-  await changeFieldMap({
+  await updateMapProgress({
     mapId: mapId,
     fieldChange: fieldChange,
     currentValue: currentValue.value,

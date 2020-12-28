@@ -44,3 +44,8 @@ g.node--parent > g.container > path {
 g.node--parent.active > g.container > path {
   stroke: yellow;
 }
+
+rect {
+  stroke: black;
+  stroke-width: 1.5;
+}

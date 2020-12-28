@@ -31,7 +31,7 @@ const Layout = ({
           <Container maxWidth={maxWidth}>{children}</Container>
         </main>
 
-        <footer>quanprolazer@copyright</footer>
+        {/* <footer>quanprolazer@copyright</footer> */}
     </>
   );
 };

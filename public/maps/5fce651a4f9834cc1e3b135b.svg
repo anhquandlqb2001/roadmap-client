@@ -233,8 +233,8 @@
     </g>
     <text transform="translate(372.89 233.24)" style="font-size: 18px;font-family: TimesNewRomanPSMT, Times New Roman">Kiến thức cơ bản<tspan x="0" y="21.6" xml:space="preserve">    của 1 website </tspan></text>
   </g>
-  <g id="html">
-    <g>
+  <g id="html" class="node--child">
+    <g class="container">
       <g>
         <path d="M614.12,253.5c-1.08.82-1.11,1.06-.34,2.62a3.48,3.48,0,0,0,4.64,1.61,1.81,1.81,0,0,0,1-2.53C618.33,253.36,615.89,252.29,614.12,253.5Z" transform="translate(-260.99 -38.18)"/>
         <path d="M599.73,249c-.91,1-.9,1.25.13,2.64a3.45,3.45,0,0,0,4.85.7,1.85,1.85,0,0,0,.51-2.68C603.85,248,601.26,247.45,599.73,249Z" transform="translate(-260.99 -38.18)"/>
@@ -242,7 +242,7 @@
         <path d="M572.92,239.41c-1,.84-1.07,1.08-.27,2.62a3.46,3.46,0,0,0,4.68,1.5,1.81,1.81,0,0,0,.91-2.55C577.14,239.16,574.67,238.15,572.92,239.41Z" transform="translate(-260.99 -38.18)"/>
         <path d="M560.71,235.47c-1,.92-1,1.16-.1,2.64a3.46,3.46,0,0,0,4.77,1.15,1.83,1.83,0,0,0,.74-2.62C564.9,234.91,562.36,234.09,560.71,235.47Z" transform="translate(-260.99 -38.18)"/>
       </g>
-      <rect x="203.52" y="186.94" width="93.24" height="29.67" style="fill: #fff;stroke: #000;stroke-miterlimit: 10"/>
+      <rect x="203.52" y="186.94" width="93.24" height="29.67" style="stroke: #000;stroke-miterlimit: 10"/>
     </g>
     <text transform="translate(224.83 206.72) scale(0.96 1)" style="font-size: 18.845890045166016px;font-family: TimesNewRomanPSMT, Times New Roman">HTM<tspan x="41.88" y="0" style="letter-spacing: -0.03710919561825472em">L</tspan></text>
   </g>
@@ -305,8 +305,8 @@
     </g>
     <text transform="translate(561.74 374.1)" style="font-size: 24px;font-family: TimesNewRomanPSMT, Times New Roman">Chương trình php<tspan x="0" y="28.8" style="letter-spacing: 1.25em">	</tspan><tspan x="36" y="28.8" xml:space="preserve">  đầu tiên</tspan></text>
   </g>
-  <g id="nhung-php-trong-html">
-    <g>
+  <g id="nhung-php-trong-html" class="node--child">
+    <g class="container">
       <g>
         <path d="M1244,354.75c1.16-.65,1.22-.87.64-2.45a3.56,3.56,0,0,0-4.41-2.11c-1.11.42-1.65,1.23-1.27,2.28C1239.81,354.35,1242.12,355.67,1244,354.75Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1256.14,354.75c1.16-.65,1.22-.87.64-2.45a3.56,3.56,0,0,0-4.41-2.11c-1.11.42-1.65,1.23-1.27,2.28C1251.93,354.35,1254.24,355.67,1256.14,354.75Z" transform="translate(-260.99 -38.18)"/>
@@ -423,14 +423,14 @@
     </g>
     <text transform="translate(1030.54 532.9)" style="font-size: 14px;font-family: TimesNewRomanPSMT, Times New Roman">POS<tspan x="25.68" y="0" style="letter-spacing: -0.01806640625em">T</tspan><tspan x="33.98" y="0" xml:space="preserve">  method</tspan></text>
   </g>
-  <g id="cau-truc">
-    <g>
+  <g id="cau-truc" class="node--parent">
+    <g class="container">
       <g>
         <path d="M1186,663.25c1.33,0,1.48-.18,1.72-1.85a3.56,3.56,0,0,0-2.88-3.95c-1.17-.15-2,.3-2.19,1.41C1182.5,660.91,1183.9,663.16,1186,663.25Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1177.17,656.78c1.32.12,1.5,0,1.9-1.66a3.55,3.55,0,0,0-2.46-4.23c-1.15-.27-2,.09-2.32,1.18C1173.91,654.09,1175.08,656.48,1177.17,656.78Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1169.76,649.42c1.28.38,1.48.26,2.2-1.25a3.57,3.57,0,0,0-1.6-4.63,1.7,1.7,0,0,0-2.51.71C1167.09,646.16,1167.77,648.72,1169.76,649.42Z" transform="translate(-260.99 -38.18)"/>
       </g>
-      <rect x="912.52" y="627.95" width="88.92" height="24.93" style="fill: #fff;stroke: #000;stroke-miterlimit: 10;stroke-width: 1.5px"/>
+      <rect x="912.52" y="627.95" width="88.92" height="24.93" style="stroke: #000;stroke-miterlimit: 10;stroke-width: 1.5px"/>
     </g>
     <text transform="translate(931.33 644.5)" style="font-size: 14px;font-family: TimesNewRomanPSMT, Times New Roman"><tspan xml:space="preserve">Cấu  trúc</tspan></text>
   </g>
@@ -444,13 +444,13 @@
     </g>
     <text transform="translate(872.47 688.76)" style="font-size: 14px;font-family: TimesNewRomanPSMT, Times New Roman">Model</text>
   </g>
-  <g id="view">
-    <g>
+  <g id="views" class="node--child">
+    <g class="container">
       <g>
         <path d="M1216.44,707.93c.76,1.09,1,1.12,2.5.39a3.56,3.56,0,0,0,1.65-4.61,1.71,1.71,0,0,0-2.4-1C1216.41,703.71,1215.33,706.13,1216.44,707.93Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1216.93,698.82c1,.92,1.18.91,2.52-.11a3.55,3.55,0,0,0,.71-4.84,1.7,1.7,0,0,0-2.55-.53C1216.06,694.69,1215.48,697.28,1216.93,698.82Z" transform="translate(-260.99 -38.18)"/>
       </g>
-      <rect x="934.52" y="672.62" width="50.76" height="24.93" style="fill: #fff;stroke: #000;stroke-miterlimit: 10;stroke-width: 1.5px"/>
+      <rect x="934.52" y="672.62" width="50.76" height="24.93" style="stroke: #000;stroke-miterlimit: 10;stroke-width: 1.5px"/>
     </g>
     <text transform="translate(945.15 688.76)" style="font-size: 14px;font-family: TimesNewRomanPSMT, Times New Roman"><tspan style="letter-spacing: -0.06005859375em">V</tspan><tspan x="9.27" y="0">iew</tspan></text>
   </g>
@@ -464,8 +464,8 @@
     </g>
     <text transform="translate(1007.6 688.64)" style="font-size: 14px;font-family: TimesNewRomanPSMT, Times New Roman">Controller</text>
   </g>
-  <g id="mo-hinh-mvc">
-    <g>
+  <g id="mo-hinh-mvc" class="node--parent">
+    <g class="container">
       <g>
         <path d="M1052.48,551c1.24.48,1.45.38,2.28-1.08a3.54,3.54,0,0,0-1.22-4.73,1.71,1.71,0,0,0-2.56.5C1050.08,547.57,1050.55,550.18,1052.48,551Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1055.66,561.15c1.26.43,1.46.32,2.25-1.16a3.56,3.56,0,0,0-1.39-4.69,1.71,1.71,0,0,0-2.54.59C1053.14,557.76,1053.7,560.36,1055.66,561.15Z" transform="translate(-260.99 -38.18)"/>
@@ -481,7 +481,7 @@
         <path d="M1019.85,474.31c1.29.34,1.48.22,2.15-1.32a3.55,3.55,0,0,0-1.73-4.57,1.71,1.71,0,0,0-2.49.78C1017.08,471.13,1017.84,473.67,1019.85,474.31Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1014,463.93c1.2.57,1.41.49,2.36-.9a3.55,3.55,0,0,0-.85-4.82,1.72,1.72,0,0,0-2.59.3C1011.89,460.28,1012.15,462.92,1014,463.93Z" transform="translate(-260.99 -38.18)"/>
       </g>
-      <rect x="819.78" y="575.1" width="141.48" height="29.7" style="fill: #fff;stroke: #000;stroke-miterlimit: 10;stroke-width: 1.5px"/>
+      <rect x="819.78" y="575.1" width="141.48" height="29.7" style="stroke: #000;stroke-miterlimit: 10;stroke-width: 1.5px"/>
     </g>
     <text transform="translate(834.76 594.67)" style="font-size: 18px;font-family: TimesNewRomanPSMT, Times New Roman"><tspan xml:space="preserve">Mô  hình MVC</tspan></text>
   </g>
@@ -503,8 +503,8 @@
     </g>
     <text transform="translate(827.23 507.58)" style="font-size: 18px;font-family: TimesNewRomanPSMT, Times New Roman"><tspan xml:space="preserve">Cách lấy  dữ  liệu</tspan><tspan x="0" y="21.6" xml:space="preserve">     từ request</tspan></text>
   </g>
-  <g id="php-co-ban">
-    <g>
+  <g id="php-co-ban" class="node--parent">
+    <g class="container">
       <g>
         <path d="M1017.66,400.4c.6-1.19.52-1.4-.85-2.38a3.55,3.55,0,0,0-4.83.76,1.69,1.69,0,0,0,.25,2.59C1014,402.45,1016.62,402.24,1017.66,400.4Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1029.26,395.4c.38-1.28.27-1.48-1.25-2.2a3.55,3.55,0,0,0-4.63,1.57,1.71,1.71,0,0,0,.69,2.51C1026,398.05,1028.55,397.38,1029.26,395.4Z" transform="translate(-260.99 -38.18)"/>
@@ -513,7 +513,7 @@
         <path d="M1065.76,379.91c.33-1.29.21-1.48-1.34-2.14a3.57,3.57,0,0,0-4.56,1.78c-.44,1.1-.23,2,.81,2.48C1062.61,382.71,1065.14,381.93,1065.76,379.91Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1078.19,374.4c.43-1.26.33-1.46-1.16-2.24a3.54,3.54,0,0,0-4.69,1.39,1.72,1.72,0,0,0,.6,2.54C1074.81,376.92,1077.4,376.36,1078.19,374.4Z" transform="translate(-260.99 -38.18)"/>
       </g>
-      <rect x="819.41" y="300.39" width="141.48" height="59.4" style="fill: #fff;stroke: #000;stroke-miterlimit: 10;stroke-width: 1.5px"/>
+      <rect x="819.41" y="300.39" width="141.48" height="59.4" style="stroke: #000;stroke-miterlimit: 10;stroke-width: 1.5px"/>
     </g>
     <text transform="translate(847.73 334.81)" style="font-size: 18px;font-family: TimesNewRomanPSMT, Times New Roman">PH<tspan x="23.01" y="0" style="letter-spacing: -0.037109375em">P</tspan><tspan x="32.35" y="0" xml:space="preserve"> cơ bản</tspan></text>
   </g>
