@@ -1,13 +1,13 @@
 <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1282.36 788.33">
-  <g id="khoi-dau" class="node--parent">
-    <g class="container">
+  <g id="khoi-dau" >
+    <g >
       <path d="M912.31,185.07c1.08,0-20.95-54.93,1.86-76.66,29.72-28.31,1.68-69.1,1.68-69.1" transform="translate(-260.99 -38.18)" style="fill: #fff;stroke-miterlimit: 10;stroke-width: 4px"/>
       <rect x="553.68" y="147.57" width="194.4" height="58.32" style="stroke: #000;stroke-miterlimit: 10;stroke-width: 1.5px"/>
     </g>
     <text transform="translate(583.87 187.25)" style="font-size: 36px;font-family: TimesNewRomanPSMT, Times New Roman">Khởi đầu</text>
   </g>
-  <g id="cac-phan-mem-can-thiet" class="node--parent">
-    <g class="container">
+  <g id="cac-phan-mem-can-thiet" >
+    <g >
       <g>
         <path d="M1076.74,216.66c.69-1.14.63-1.36-.66-2.44a3.55,3.55,0,0,0-4.88.38,1.72,1.72,0,0,0,0,2.61C1072.91,218.42,1075.56,218.41,1076.74,216.66Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1064.5,216.66c.69-1.14.63-1.36-.66-2.44a3.55,3.55,0,0,0-4.88.38,1.72,1.72,0,0,0,0,2.61C1060.67,218.42,1063.32,218.41,1064.5,216.66Z" transform="translate(-260.99 -38.18)"/>
@@ -39,8 +39,8 @@
       <path d="M1182.27,221.72v2.65h1.88V225h-1.88v5.23a1.72,1.72,0,0,0,.23,1,.71.71,0,0,0,.57.27,1,1,0,0,0,.56-.18,1.14,1.14,0,0,0,.43-.53h.34a2.87,2.87,0,0,1-.87,1.3,1.88,1.88,0,0,1-1.16.43,1.55,1.55,0,0,1-.79-.22,1.36,1.36,0,0,1-.57-.64,3.24,3.24,0,0,1-.19-1.29V225h-1.27v-.29a3.17,3.17,0,0,0,1-.65,5.75,5.75,0,0,0,.9-1.09,10.94,10.94,0,0,0,.56-1.23Z" transform="translate(-260.99 -38.18)"/>
     </g>
   </g>
-  <g id="phan-mem-soan-thao" class="node--parent">
-    <g class="container">
+  <g id="phan-mem-soan-thao" >
+    <g >
       <g>
         <path d="M1231.43,190.67c-.13-1.33-.31-1.47-2-1.56a3.56,3.56,0,0,0-3.68,3.23c0,1.19.48,2,1.6,2.07C1229.42,194.39,1231.54,192.79,1231.43,190.67Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1241.94,179.45c-.1-1.33-.28-1.47-2-1.61a3.55,3.55,0,0,0-3.75,3.15c-.08,1.18.43,2,1.54,2.1C1239.83,183.12,1242,181.57,1241.94,179.45Z" transform="translate(-260.99 -38.18)"/>
@@ -52,8 +52,8 @@
     </g>
     <text transform="translate(1024.47 107.27)" style="font-size: 14.04697036743164px;font-family: TimesNewRomanPSMT, Times New Roman">Phần mềm soạn</text>
   </g>
-  <g id="server" class="node--parent">
-    <g class="container">
+  <g id="server" >
+    <g >
       <g>
         <path d="M1231,216.19c.68-1.14.62-1.36-.67-2.43a3.54,3.54,0,0,0-4.87.38,1.7,1.7,0,0,0,0,2.6C1227.18,218,1229.84,217.94,1231,216.19Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1241.91,215.73c.72-1.12.66-1.34-.6-2.45a3.55,3.55,0,0,0-4.88.24,1.71,1.71,0,0,0,0,2.61C1238,217.39,1240.68,217.45,1241.91,215.73Z" transform="translate(-260.99 -38.18)"/>
@@ -65,8 +65,8 @@
     </g>
     <text transform="translate(1027.09 180.88)" style="font-size: 14px;font-family: TimesNewRomanPSMT, Times New Roman">Server</text>
   </g>
-  <g id="co-so-du-lieu" class="node--parent">
-    <g class="container">
+  <g id="co-so-du-lieu" >
+    <g >
       <g>
         <path d="M1230.17,241.85c1.17-.65,1.22-.87.65-2.45a3.57,3.57,0,0,0-4.42-2.11c-1.1.42-1.64,1.23-1.26,2.28C1226,241.45,1228.27,242.77,1230.17,241.85Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1241.39,247.8c.91-1,.9-1.2-.12-2.53a3.55,3.55,0,0,0-4.84-.69c-.93.74-1.21,1.67-.52,2.56C1237.26,248.68,1239.85,249.25,1241.39,247.8Z" transform="translate(-260.99 -38.18)"/>
@@ -78,8 +78,8 @@
     </g>
     <text transform="translate(1018.63 234.08)" style="font-size: 14px;font-family: TimesNewRomanPSMT, Times New Roman">Database</text>
   </g>
-  <g id="xampp" class="node--child">
-    <g class="container">
+  <g id="xampp" >
+    <g >
       <g>
         <path d="M1347.28,278.49c1.26-.51,1.35-.72.93-2.35a3.68,3.68,0,0,0-4.3-2.58c-1.18.3-1.83,1-1.55,2.13C1343,277.65,1345.22,279.21,1347.28,278.49Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1355.85,284.61c1.06-.84,1.08-1.07.2-2.52a3.73,3.73,0,0,0-4.87-1.29c-1,.62-1.45,1.51-.86,2.47C1351.51,285,1354.09,285.86,1355.85,284.61Z" transform="translate(-260.99 -38.18)"/>
@@ -89,8 +89,8 @@
     </g>
     <text transform="translate(1113.17 257.32) scale(1.03 1)" style="font-size: 14px;font-family: TimesNewRomanPSMT, Times New Roman">XAMP<tspan x="40.46" y="0" style="letter-spacing: -0.037135041443039224em">P</tspan></text>
   </g>
-  <g id="wampserver" class="node--child">
-    <g class="container">
+  <g id="wampserver" >
+    <g >
       <g>
         <path d="M1343.53,269.73c.81-1.05.78-1.28-.38-2.49a3.56,3.56,0,0,0-4.89-.19,1.72,1.72,0,0,0-.25,2.6C1339.52,271,1342.16,271.34,1343.53,269.73Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1355.8,269.67c.78-1.07.74-1.3-.44-2.49a3.55,3.55,0,0,0-4.89-.07,1.71,1.71,0,0,0-.19,2.6C1351.82,271.07,1354.46,271.3,1355.8,269.67Z" transform="translate(-260.99 -38.18)"/>
@@ -112,8 +112,8 @@
       <path d="M1455.25,265.5v1.41c.52-.94,1.06-1.41,1.61-1.41a.88.88,0,0,1,.62.23.7.7,0,0,1,.25.53.61.61,0,0,1-.18.45.55.55,0,0,1-.42.19.91.91,0,0,1-.54-.24.91.91,0,0,0-.44-.23.42.42,0,0,0-.27.13,3.52,3.52,0,0,0-.63.93v3a1.77,1.77,0,0,0,.13.78.66.66,0,0,0,.31.31,1.41,1.41,0,0,0,.65.13V272h-3.21v-.24a1.37,1.37,0,0,0,.72-.16.54.54,0,0,0,.23-.34,2.86,2.86,0,0,0,0-.67v-2.42c0-.73,0-1.17,0-1.31a.54.54,0,0,0-.17-.3.49.49,0,0,0-.3-.1,1.37,1.37,0,0,0-.48.11l-.06-.25,1.89-.77Z" transform="translate(-260.99 -38.18)"/>
     </g>
   </g>
-  <g id="apache" class="node--child">
-    <g class="container">
+  <g id="apache" >
+    <g >
       <g>
         <path d="M1342.19,214.15c1-.89,1-1.12.09-2.53a3.56,3.56,0,0,0-4.77-1.09,1.72,1.72,0,0,0-.73,2.51C1338,214.69,1340.54,215.47,1342.19,214.15Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1353.81,213.8c.86-1,.84-1.25-.26-2.52a3.55,3.55,0,0,0-4.87-.43,1.72,1.72,0,0,0-.38,2.59C1349.74,214.91,1352.36,215.33,1353.81,213.8Z" transform="translate(-260.99 -38.18)"/>
@@ -125,8 +125,8 @@
     </g>
     <text transform="translate(1135.25 176.05)" style="font-size: 14px;font-family: TimesNewRomanPSMT, Times New Roman">Apache</text>
   </g>
-  <g id="iis" class="node--child">
-    <g class="container">
+  <g id="iis" >
+    <g >
       <g>
         <path d="M1348.82,225.87c1-.83,1-1.06.22-2.52a3.55,3.55,0,0,0-4.7-1.34,1.71,1.71,0,0,0-.87,2.46C1344.61,226.19,1347.1,227.11,1348.82,225.87Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1338.84,221c1.05-.81,1.08-1,.27-2.51a3.54,3.54,0,0,0-4.68-1.42,1.71,1.71,0,0,0-.91,2.45C1334.63,221.29,1337.1,222.25,1338.84,221Z" transform="translate(-260.99 -38.18)"/>
@@ -138,8 +138,8 @@
     </g>
     <text transform="translate(1137 206.09)" style="font-size: 14px;font-family: TimesNewRomanPSMT, Times New Roman">IIS</text>
   </g>
-  <g id="visual-studio-code" class="node--child">
-    <g class="container">
+  <g id="visual-studio-code" >
+    <g >
       <g>
         <path d="M1425.68,106.66c0-1.33-.18-1.49-1.84-1.74a3.54,3.54,0,0,0-4,2.86c-.16,1.17.29,2,1.4,2.2C1423.32,110.16,1425.58,108.77,1425.68,106.66Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1418.11,112.19c-.12-1.33-.3-1.47-2-1.57a3.55,3.55,0,0,0-3.7,3.2c-.06,1.18.46,2,1.58,2.07C1416.07,115.88,1418.2,114.3,1418.11,112.19Z" transform="translate(-260.99 -38.18)"/>
@@ -150,8 +150,8 @@
     </g>
     <text transform="translate(1173.21 70.31)" style="font-size: 14px;font-family: TimesNewRomanPSMT, Times New Roman"><tspan style="letter-spacing: -0.06005859375em">V</tspan><tspan x="9.27" y="0">isual studio code</tspan></text>
   </g>
-  <g id="netbean" class="node--child">
-    <g class="container">
+  <g id="netbean" >
+    <g >
       <g>
         <path d="M1394.83,139.15c.39-1.27.28-1.47-1.23-2.21a3.55,3.55,0,0,0-4.65,1.52,1.72,1.72,0,0,0,.67,2.53C1391.52,141.78,1394.1,141.14,1394.83,139.15Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1405,136c.28-1.3.15-1.49-1.41-2.09a3.55,3.55,0,0,0-4.5,1.93,1.7,1.7,0,0,0,.89,2.45C1401.94,138.88,1404.45,138,1405,136Z" transform="translate(-260.99 -38.18)"/>
@@ -162,8 +162,8 @@
     </g>
     <text transform="translate(1174.61 94.25)" style="font-size: 14px;font-family: TimesNewRomanPSMT, Times New Roman">Netbean</text>
   </g>
-  <g id="php-storm" class="node--child">
-    <g class="container">
+  <g id="php-storm" >
+    <g >
       <g>
         <path d="M1394.29,147.91c1-.87,1-1.1.13-2.53a3.55,3.55,0,0,0-4.75-1.15,1.71,1.71,0,0,0-.77,2.49C1390.1,148.39,1392.63,149.21,1394.29,147.91Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1405.66,151.06c1-.8,1.08-1,.28-2.51a3.55,3.55,0,0,0-4.67-1.46,1.71,1.71,0,0,0-.92,2.44C1401.44,151.28,1403.91,152.25,1405.66,151.06Z" transform="translate(-260.99 -38.18)"/>
@@ -174,8 +174,8 @@
     </g>
     <text transform="translate(1172.25 118.65)" style="font-size: 14px;font-family: TimesNewRomanPSMT, Times New Roman">PH<tspan x="17.9" y="0" style="letter-spacing: -0.037109375em">P</tspan><tspan x="25.16" y="0" xml:space="preserve"> storm</tspan></text>
   </g>
-  <g id="notepad++" data-name="notepad++" class="node--child">
-    <g class="container">
+  <g id="notepad++" data-name="notepad++" >
+    <g >
       <g>
         <path d="M1426.1,179.42c1.17-.54,1.23-.75.68-2.26a3.7,3.7,0,0,0-4.35-2.21c-1.1.34-1.66,1.07-1.29,2.08C1421.93,178.84,1424.19,180.19,1426.1,179.42Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1417.12,173.18c1.23-.51,1.31-.72.91-2.36a3.56,3.56,0,0,0-4.15-2.59c-1.14.3-1.77,1-1.51,2.13C1413,172.33,1415.13,173.89,1417.12,173.18Z" transform="translate(-260.99 -38.18)"/>
@@ -187,8 +187,8 @@
     </g>
     <text transform="translate(1172.71 142.22)" style="font-size: 14px;font-family: TimesNewRomanPSMT, Times New Roman">Notepad++</text>
   </g>
-  <g id="kien-truc-cua-1-website" class="node--parent">
-    <g class="container">
+  <g id="kien-truc-cua-1-website" >
+    <g >
       <g>
         <path d="M807.45,197c1.27-.41,1.37-.62,1.1-2.28a3.56,3.56,0,0,0-3.93-2.91c-1.16.2-1.85.89-1.67,2C803.4,195.82,805.41,197.56,807.45,197Z" transform="translate(-260.99 -38.18)"/>
         <path d="M799.11,189.15c1.29-.31,1.41-.5,1.27-2.18a3.54,3.54,0,0,0-3.69-3.21c-1.17.11-1.91.75-1.82,1.86C795.17,187.66,797,189.54,799.11,189.15Z" transform="translate(-260.99 -38.18)"/>
@@ -233,8 +233,8 @@
     </g>
     <text transform="translate(372.89 233.24)" style="font-size: 18px;font-family: TimesNewRomanPSMT, Times New Roman">Kiến thức cơ bản<tspan x="0" y="21.6" xml:space="preserve">    của 1 website </tspan></text>
   </g>
-  <g id="html" class="node--child">
-    <g class="container">
+  <g id="html" >
+    <g >
       <g>
         <path d="M614.12,253.5c-1.08.82-1.11,1.06-.34,2.62a3.48,3.48,0,0,0,4.64,1.61,1.81,1.81,0,0,0,1-2.53C618.33,253.36,615.89,252.29,614.12,253.5Z" transform="translate(-260.99 -38.18)"/>
         <path d="M599.73,249c-.91,1-.9,1.25.13,2.64a3.45,3.45,0,0,0,4.85.7,1.85,1.85,0,0,0,.51-2.68C603.85,248,601.26,247.45,599.73,249Z" transform="translate(-260.99 -38.18)"/>
@@ -272,8 +272,8 @@
     </g>
     <text transform="translate(241.51 304.01)" style="font-size: 18px;font-family: TimesNewRomanPSMT, Times New Roman">JS</text>
   </g>
-  <g id="mo-hinh-client-server" class="node--child">
-    <g class="container">
+  <g id="mo-hinh-client-server" >
+    <g >
       <g>
         <path d="M613.49,124.92c-1.07.79-1.1,1-.33,2.51A3.55,3.55,0,0,0,617.8,129c1-.56,1.48-1.42,1-2.42C617.71,124.79,615.26,123.77,613.49,124.92Z" transform="translate(-260.99 -38.18)"/>
         <path d="M601.33,117c-1.15.67-1.21.89-.6,2.45a3.55,3.55,0,0,0,4.45,2c1.1-.45,1.63-1.26,1.22-2.31C605.53,117.31,603.21,116,601.33,117Z" transform="translate(-260.99 -38.18)"/>
@@ -285,8 +285,8 @@
     </g>
     <text transform="translate(94.33 57.52)" style="font-size: 18px;font-family: TimesNewRomanPSMT, Times New Roman">Mô hình client - server</text>
   </g>
-  <g id="cac-hoat-dong-cua-website-dong" class="node--child">
-    <g class="container">
+  <g id="cac-hoat-dong-cua-website-dong" >
+    <g >
       <g>
         <path d="M613.21,174.46c-.51,1.23-.41,1.44,1,2.32a3.57,3.57,0,0,0,4.77-1.1,1.71,1.71,0,0,0-.44-2.57C616.74,172.15,614.12,172.56,613.21,174.46Z" transform="translate(-260.99 -38.18)"/>
         <path d="M599.61,177.1c-.4,1.27-.28,1.47,1.23,2.21a3.54,3.54,0,0,0,4.64-1.53,1.7,1.7,0,0,0-.67-2.52C602.91,174.48,600.34,175.12,599.61,177.1Z" transform="translate(-260.99 -38.18)"/>
@@ -298,15 +298,15 @@
     </g>
     <text transform="translate(65.71 151.18)" style="font-size: 18px;font-family: TimesNewRomanPSMT, Times New Roman"><tspan xml:space="preserve">Cách hoạt động của  web động</tspan></text>
   </g>
-  <g id="chuong-trinh-php-dau-tien" class="node--parent">
-    <g class="container">
+  <g id="chuong-trinh-php-dau-tien" >
+    <g >
         <path d="M910.59,243.77c10.74,27.26,6.28,46.72,0,59.62-6.37,13.07-12.69,15.42-14.59,27.69,0,0-1.72,11.1,14.59,48.8h0" transform="translate(-260.99 -38.18)" style="fill: #fff;stroke-miterlimit: 10;stroke-width: 4px"/>
       <rect x="550.06" y="340.63" width="194.4" height="83.16" style="stroke: #000;stroke-miterlimit: 10;stroke-width: 1.5px"/>
     </g>
     <text transform="translate(561.74 374.1)" style="font-size: 24px;font-family: TimesNewRomanPSMT, Times New Roman">Chương trình php<tspan x="0" y="28.8" style="letter-spacing: 1.25em">	</tspan><tspan x="36" y="28.8" xml:space="preserve">  đầu tiên</tspan></text>
   </g>
-  <g id="nhung-php-trong-html" class="node--child">
-    <g class="container">
+  <g id="nhung-php-trong-html" >
+    <g >
       <g>
         <path d="M1244,354.75c1.16-.65,1.22-.87.64-2.45a3.56,3.56,0,0,0-4.41-2.11c-1.11.42-1.65,1.23-1.27,2.28C1239.81,354.35,1242.12,355.67,1244,354.75Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1256.14,354.75c1.16-.65,1.22-.87.64-2.45a3.56,3.56,0,0,0-4.41-2.11c-1.11.42-1.65,1.23-1.27,2.28C1251.93,354.35,1254.24,355.67,1256.14,354.75Z" transform="translate(-260.99 -38.18)"/>
@@ -423,8 +423,8 @@
     </g>
     <text transform="translate(1030.54 532.9)" style="font-size: 14px;font-family: TimesNewRomanPSMT, Times New Roman">POS<tspan x="25.68" y="0" style="letter-spacing: -0.01806640625em">T</tspan><tspan x="33.98" y="0" xml:space="preserve">  method</tspan></text>
   </g>
-  <g id="cau-truc" class="node--parent">
-    <g class="container">
+  <g id="cau-truc" >
+    <g >
       <g>
         <path d="M1186,663.25c1.33,0,1.48-.18,1.72-1.85a3.56,3.56,0,0,0-2.88-3.95c-1.17-.15-2,.3-2.19,1.41C1182.5,660.91,1183.9,663.16,1186,663.25Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1177.17,656.78c1.32.12,1.5,0,1.9-1.66a3.55,3.55,0,0,0-2.46-4.23c-1.15-.27-2,.09-2.32,1.18C1173.91,654.09,1175.08,656.48,1177.17,656.78Z" transform="translate(-260.99 -38.18)"/>
@@ -444,8 +444,8 @@
     </g>
     <text transform="translate(872.47 688.76)" style="font-size: 14px;font-family: TimesNewRomanPSMT, Times New Roman">Model</text>
   </g>
-  <g id="views" class="node--child">
-    <g class="container">
+  <g id="views" >
+    <g >
       <g>
         <path d="M1216.44,707.93c.76,1.09,1,1.12,2.5.39a3.56,3.56,0,0,0,1.65-4.61,1.71,1.71,0,0,0-2.4-1C1216.41,703.71,1215.33,706.13,1216.44,707.93Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1216.93,698.82c1,.92,1.18.91,2.52-.11a3.55,3.55,0,0,0,.71-4.84,1.7,1.7,0,0,0-2.55-.53C1216.06,694.69,1215.48,697.28,1216.93,698.82Z" transform="translate(-260.99 -38.18)"/>
@@ -464,8 +464,8 @@
     </g>
     <text transform="translate(1007.6 688.64)" style="font-size: 14px;font-family: TimesNewRomanPSMT, Times New Roman">Controller</text>
   </g>
-  <g id="mo-hinh-mvc" class="node--parent">
-    <g class="container">
+  <g id="mo-hinh-mvc" >
+    <g >
       <g>
         <path d="M1052.48,551c1.24.48,1.45.38,2.28-1.08a3.54,3.54,0,0,0-1.22-4.73,1.71,1.71,0,0,0-2.56.5C1050.08,547.57,1050.55,550.18,1052.48,551Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1055.66,561.15c1.26.43,1.46.32,2.25-1.16a3.56,3.56,0,0,0-1.39-4.69,1.71,1.71,0,0,0-2.54.59C1053.14,557.76,1053.7,560.36,1055.66,561.15Z" transform="translate(-260.99 -38.18)"/>
@@ -503,8 +503,8 @@
     </g>
     <text transform="translate(827.23 507.58)" style="font-size: 18px;font-family: TimesNewRomanPSMT, Times New Roman"><tspan xml:space="preserve">Cách lấy  dữ  liệu</tspan><tspan x="0" y="21.6" xml:space="preserve">     từ request</tspan></text>
   </g>
-  <g id="php-co-ban" class="node--parent">
-    <g class="container">
+  <g id="php-co-ban" >
+    <g >
       <g>
         <path d="M1017.66,400.4c.6-1.19.52-1.4-.85-2.38a3.55,3.55,0,0,0-4.83.76,1.69,1.69,0,0,0,.25,2.59C1014,402.45,1016.62,402.24,1017.66,400.4Z" transform="translate(-260.99 -38.18)"/>
         <path d="M1029.26,395.4c.38-1.28.27-1.48-1.25-2.2a3.55,3.55,0,0,0-4.63,1.57,1.71,1.71,0,0,0,.69,2.51C1026,398.05,1028.55,397.38,1029.26,395.4Z" transform="translate(-260.99 -38.18)"/>
@@ -517,8 +517,8 @@
     </g>
     <text transform="translate(847.73 334.81)" style="font-size: 18px;font-family: TimesNewRomanPSMT, Times New Roman">PH<tspan x="23.01" y="0" style="letter-spacing: -0.037109375em">P</tspan><tspan x="32.35" y="0" xml:space="preserve"> cơ bản</tspan></text>
   </g>
-  <g id="cac-build-in-function" class="node--child">
-    <g class="container">
+  <g id="cac-build-in-function" >
+    <g >
       <g>
         <path d="M608.55,399.73c-1,.9-1,1.13-.06,2.53a3.55,3.55,0,0,0,4.78,1,1.71,1.71,0,0,0,.7-2.51C612.73,399.15,610.19,398.4,608.55,399.73Z" transform="translate(-260.99 -38.18)"/>
         <path d="M618,399.73c-1,.9-1,1.13-.07,2.53a3.55,3.55,0,0,0,4.78,1,1.71,1.71,0,0,0,.71-2.51C622.17,399.15,619.62,398.4,618,399.73Z" transform="translate(-260.99 -38.18)"/>
@@ -723,8 +723,8 @@
       <path d="M485.24,696.61a3.8,3.8,0,0,1,2.7-1.7,1.91,1.91,0,0,1,1.13.33,2.21,2.21,0,0,1,.76,1.08,5,5,0,0,1,.19,1.62v3.44a2.91,2.91,0,0,0,.12,1,.77.77,0,0,0,.32.35,1.79,1.79,0,0,0,.79.12v.32h-4v-.32h.17a1.36,1.36,0,0,0,.78-.17.92.92,0,0,0,.32-.51,5.84,5.84,0,0,0,0-.82v-3.3a3.34,3.34,0,0,0-.28-1.59,1,1,0,0,0-1-.5,2.9,2.9,0,0,0-2.08,1.14v4.25a2.87,2.87,0,0,0,.1,1,.77.77,0,0,0,.34.37,2,2,0,0,0,.87.12v.32h-4v-.32h.17a.93.93,0,0,0,.83-.31,2.22,2.22,0,0,0,.22-1.19v-3a11.75,11.75,0,0,0-.07-1.77.75.75,0,0,0-.2-.43.57.57,0,0,0-.36-.11,1.62,1.62,0,0,0-.59.13l-.13-.32,2.42-1h.38Z" transform="translate(-260.99 -38.18)"/>
     </g>
   </g>
-  <g id="lam-viec-voi-du-lieu" class="node--parent">
-    <g class="container">
+  <g id="lam-viec-voi-du-lieu" >
+    <g >
       <g>
         <path d="M796.22,410.05c-1,.9-1,1.13-.06,2.53a3.54,3.54,0,0,0,4.77,1,1.7,1.7,0,0,0,.71-2.51C800.4,409.47,797.86,408.72,796.22,410.05Z" transform="translate(-260.99 -38.18)"/>
         <path d="M805.66,410.05c-1,.9-1,1.13-.07,2.53a3.55,3.55,0,0,0,4.78,1,1.71,1.71,0,0,0,.71-2.51C809.84,409.47,807.29,408.72,805.66,410.05Z" transform="translate(-260.99 -38.18)"/>
@@ -870,8 +870,8 @@
     </g>
     <text transform="translate(448.91 780.7) scale(1.03 1)" style="font-size: 14px;font-family: TimesNewRomanPSMT, Times New Roman">execute SQ<tspan x="64.14" y="0" style="letter-spacing: -0.03712864165326848em">L</tspan></text>
   </g>
-  <g id="cac-hoat-dong-cua-website-tinh" class="node--child">
-    <g class="container">
+  <g id="cac-hoat-dong-cua-website-tinh" >
+    <g >
       <g>
         <path d="M614.37,151.3c-1.07.79-1.1,1-.33,2.51a3.55,3.55,0,0,0,4.64,1.54,1.7,1.7,0,0,0,1-2.42C618.59,151.17,616.14,150.15,614.37,151.3Z" transform="translate(-260.99 -38.18)"/>
         <path d="M600.45,146.38c-1.13.7-1.17.93-.51,2.47a3.55,3.55,0,0,0,4.52,1.88c1.08-.48,1.58-1.32,1.14-2.35C604.67,146.55,602.3,145.35,600.45,146.38Z" transform="translate(-260.99 -38.18)"/>

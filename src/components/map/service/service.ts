@@ -15,19 +15,21 @@ export const recursiveChangeObject = (obj, searchKey, valueChange) => {
   return obj;
 };
 
-export const getChildNodes = (obj, arr) => {
-  Object.keys(obj).forEach((key) => {
-    const value = obj[key];
-    const val = findVal(obj, key);
+export const getNodesName = (map, childNodes, parentNodes) => {
+  Object.keys(map).forEach((key) => {
+    const value = map[key];
+    const val = findVal(map, key);
     if (val.hasOwnProperty("value")) {
-      arr.push({ field: key, value: val.value, resources: val?.resources });
+      childNodes.push({ field: key, value: val.value, resources: val?.resources });
+    } else if (key.toString() !== "resources" && key.toString() !== "value") {
+      parentNodes.push({field: key})
     }
     if (typeof value !== "object") {
     } else if (typeof value === "object") {
-      getChildNodes(value, arr);
+      getNodesName(value, childNodes, parentNodes);
     }
   });
-  return arr;
+  return [childNodes, parentNodes];
 };
 
 export const findVal = (object, key) => {
@@ -50,8 +52,8 @@ export function isObjEmpty(obj) {
 }
 
 export const fillChildNodes = (map, node: HTMLElement) => {
-  const childField = getChildNodes(map, []);
-  childField.map((child) => {
+  const [childNodes] = getNodesName(map, [], []);
+  childNodes.map((child) => {
     const pathElement = node.querySelector<HTMLElement>(
       `[id="${child.field}"]`
     );
@@ -67,17 +69,25 @@ export const fillChildNodes = (map, node: HTMLElement) => {
   });
 };
 
-export const fillParentNode = (map, node) => {
+export const fillParentNode = (map, node: HTMLElement) => {
   const AutoComplete = new AutoCompleteClass(map);
   const parentNodesNameComplete = AutoComplete.getParentNodeNameComplete();
+  const [_, parentNodesName] =  getNodesName(map, [], [])
 
-  const parentNodes = node.querySelectorAll(".node--parent");
-
-  [...parentNodes].map((parentNode) => {
-    if (parentNodesNameComplete.findIndex(p => p === parentNode) !== -1) {
+  parentNodesName.map((parentNode) => {
+    const pathElement = node.querySelector<HTMLElement>(
+      `[id="${parentNode.field}"]`
+    );
+    if (!pathElement) {
       return;
     }
-    parentNode.classList?.remove("active");
+    pathElement.classList.add("node--parent")
+    if (parentNodesNameComplete.findIndex(p => p === parentNode.field) !== -1) {
+      return;
+    }
+    if (pathElement) {
+      pathElement.classList?.remove("active");
+    }
   });
 
   parentNodesNameComplete.map((parentNode) => {
