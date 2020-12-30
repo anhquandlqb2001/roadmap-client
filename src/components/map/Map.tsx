@@ -1,7 +1,7 @@
 import React from "react";
-import { fillMap, handleClick, fillParentNode } from "./service/service";
+import { fillChildNodes, handleClick, fillParentNode } from "./service/service";
 import {useRouter} from 'next/router'
-interface MapProps extends React.SVGProps<SVGSVGElement> {
+interface MapProps {
   id: string;
   profile: any;
   map: any;
@@ -12,8 +12,7 @@ const Map: React.FC<MapProps> = ({
   profile,
   map,
   id,
-  userHasStartedMap,
-  ...rest
+  userHasStartedMap
 }): JSX.Element | null => {
   const ImportedMapRef = React.useRef<
     React.FC<React.SVGProps<SVGSVGElement>>
@@ -54,7 +53,7 @@ const Map: React.FC<MapProps> = ({
       // ref value exists
       if (map) {
         if (userHasStartedMap){
-          fillMap(map, node);
+          fillChildNodes(map, node);
           fillParentNode(map, node)
         } 
         const nodeList = node.querySelectorAll(".node--child");
@@ -70,7 +69,7 @@ const Map: React.FC<MapProps> = ({
     return (
       <>
         <div ref={onRefChange}>
-          <ImportedMap {...rest} />
+          <ImportedMap />
         </div>
       </>
     );

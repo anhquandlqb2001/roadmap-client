@@ -15,7 +15,7 @@ export const recursiveChangeObject = (obj, searchKey, valueChange) => {
   return obj;
 };
 
-export const recursiveReadAllSmallestChildField = (obj, arr) => {
+export const getChildNodes = (obj, arr) => {
   Object.keys(obj).forEach((key) => {
     const value = obj[key];
     const val = findVal(obj, key);
@@ -24,7 +24,7 @@ export const recursiveReadAllSmallestChildField = (obj, arr) => {
     }
     if (typeof value !== "object") {
     } else if (typeof value === "object") {
-      recursiveReadAllSmallestChildField(value, arr);
+      getChildNodes(value, arr);
     }
   });
   return arr;
@@ -49,20 +49,20 @@ export function isObjEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 
-export const fillMap = (map, node: HTMLElement) => {
-  const childField = recursiveReadAllSmallestChildField(map, []);
+export const fillChildNodes = (map, node: HTMLElement) => {
+  const childField = getChildNodes(map, []);
   childField.map((child) => {
     const pathElement = node.querySelector<HTMLElement>(
       `[id="${child.field}"]`
     );
     if (pathElement) {
+      pathElement.classList.add("node--child")
       if (pathElement && child.value === true) {
         pathElement.classList.add("active")
       } else if (pathElement) {
         pathElement.classList?.remove("active")
       }
 
-      pathElement.style.cursor = "pointer";
     }
   });
 };
@@ -74,9 +74,9 @@ export const fillParentNode = (map, node) => {
   const parentNodes = node.querySelectorAll(".node--parent");
 
   [...parentNodes].map((parentNode) => {
-    // if (parentNodesNameComplete.findIndex(p => p === parentNode) !== -1) {
-    //   return;
-    // }
+    if (parentNodesNameComplete.findIndex(p => p === parentNode) !== -1) {
+      return;
+    }
     parentNode.classList?.remove("active");
   });
 
@@ -86,7 +86,6 @@ export const fillParentNode = (map, node) => {
       pathElement.classList.add("active");
     }
   });
-  // console.log(parentNodesName);
 };
 
 export /**
@@ -132,7 +131,7 @@ export const handleClick = async (
       return;
     }
     const newMap = recursiveChangeObject(map, fieldChange, !currentValue.value);
-    fillMap(newMap, ref);
+    fillChildNodes(newMap, ref);
     fillParentNode(newMap, ref);
   });
 };

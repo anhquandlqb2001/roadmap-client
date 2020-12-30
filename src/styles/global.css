@@ -6,46 +6,59 @@ html {
   overflow-y: scroll;
 }
 
+rect {
+  stroke: black;
+  stroke-width: 1.5;
+}
+
+
 g.node--child,
 g.node--parent {
   fill: black;
 }
 
-g.node--child > g.container {
+g.node--child {
+  cursor: pointer;
+}
+
+/* node la: chua kich hoat */
+g.node--child > g:first-child {
   fill: transparent !important;
 }
 
-g.node--parent > g.container {
-  fill: #999;
-}
-
-g.node--child.active > g.container {
+/* node la: kich hoat */
+g.node--child.active > g:first-child {
   fill: green !important;
 }
 
-g.node--parent.active > g.container {
+/* node cha: chua kich hoat */
+g.node--parent > g:first-child {
+  fill: #999;
+}
+
+/* node cha: kich hoat */
+g.node--parent.active > g:first-child {
   fill: yellow !important;
 }
 
+/* mau duong noi giua cac node: kich hoat */
 g.node--child.active > g > g,
 g.node--parent.active > g > g {
   fill: inherit !important;
 }
 
+/* mau duong noi giua cac node: chua kich hoat */
 g.node--child > g > g,
 g.node--parent > g > g {
   fill: black;
 }
 
-g.node--parent > g.container > path {
+g.node--parent > g:first-child > path {
   stroke: black;
 }
 
-g.node--parent.active > g.container > path {
+g.node--parent.active > g:first-child > path {
   stroke: yellow;
 }
 
-rect {
-  stroke: black;
-  stroke-width: 1.5;
-}
+
