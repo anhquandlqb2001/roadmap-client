@@ -53,8 +53,8 @@ const Map: React.FC<MapProps> = ({
       // ref value exists
       if (map) {
         if (userHasStartedMap){
-          fillChildNodes(map, node);
-          fillParentNode(map, node)
+          fillChildNodes(map, node, true);
+          fillParentNode(map, node, true)
         } 
         const nodeList = node.querySelectorAll(".node--child");
         nodeList.forEach((btn) => {
@@ -68,7 +68,7 @@ const Map: React.FC<MapProps> = ({
     const { current: ImportedMap } = ImportedMapRef;
     return (
       <>
-        <div ref={onRefChange}>
+        <div ref={onRefChange} style={{backgroundColor: "white"}}>
           <ImportedMap />
         </div>
       </>

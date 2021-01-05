@@ -51,25 +51,24 @@ export function isObjEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 
-export const fillChildNodes = (map, node: HTMLElement) => {
+export const fillChildNodes = (map, node: HTMLElement, firstTimes?: boolean) => {
   const [childNodes] = getNodesName(map, [], []);
   childNodes.map((child) => {
     const pathElement = node.querySelector<HTMLElement>(
       `[id="${child.field}"]`
     );
     if (pathElement) {
-      pathElement.classList.add("node--child")
+      firstTimes && pathElement.classList.add("node--child") // add class if it is the first time render
       if (pathElement && child.value === true) {
         pathElement.classList.add("active")
       } else if (pathElement) {
         pathElement.classList?.remove("active")
       }
-
     }
   });
 };
 
-export const fillParentNode = (map, node: HTMLElement) => {
+export const fillParentNode = (map: object, node: HTMLElement, firstTimes?: boolean) => {
   const AutoComplete = new AutoCompleteClass(map);
   const parentNodesNameComplete = AutoComplete.getParentNodeNameComplete();
   const [_, parentNodesName] =  getNodesName(map, [], [])
@@ -81,7 +80,7 @@ export const fillParentNode = (map, node: HTMLElement) => {
     if (!pathElement) {
       return;
     }
-    pathElement.classList.add("node--parent")
+    firstTimes && pathElement.classList.add("node--parent") // add class if it is the first time render
     if (parentNodesNameComplete.findIndex(p => p === parentNode.field) !== -1) {
       return;
     }
