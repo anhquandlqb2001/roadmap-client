@@ -1,6 +1,8 @@
 import React from "react";
 import { fillChildNodes, handleClick, fillParentNode } from "./service/service";
-import {useRouter} from 'next/router'
+import { useRouter } from "next/router";
+import Image from "next/image";
+import Axios from "axios";
 interface MapProps {
   id: string;
   profile: any;
@@ -12,23 +14,26 @@ const Map: React.FC<MapProps> = ({
   profile,
   map,
   id,
-  userHasStartedMap
+  userHasStartedMap,
 }): JSX.Element | null => {
-  const ImportedMapRef = React.useRef<
-    React.FC<React.SVGProps<SVGSVGElement>>
-  >();
+  const ImportedMapRef = React.useRef();
   const [loading, setLoading] = React.useState(() => false);
   const [_, setRef] = React.useState(null);
 
-  const router = useRouter()
+  const router = useRouter();
 
   React.useEffect((): void => {
     setLoading(true);
     const importMap = async (): Promise<void> => {
       try {
+        // ImportedMapRef.current = (
+        //   await import(`../../../public/maps/${id}.svg`)
+        // ).default;
         ImportedMapRef.current = (
-          await import(`../../../public/maps/${id}.svg`)
-        ).default;
+          await Axios.get("https://res.cloudinary.com/duhye49dt/image/upload/v1609838999/maps/5fb12e6e581d3b79b1362e13.svg").then(res => {
+            return res.data
+          })
+        );
       } catch (err) {
         throw err;
       } finally {
@@ -40,7 +45,8 @@ const Map: React.FC<MapProps> = ({
 
   const onClickKey = async (e, node): Promise<void | boolean> => {
     if (!profile.user) return console.log("Ban chua dang nhap!");
-    if (userHasStartedMap) return await handleClick(id, { ...map }, e, node, router);
+    if (userHasStartedMap)
+      return await handleClick(id, { ...map }, e, node, router);
     return console.log("Ban chua dang ky lo trinh nay!");
   };
 
@@ -52,10 +58,10 @@ const Map: React.FC<MapProps> = ({
     } else {
       // ref value exists
       if (map) {
-        if (userHasStartedMap){
+        if (userHasStartedMap) {
           fillChildNodes(map, node, true);
-          fillParentNode(map, node, true)
-        } 
+          fillParentNode(map, node, true);
+        }
         const nodeList = node.querySelectorAll(".node--child");
         nodeList.forEach((btn) => {
           btn.addEventListener("click", (e) => onClickKey(e, node));
@@ -65,17 +71,36 @@ const Map: React.FC<MapProps> = ({
   }, []);
 
   if (!loading && ImportedMapRef.current) {
-    const { current: ImportedMap } = ImportedMapRef;
+    // const { current: ImportedMap } = ImportedMapRef;
     return (
       <>
         <div ref={onRefChange} style={{backgroundColor: "white"}}>
-          <ImportedMap />
+          {/* <ImportedMap /> */}
+          <div dangerouslySetInnerHTML={{__html: ImportedMapRef.current }}></div>
         </div>
       </>
     );
   }
 
   return null;
+
+  // return (
+  //   <Image
+  //     src="https://res.cloudinary.com/duhye49dt/image/upload/v1609838999/maps/5fb12e6e581d3b79b1362e13.svg"
+  //     alt="Picture of the author"
+  //     width={500}
+  //     height={500}
+  //   />
+  // );
 };
 
+// width: 547,
+// height: 615
+
+// https://res.cloudinary.com/duhye49dt/image/upload/v1609838999/maps/5fb12e6e581d3b79b1362e13.svg
+
+// https://res.cloudinary.com/duhye49dt/image/upload/v1609838999/f_auto,c_limit,w_640/maps/5fb12e6e581d3b79b1362e13.svg
+
+
+// https://res.cloudinary.com/duhye49dt/image/upload/v1609838999/f_auto,c_limit,w_640/maps/5fb12e6e581d3b79b1362e13.svg
 export default Map;
