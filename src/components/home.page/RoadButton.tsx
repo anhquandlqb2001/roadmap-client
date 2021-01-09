@@ -28,7 +28,7 @@ const RoadButton = ({ href, name, intro, disabled }: Props) => {
 
 
 const StyledLink = styled.a<{ isDisable: boolean }>`
-  width: 400px;
+  max-width: 400px;
   background: #ffffff;
   box-shadow: ${(props) =>
     props.isDisable
@@ -62,6 +62,7 @@ const StyledLink = styled.a<{ isDisable: boolean }>`
 const TextContainer = styled.div`
   margin: 0 20px;
   height: 80%;
+  width: 100%;
 `;
 
 const ButtonText = styled.h4`

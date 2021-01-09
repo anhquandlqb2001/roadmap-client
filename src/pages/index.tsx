@@ -1,16 +1,21 @@
 import React from "react";
-import { getMapList, TMaps } from "../lib/api/road";
+import { getMapInfo, getMapList, TMaps } from "../lib/api/road";
 import Intro from "../components/home.page/Intro";
 import Main from "../components/home.page/Main";
 import { UserContext } from "../lib/util/userContext";
 import { NextPage } from "next";
 import Layout from "../components/common/Layout";
+import { getHomePageContent } from "../lib/api/common";
 
 interface Props {
   maps: TMaps[];
+  homePageContent: {
+    heading: string
+    detail: string
+  }
 }
 
-const Home: NextPage<Props> = ({ maps }) => {
+const Home: NextPage<Props> = ({ maps, homePageContent }) => {
   const profile = React.useContext(UserContext);
   return (
     <Layout
@@ -21,9 +26,8 @@ const Home: NextPage<Props> = ({ maps }) => {
     >
       <>
         <Intro
-          intro={"LỘ TRÌNH HỌC TẬP DÀNH CHO LẬP TRÌNH VIÊN"}
-          detail={`cung cấp các tài liệu và từng bước cụ thể để học một ngôn ngữ, công
-nghệ`}
+          intro={homePageContent.heading}
+          detail={homePageContent.detail}
         />
         <Main maps={maps} />
       </>
@@ -36,7 +40,15 @@ export const getStaticProps = async () => {
   if (response.data && !response.data.success) {
     return alert("Loi");
   }
-  return { props: { maps: response.data.maps } };
+
+  const data = await getHomePageContent()
+  console.log(data);
+  
+  if (data && !data.success) {
+    return alert("Loi");
+  }
+
+  return { props: { maps: response.data.maps, homePageContent: data.data } };
 };
 
 export default Home;
