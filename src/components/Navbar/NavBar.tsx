@@ -1,9 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
+import { Button, Menu, MenuItem } from "@material-ui/core";
+import { logout } from "../../lib/api/user";
+import { useRouter } from "next/router";
 
 interface Props {
-  profile
+  profile;
 }
 
 const NavBar: React.FC<Props> = ({ profile }) => {
@@ -16,13 +19,13 @@ const NavBar: React.FC<Props> = ({ profile }) => {
 
   return (
     <NavBarContainer>
-      <Link href="/" passHref>
         <LogoContainer>
-          <LogoText>lotrinh</LogoText>
-        </LogoContainer>
+      <Link href="/" passHref>
+        <LogoText>lotrinh</LogoText>
       </Link>
+        </LogoContainer>
       <AuthContainer>
-        {!delayed ? (<Authenticate user={profile.user} />) : null}
+        {!delayed ? <Authenticate user={profile.user} /> : null}
       </AuthContainer>
     </NavBarContainer>
   );
@@ -30,7 +33,7 @@ const NavBar: React.FC<Props> = ({ profile }) => {
 
 const Authenticate = ({ user }) => {
   if (user) {
-    return <h2>{user.email}</h2>;
+    return <UserMenu user={user} />;
   }
   return (
     <>
@@ -40,6 +43,50 @@ const Authenticate = ({ user }) => {
       <Link href="/user/register" passHref>
         <StyledLink>Đăng ký</StyledLink>
       </Link>
+    </>
+  );
+};
+
+const UserMenu = ({ user }) => {
+  const router = useRouter();
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const onClickLogout = async (
+    e: React.MouseEvent<HTMLLIElement, MouseEvent>
+  ): Promise<boolean | void> => {
+    const response = await logout();
+    if (!response.success) {
+      return alert("error");
+    }
+    return router.push("/user/login");
+  };
+
+  return (
+    <>
+      <Button
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={handleClick}
+      >
+        {user.email}
+      </Button>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={(e) => onClickLogout(e)}>Logout</MenuItem>
+      </Menu>
     </>
   );
 };
@@ -64,11 +111,13 @@ const LogoContainer = styled.div`
   justify-content: center;
 `;
 
-const LogoText = styled.p`
+const LogoText = styled.a`
   font-style: normal;
   font-weight: normal;
   font-size: 1.6rem;
   user-select: none;
+  text-decoration: none;
+  color: black;
 `;
 
 const AuthContainer = styled.div`

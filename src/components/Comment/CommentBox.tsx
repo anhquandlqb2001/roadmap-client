@@ -1,17 +1,19 @@
-import { Box, TextField, Button, Divider } from "@material-ui/core";
+import { Box, TextField, Button } from "@material-ui/core";
 import React from "react";
 import { addComment } from "../../lib/api/comment";
-import { UserContext } from "../../lib/util/userContext";
 import { CommentProps } from "./Comment";
 
 interface CommentBoxProps {
   mapId: string;
   setComment: React.Dispatch<React.SetStateAction<CommentProps[]>>;
+  user: {
+    user: any;
+    map: any;
+  };
 }
 
-const CommentBox: React.FC<CommentBoxProps> = ({ mapId, setComment }) => {
+const CommentBox: React.FC<CommentBoxProps> = ({ mapId, setComment, user }) => {
   const [newComment, setNewComment] = React.useState<string>("");
-  const user = React.useContext(UserContext);
 
   const onSendComment = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -55,9 +57,8 @@ const CommentBox: React.FC<CommentBoxProps> = ({ mapId, setComment }) => {
           Gui
         </Button>
       </Box>
-      <Divider />
     </Box>
   );
 };
 
-export default CommentBox
+export default CommentBox;

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import NavBar from "../home.page/NavBar";
+import NavBar from "../Navbar/NavBar";
 import React from "react";
 import { Container } from "@material-ui/core";
 

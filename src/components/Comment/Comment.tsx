@@ -2,11 +2,16 @@ import {
   Paper,
   Box,
   Divider,
+  Button,
 } from "@material-ui/core";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import {
   getComments,
 } from "../../lib/api/comment";
+import { UserContext } from "../../lib/util/userContext";
+import RequiredLogin from "../Common/RequiredLogin";
 import CommentBox from './CommentBox'
 import CommentItem from "./CommentItem";
 
@@ -25,10 +30,12 @@ interface Props {
 }
 
 const Comment: React.FC<Props> = ({ mapId }) => {
-  const [page, setPage] = React.useState<number>(0);
+  const [page, setPage] = React.useState<number>(-1);
   const [comments, setComment] = React.useState<Array<CommentProps>>([]);
   const [hasMore, setHasMore] = React.useState<boolean>(false);
   const loader = React.useRef(null);
+  const user = React.useContext(UserContext)
+  const router = useRouter()
 
   const fetchComment = async () => {
     const data = await getComments(page, mapId);
@@ -68,7 +75,7 @@ const Comment: React.FC<Props> = ({ mapId }) => {
       observer.observe(loader.current);
     }
   }, []);
-
+  
   React.useEffect(() => {
     // here we simulate adding new posts to List
     if (!hasMore) {
@@ -85,9 +92,9 @@ const Comment: React.FC<Props> = ({ mapId }) => {
   };
 
   return (
-    <div style={{ padding: 14 }} className="App">
-      <h1>Comments</h1>
-      <CommentBox mapId={mapId} setComment={setComment} />
+    <>
+      <h1>Binh luan</h1>
+      {user.user ? <CommentBox mapId={mapId} setComment={setComment} user={user} /> : <RequiredLogin pathname="/user/login" next={router.asPath} />}
       <Paper>
         {comments.map((comment) => {
           return (
@@ -99,6 +106,7 @@ const Comment: React.FC<Props> = ({ mapId }) => {
                 mapId={mapId}
                 createdAt={comment.createdAt}
                 hasReply={comment.hasReply}
+                user={user}
               />
               <Divider variant={"middle"} />
             </Box>
@@ -108,7 +116,7 @@ const Comment: React.FC<Props> = ({ mapId }) => {
       <div className="loading" ref={loader}>
         {hasMore ? <h2>Load More</h2> : null}
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
-import MyButton from "../common/MyButton";
+import MyButton from "../Common/MyButton";
 import Facebook from "@material-ui/icons/Facebook";
 import { facebookResponse } from './service'
 

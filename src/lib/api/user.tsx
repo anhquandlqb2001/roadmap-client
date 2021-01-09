@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import axios from "../util/axios.config";
-import { REGISTER_LOCAL_ENDPOINT } from "../util/endpoints.constant";
+import { REGISTER_LOCAL_ENDPOINT, USER_SERVICE_ENDPOINT } from "../util/endpoints.constant";
 import { TDefaultResponse, TProvider } from "../util/types";
 
 type TDataToServer = {
@@ -91,8 +91,6 @@ export const current = async (
   url: string
 ): Promise<AxiosResponse<TCurrentUserResponse>> => {
   try {
-    console.log(url);
-    
     const response = await axios.get<TCurrentUserResponse>(url);
     return response;
   } catch (error) {
@@ -100,3 +98,12 @@ export const current = async (
     return error.response;
   }
 };
+
+export const logout = async (): Promise<{success: boolean}> => {
+  try {
+    const response = await axios.post(`${USER_SERVICE_ENDPOINT}/logout`);
+    return response.data;
+  } catch (error) {
+    
+  }
+}

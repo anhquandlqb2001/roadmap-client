@@ -13,6 +13,10 @@ interface CommentItemProps {
   mapId: string;
   createdAt: Date;
   hasReply: boolean;
+  user: {
+    user: any;
+    map: any;
+  };
 }
 
 const CommentItem = ({
@@ -22,6 +26,7 @@ const CommentItem = ({
   mapId,
   createdAt,
   hasReply,
+  user,
 }: CommentItemProps) => {
   const [showReplys, setShowReplys] = React.useState(false);
   const [openReplyBox, setOpenReplyBox] = React.useState(false);
@@ -70,7 +75,7 @@ const CommentItem = ({
   };
 
   return (
-    <Box style={{ padding: "40px 20px" }}>
+    <Box style={{ padding: "20px 10px" }}>
       <Grid container wrap="nowrap" spacing={2}>
         <Grid item>
           <Avatar alt="Remy Sharp" />
@@ -110,14 +115,16 @@ const CommentItem = ({
       ) : (
         ""
       )}
-      <StyledReplyComment
-        onClick={(_) => {
-          setOpenReplyBox(true);
-          setShowReplys(true);
-        }}
-      >
-        Tra loi
-      </StyledReplyComment>
+      {user.user && !openReplyBox && (
+        <StyledReplyComment
+          onClick={(_) => {
+            setOpenReplyBox(true);
+            setShowReplys(true);
+          }}
+        >
+          Tra loi
+        </StyledReplyComment>
+      )}
       {hasReply ? (
         <>
           <StyledReplyComment onClick={(_) => setShowReplys(true)}>

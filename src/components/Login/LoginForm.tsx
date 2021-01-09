@@ -11,13 +11,14 @@ import { LockOutlined } from "@material-ui/icons";
 import { Formik, Form } from "formik";
 import { onSubmitLogin } from "./service";
 import { useRouter } from "next/router";
-import InputField from "../common/InputField";
+import InputField from "../Common/InputField";
 import NextLink from "next/link";
-import Button from "../common/MyButton";
+import Button from "../Common/MyButton";
 
 
 const LoginForm = () => {
   const router = useRouter();
+  
   return (
     <GridContainer container>
       <CssBaseline />

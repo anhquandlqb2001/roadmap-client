@@ -10,9 +10,10 @@ export default class App extends NextApp {
   theme = createMuiTheme()
 
   componentDidMount() {
-    const jssStyles = document.querySelector("#jss-server-side");
-    if (jssStyles && jssStyles.parentNode)
-      jssStyles.parentNode.removeChild(jssStyles);
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
   }
   render() {
     const { Component, pageProps } = this.props;

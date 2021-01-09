@@ -50,7 +50,7 @@ export const onSubmitRegister = async (
     });
 
     if (data.errors) return setErrors(errorsMap(data.errors));
-    if (data.success) return router.push("/");
+    if (data.success) return router.push("/", undefined, { shallow: true });
   } catch (error) {
     console.log(error);
   }

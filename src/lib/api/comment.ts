@@ -1,4 +1,4 @@
-import { CommentProps } from "../../components/comment/Comment";
+import { CommentProps } from "../../components/Comment/Comment";
 import axios from "../util/axios.config";
 import { ENDPOINT } from "../util/endpoints.constant";
 

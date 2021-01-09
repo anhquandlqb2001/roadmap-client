@@ -51,7 +51,7 @@ const ReplyBox: React.FC<ReplyBoxProps> = ({ setReplys, mapId, commentId }) => {
           Gui
         </Button>
       </Box>
-      <Divider />
+      {/* <Divider /> */}
     </Box>
   );
 };

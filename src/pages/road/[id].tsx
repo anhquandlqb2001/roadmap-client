@@ -13,13 +13,13 @@ import {
   Tabs,
 } from "@material-ui/core";
 import styled from "styled-components";
-import Map from "../../components/map/Map";
-import { findOwnerMapIDIfExist } from "../../components/map/service/service";
+import Map from "../../components/Map/Map";
+import { findOwnerMapIDIfExist } from "../../components/Map/service/service";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { UserContext } from "../../lib/util/userContext";
-import Layout from "../../components/common/Layout";
+import Layout from "../../components/Common/Layout";
 import { mutate } from "swr";
-import Comment from "../../components/comment/Comment";
+import Comment from "../../components/Comment/Comment";
 import { useRouter } from "next/router";
 
 interface Props {
@@ -46,7 +46,7 @@ function TabPanel(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
+        <Box p={2}>
           <Typography component={"div"}>{children}</Typography>
         </Box>
       )}
@@ -81,16 +81,19 @@ const Road: React.FC<Props> = ({ id, description, name }) => {
   const router = useRouter();
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    console.log(newValue);
-    
     setTabIndex(newValue);
-    router.push({
-      pathname: router.asPath,
-      query: { tabIndex: newValue },
-    });
-
-    // window.location.href
+    if (newValue === 1) {
+      router.push(`${router.asPath}?tabIndex=1`, undefined, {shallow: true})
+    } else {
+      const newPath = router?.asPath?.split("?")[0];
+      router.push(newPath, undefined, { shallow: true });
+    }
   };
+
+  React.useEffect(() => {
+    const prevTabIndex = router?.asPath?.split("?")[1];
+    prevTabIndex && setTabIndex(1);
+  }, []);
 
   React.useEffect(() => {
     const timeout = setTimeout(() => setDelayed(false), 600);
@@ -115,8 +118,7 @@ const Road: React.FC<Props> = ({ id, description, name }) => {
     try {
       const response = await startMap(id);
       if (response.data.success) {
-        setUserHasStartedMap(true);
-        mutate(`${MAP_SERVICE_ENDPOINT}/${id}`);
+        router.reload()
       }
     } catch (error) {
       console.log(error);
@@ -132,11 +134,11 @@ const Road: React.FC<Props> = ({ id, description, name }) => {
       <>
         <PaperStyled>
           <Intro description={description} />
-          {!userHasStartedMap && !delayed ? (
+          {profile.user && (!userHasStartedMap && !delayed ? (
             <Box my={2}>
-              <Button onClick={onStartMap}>Bat dau lo trinh ngay</Button>
+              <Button variant={"outlined"} onClick={onStartMap}>Bat dau lo trinh ngay</Button>
             </Box>
-          ) : null}
+          ) : null)}
         </PaperStyled>
 
         <div className={classes.root}>
@@ -152,7 +154,7 @@ const Road: React.FC<Props> = ({ id, description, name }) => {
             </Tabs>
           </AppBar>
           <TabPanel value={tabIndex} index={0}>
-            <Paper>
+            <Box maxWidth={"1400px"} mx={"auto"}  border={"1px solid black"} borderRadius={"20px"}>
               {delayed ? (
                 <Box
                   display="flex"
@@ -171,7 +173,7 @@ const Road: React.FC<Props> = ({ id, description, name }) => {
                   userHasStartedMap={userHasStartedMap}
                 />
               )}
-            </Paper>
+            </Box >
           </TabPanel>
           <TabPanel value={tabIndex} index={1}>
             <Box m="auto" maxWidth="900px">
@@ -190,18 +192,16 @@ const Intro = ({ description }) => {
       display="flex"
       flexDirection="column"
       alignItems="center"
-      maxWidth="60%"
+      mx={"10%"}
     >
       <h1>{description.title}</h1>
-      <h2>{description ? description.detail : `Lo trinh hoc tap`}</h2>
+      <p style={{fontSize: "1.2rem"}}>{description ? description.detail : `Lo trinh hoc tap`}</p>
     </Box>
   );
 };
 
 export async function getStaticPaths() {
   const response = await getMapList();
-  console.log(response.data);
-  
   const paths = response.data.maps.map((map) => ({
     params: { id: map._id },
   }));

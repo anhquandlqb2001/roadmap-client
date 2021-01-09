@@ -1,10 +1,10 @@
 import React from "react";
 import { getMapInfo, getMapList, TMaps } from "../lib/api/road";
-import Intro from "../components/home.page/Intro";
-import Main from "../components/home.page/Main";
+import Intro from "../components/HomePage/Intro";
+import Main from "../components/HomePage/Main";
 import { UserContext } from "../lib/util/userContext";
 import { NextPage } from "next";
-import Layout from "../components/common/Layout";
+import Layout from "../components/Common/Layout";
 import { getHomePageContent } from "../lib/api/common";
 
 interface Props {

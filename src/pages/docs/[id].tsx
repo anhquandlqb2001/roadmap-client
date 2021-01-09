@@ -1,5 +1,5 @@
 import { GetStaticPaths } from "next";
-import Layout from "../../components/common/Layout";
+import Layout from "../../components/Common/Layout";
 import {
   getDocumentRaw,
   getDocumentPath,
@@ -8,8 +8,8 @@ import {
 import "github-markdown-css/github-markdown.css";
 import { UserContext } from "../../lib/util/userContext";
 
-import React from 'react'
-import Documentation from "../../components/Documentation";
+import React from "react";
+import Documentation from "../../components/Documentation/Documentation";
 
 const PHP = ({ markdown }) => {
   const profile = React.useContext(UserContext);

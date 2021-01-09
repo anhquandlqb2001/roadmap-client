@@ -1,7 +1,6 @@
 import React from "react";
 import { fillChildNodes, handleClick, fillParentNode } from "./service/service";
 import { useRouter } from "next/router";
-import Image from "next/image";
 import Axios from "axios";
 interface MapProps {
   id: string;
@@ -30,7 +29,7 @@ const Map: React.FC<MapProps> = ({
         //   await import(`../../../public/maps/${id}.svg`)
         // ).default;
         ImportedMapRef.current = (
-          await Axios.get("https://res.cloudinary.com/duhye49dt/image/upload/v1609838999/maps/5fb12e6e581d3b79b1362e13.svg").then(res => {
+          await Axios.get(`https://res.cloudinary.com/duhye49dt/image/upload/v1609838999/maps/${id}.svg`).then(res => {
             return res.data
           })
         );
@@ -74,7 +73,7 @@ const Map: React.FC<MapProps> = ({
     // const { current: ImportedMap } = ImportedMapRef;
     return (
       <>
-        <div ref={onRefChange} style={{backgroundColor: "white"}}>
+        <div ref={onRefChange} style={{backgroundColor: "white", margin: "20px"}}>
           {/* <ImportedMap /> */}
           <div dangerouslySetInnerHTML={{__html: ImportedMapRef.current }}></div>
         </div>
@@ -84,23 +83,7 @@ const Map: React.FC<MapProps> = ({
 
   return null;
 
-  // return (
-  //   <Image
-  //     src="https://res.cloudinary.com/duhye49dt/image/upload/v1609838999/maps/5fb12e6e581d3b79b1362e13.svg"
-  //     alt="Picture of the author"
-  //     width={500}
-  //     height={500}
-  //   />
-  // );
+  
 };
 
-// width: 547,
-// height: 615
-
-// https://res.cloudinary.com/duhye49dt/image/upload/v1609838999/maps/5fb12e6e581d3b79b1362e13.svg
-
-// https://res.cloudinary.com/duhye49dt/image/upload/v1609838999/f_auto,c_limit,w_640/maps/5fb12e6e581d3b79b1362e13.svg
-
-
-// https://res.cloudinary.com/duhye49dt/image/upload/v1609838999/f_auto,c_limit,w_640/maps/5fb12e6e581d3b79b1362e13.svg
 export default Map;
