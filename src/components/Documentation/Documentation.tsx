@@ -3,7 +3,7 @@ import parse from "remark-parse";
 import remark2react from "remark-react";
 import CustomLink from "./CustomLink";
 import mdSlug from "remark-slug";
-import classes from "../pages/docs/index.module.css";
+import classes from "./index.module.css";
 
 const Documentation = ({markdown}) => {
   const content = unified()

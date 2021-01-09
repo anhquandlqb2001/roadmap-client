@@ -1,5 +1,7 @@
 import { NextRouter } from "next/router";
+import { mutate } from "swr";
 import { register } from "../../lib/api/user";
+import { USER_ENDPOINT } from "../../lib/util/endpoints.constant";
 import errorsMap from "../../lib/util/errorsMap";
 
 type TCheckReTypePassword = {
@@ -50,6 +52,7 @@ export const onSubmitRegister = async (
     });
 
     if (data.errors) return setErrors(errorsMap(data.errors));
+    mutate(`${USER_ENDPOINT}`);
     if (data.success) return router.push("/", undefined, { shallow: true });
   } catch (error) {
     console.log(error);

@@ -9,7 +9,7 @@ html {
 rect {
   stroke: black;
   stroke-width: 1.5;
-  fill: transparent;
+  fill: white;
 }
 
 /* g.node--child > path, g.node--parent > path {
@@ -34,19 +34,19 @@ g.node--child.active > g:first-child > path  {
 
 
 /* node cha: chua kich hoat */
-g.node--parent g:first-child rect {
+g.node--parent > g:first-child rect {
   fill: #999;
 }
 
 /* node cha: kich hoat */
-g.node--parent.active g:first-child rect {
+g.node--parent.active > g:first-child rect {
   fill: yellow;
 }
 
-g.node--parent.active g:first-child path {
+g.node--parent.active > g:first-child path {
   stroke: yellow !important;
 }
-g.node--parent.active g:first-child g path {
+g.node--parent.active > g:first-child g path {
   fill: yellow;
 }
 

@@ -60,7 +60,8 @@ export const onSubmitLogin = async (
     }
     mutate(`${USER_ENDPOINT}`);
     const next = (router.query?.next as string)
-    next && router.push(next)
+    next ? router.push(next) : router.push("/")
+
   } catch (error) {
     console.log(error);
   }
