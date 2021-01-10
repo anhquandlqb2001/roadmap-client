@@ -1,5 +1,5 @@
 import axios from "../util/axios.config";
-import { ROAD_ENDPOINT } from "../util/endpoints.constant";
+import { MAP_ENDPOINT, MAP_SERVICE_ENDPOINT } from "../util/endpoints.constant";
 import { TDefaultResponse } from "../util/types";
 
 type TGetMapResponse = TDefaultResponse & {
@@ -10,29 +10,28 @@ type TGetMapResponse = TDefaultResponse & {
   };
 };
 
-type TRoad = {
+export type TMaps = {
   _id: string;
   name: string;
-  intro: string;
+  introduction: string;
   stars?: [];
 };
 
 type TGetMapsListResponse = {
   success: boolean;
-  roads: TRoad[];
+  maps: TMaps[];
 };
 
 export type TChangeFieldMapParams = {
   mapId: string;
-  ownerMapId: string;
   fieldChange: string;
   currentValue: boolean;
 };
 
 export const startMap = async (mapID) => {
   try {
-    const response = await axios.put<TDefaultResponse>(
-      `${ROAD_ENDPOINT}/${mapID}/start`
+    const response = await axios.post<TDefaultResponse>(
+      `${MAP_SERVICE_ENDPOINT}/${mapID}`
     );
     return response;
   } catch (error) {
@@ -52,7 +51,7 @@ export const getMap = async (url: string) => {
 export const getMapList = async () => {
   try {
     const response = await axios.get<TGetMapsListResponse>(
-      `${ROAD_ENDPOINT}/list`
+      `${MAP_ENDPOINT}`
     );
     return response;
   } catch (error) {
@@ -60,15 +59,14 @@ export const getMapList = async () => {
   }
 };
 
-export const changeFieldMap = async ({
+export const updateMapProgress = async ({
   mapId,
-  ownerMapId,
   fieldChange,
   currentValue,
 }: TChangeFieldMapParams) => {
   try {
     const response = await axios.put<TDefaultResponse>(
-      `${ROAD_ENDPOINT}/${mapId}/${ownerMapId}`,
+      `${MAP_SERVICE_ENDPOINT}/${mapId}`,
       {
         fieldChange,
         currentValue,
@@ -79,3 +77,29 @@ export const changeFieldMap = async ({
     console.log("error in userAPI:, ", error);
   }
 };
+
+export const getMapInfo = async (id) => {
+  try {
+    return await axios.get<{success: boolean, data: {_id: string, name: string, description: object}}>(`${MAP_ENDPOINT}/${id}`)
+  } catch (error) {
+    console.log(error);
+    
+  }
+}
+
+export const getDocumentPath = async (mapId) => {
+  try {
+    return await axios.get(`${MAP_ENDPOINT}/docs/${mapId}`)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const getDocumentRaw = async (path) => {
+  try {
+    return await axios.get(path)
+  } catch (error) {
+    console.log(error);
+    
+  }
+}

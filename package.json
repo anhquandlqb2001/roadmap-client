@@ -10,15 +10,23 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.57",
+    "@svgr/webpack": "^5.5.0",
     "axios": "^0.20.0",
+    "babel-plugin-inline-react-svg": "^1.1.2",
     "formik": "^2.2.1",
-    "next": "9.5.5",
+    "github-markdown-css": "^4.0.0",
+    "next": "^10.0.3",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-facebook-login": "^4.1.1",
+    "remark-parse": "^9.0.0",
+    "remark-react": "^8.0.0",
+    "remark-slug": "^6.0.0",
     "styled-components": "^5.2.1",
     "styled-normalize": "^8.0.7",
-    "swr": "^0.3.8"
+    "swr": "^0.3.8",
+    "unified": "^9.2.0"
   },
   "proxy": "http://localhost:5000",
   "devDependencies": {
@@ -28,6 +36,9 @@
     "@types/react-facebook-login": "^4.1.2",
     "@types/styled-components": "^5.1.4",
     "babel-plugin-styled-components": "^1.12.0",
-    "typescript": "^4.0.5"
+    "css-loader": "^5.0.1",
+    "style-loader": "^2.0.0",
+    "typescript": "^4.0.5",
+    "url-loader": "^4.1.1"
   }
 }

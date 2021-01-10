@@ -1,6 +1,5 @@
-import { TErrorResponseFromServer } from "./types";
 
-const errorsMap = (errors: TErrorResponseFromServer[]) => {
+const errorsMap = (errors) => {
   const errorFields: Record<string, string> = {};
   errors.map((field) => {
     errorFields[field.name] = field.error;

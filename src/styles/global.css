@@ -5,3 +5,69 @@ path {
 html {
   overflow-y: scroll;
 }
+
+rect {
+  stroke: black;
+  stroke-width: 1.5;
+  fill: white;
+}
+
+/* g.node--child > path, g.node--parent > path {
+  fill: black;
+} */
+
+g.node--child {
+  cursor: pointer;
+}
+
+
+/* node la: kich hoat */
+g.node--child.active > g:first-child,
+g.node--child.active > g:first-child > rect {
+  fill: rgb(72, 185, 72) !important;
+}
+
+g.node--child.active > g:first-child > line,
+g.node--child.active > g:first-child > path  {
+  stroke: rgb(72, 185, 72) !important;
+}
+
+
+/* node cha: chua kich hoat */
+g.node--parent > g:first-child rect {
+  fill: #999;
+}
+
+/* node cha: kich hoat */
+g.node--parent.active > g:first-child rect {
+  fill: yellow;
+}
+
+g.node--parent.active > g:first-child path {
+  stroke: yellow !important;
+}
+g.node--parent.active > g:first-child g path {
+  fill: yellow;
+}
+
+/* mau duong noi giua cac node: kich hoat */
+g.node--child.active > g > g,
+g.node--parent.active > g > g {
+  fill: inherit !important;
+}
+
+/* mau duong noi giua cac node: chua kich hoat */
+g.node--child > g > g,
+g.node--parent > g > g {
+  fill: black;
+}
+
+g.node--parent > g:first-child > path {
+  stroke: black;
+}
+
+g.node--parent.active > g:first-child > path {
+  stroke: yellow;
+}
+
+
