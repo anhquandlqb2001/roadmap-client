@@ -1,5 +1,5 @@
 import React from "react";
-import { getMapInfo, getMapList, TMaps } from "../lib/api/road";
+import { getMapList, TMaps } from "../lib/api/road";
 import Intro from "../components/HomePage/Intro";
 import Main from "../components/HomePage/Main";
 import { UserContext } from "../lib/util/userContext";
@@ -40,10 +40,7 @@ export const getStaticProps = async () => {
   if (response.data && !response.data.success) {
     return alert("Loi");
   }
-
   const data = await getHomePageContent()
-  console.log(data);
-  
   if (data && !data.success) {
     return alert("Loi");
   }
