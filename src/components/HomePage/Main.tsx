@@ -26,9 +26,10 @@ const useStyles = makeStyles(() =>
 
 type Props = {
   maps: TMaps[];
+  pathPrefix: string
 };
 
-const Main: React.FC<Props> = ({ maps }) => {
+const Main: React.FC<Props> = ({ maps, pathPrefix }) => {
   const classes = useStyles();
   if (!maps) {
     return null;
@@ -42,7 +43,7 @@ const Main: React.FC<Props> = ({ maps }) => {
               {maps.map((map) => (
                 <Grid xs={"auto"} item key={map._id}>
                   <RoadButton
-                    href={`/road/${map._id}`}
+                    href={`${pathPrefix}/${map._id}`}
                     name={map.name}
                     id={map._id}
                     intro={map.introduction}

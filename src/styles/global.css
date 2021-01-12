@@ -23,7 +23,8 @@ g.node--child {
 
 /* node la: kich hoat */
 g.node--child.active > g:first-child,
-g.node--child.active > g:first-child > rect {
+g.node--child.active > g:first-child > rect,
+g.node--child.active > rect {
   fill: rgb(72, 185, 72) !important;
 }
 
@@ -39,8 +40,9 @@ g.node--parent > g:first-child rect {
 }
 
 /* node cha: kich hoat */
-g.node--parent.active > g:first-child rect {
-  fill: yellow;
+g.node--parent.active > g:first-child rect,
+g.node--parent.active > rect {
+  fill: yellow !important;
 }
 
 g.node--parent.active > g:first-child path {
@@ -69,5 +71,4 @@ g.node--parent > g:first-child > path {
 g.node--parent.active > g:first-child > path {
   stroke: yellow;
 }
-
 

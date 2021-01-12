@@ -3,7 +3,6 @@ import { SERVER_ENDPOINT } from './endpoints.constant';
 
 const instance = axios.create({
     baseURL: SERVER_ENDPOINT,
-    withCredentials: true
 });
 
 let token

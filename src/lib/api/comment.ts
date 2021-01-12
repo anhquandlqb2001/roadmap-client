@@ -11,7 +11,7 @@ export const getComments = async (
   hasMore: boolean
 }> => {
   try {
-    const response = await axios.get(`${ENDPOINT}/comment/${mapId}/${page}`);
+    const response = await axios.get(`${ENDPOINT}/comment/index.php?action=getListComment&mapId=${mapId}&page=${page}`);
     return response.data;
   } catch (error) {}
 };
@@ -21,7 +21,7 @@ export const addComment = async (
   text: string
 ): Promise<{ success: boolean, data: {commentId: string, createdAt: Date} }> => {
   try {
-    const response = await axios.post(`${ENDPOINT}/service/comment/${mapId}`, {
+    const response = await axios.post(`${ENDPOINT}/comment/index.php?action=addComment&mapId=${mapId}`, {
       text,
     });
     return response.data;
@@ -35,7 +35,7 @@ export const addReply = async (
 ): Promise<{ success: boolean, data: {replyId: string, createdAt: Date} }> => {
   try {
     const response = await axios.put(
-      `${ENDPOINT}/service/comment/${mapId}/${commentId}/reply`,
+      `${ENDPOINT}/comment/index.php?action=addReply&mapId=${mapId}&commentId=${commentId}`,
       { text }
     );
     return response.data
@@ -44,7 +44,7 @@ export const addReply = async (
 
 export const getReply = async (mapId: string, commentId: string, page = 0): Promise<{success: boolean, replys: [], hasMore: boolean}> => {
   try {
-    const response = await axios.get(`${ENDPOINT}/comment/${mapId}/${commentId}/reply/${page}`)
+    const response = await axios.get(`${ENDPOINT}/comment/index.php?action=getListReply&commentId=${commentId}&page=${page}`)
     return response.data
   } catch (error) {
     

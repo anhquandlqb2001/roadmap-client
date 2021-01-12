@@ -1,6 +1,7 @@
 import { TFacebookResponse } from "../../lib/util/types";
 import {
   CURRENT_USER_ENDPOINT,
+  ENDPOINT,
   LOGIN_FACEBOOK_ENDPOINT,
   USER_ENDPOINT,
 } from "../../lib/util/endpoints.constant";
@@ -44,7 +45,7 @@ export const onSubmitLogin = async (
 ) => {
   try {
     const { data } = await login({
-      endpoint: `${USER_ENDPOINT}/login_local`,
+      endpoint: `${ENDPOINT}/user/index.php?action=loginLocal`,
       data: {
         email: values.email,
         password: values.password,
@@ -58,9 +59,11 @@ export const onSubmitLogin = async (
     if (!data.success) {
       return;
     }
-    mutate(`${USER_ENDPOINT}`);
+
+    localStorage.setItem("token", data.jwt)
+    await mutate(`/${ENDPOINT}/user/index.php?action=current`);
     const next = (router.query?.next as string)
-    next ? router.push(next) : router.push("/")
+    next ? router.push(next) : router.push("/", undefined, {shallow: false})
 
   } catch (error) {
     console.log(error);

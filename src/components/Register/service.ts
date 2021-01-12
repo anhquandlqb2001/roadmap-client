@@ -53,7 +53,7 @@ export const onSubmitRegister = async (
 
     if (data.errors) return setErrors(errorsMap(data.errors));
     mutate(`${USER_ENDPOINT}`);
-    if (data.success) return router.push("/", undefined, { shallow: true });
+    if (data.success) return router.push("/user/login", undefined, { shallow: true });
   } catch (error) {
     console.log(error);
   }

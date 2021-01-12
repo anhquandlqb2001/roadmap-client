@@ -39,19 +39,22 @@ const CommentItem = ({
     if (!data.success) {
       return alert("error");
     }
-    setReplys((prev) => [
-      ...prev,
-      ...data.replys.map((reply: any) => {
-        return {
-          commentId: reply.commentId,
-          replyId: reply._id,
-          mapId: mapId,
-          text: reply.text,
-          author: reply?.userEmail,
-          createdAt: reply.createdAt,
-        };
-      }),
-    ]);
+    if (data.replys) {
+      setReplys((prev) => [
+        ...prev,
+        ...data.replys.map((reply: any) => {
+          return {
+            commentId: reply.commentId,
+            replyId: reply._id['$oid'],
+            mapId: mapId,
+            text: reply.text,
+            author: reply?.userEmail,
+            createdAt: reply.createdAt,
+          };
+        }),
+      ]);
+    }
+    
     setHasMore(data.hasMore);
   };
 

@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import axios from "../util/axios.config";
-import { REGISTER_LOCAL_ENDPOINT, USER_SERVICE_ENDPOINT } from "../util/endpoints.constant";
+import { ENDPOINT, REGISTER_LOCAL_ENDPOINT, USER_SERVICE_ENDPOINT } from "../util/endpoints.constant";
 import { TDefaultResponse, TProvider } from "../util/types";
 
 type TDataToServer = {
@@ -18,11 +18,7 @@ type TFormErrorResponse = {
 
 // du lieu nhan duoc tu sv login-register
 type TFormDataResponse = TDefaultResponse & {
-  data?: {
-    jwt: string;
-    provider: TProvider;
-    email: string;
-  };
+  jwt: string,
   errors?: TFormErrorResponse[];
 };
 
@@ -76,7 +72,7 @@ export const register = async (
   data: TDataToServer
 ): Promise<AxiosResponse<TFormDataResponse>> => {
   try {
-    return await axios.post<TFormDataResponse>(REGISTER_LOCAL_ENDPOINT, {
+    return await axios.post<TFormDataResponse>("/api/php/user/index.php?action=register", {
       email: data.email,
       password: data.password,
       provider: data.provider,
@@ -101,9 +97,19 @@ export const current = async (
 
 export const logout = async (): Promise<{success: boolean}> => {
   try {
-    const response = await axios.post(`${USER_SERVICE_ENDPOINT}/logout`);
+    localStorage.removeItem("token");
+    const response = await axios.post(`/${ENDPOINT}/user/index.php?action=logout`);
     return response.data;
   } catch (error) {
+    
+  }
+}
+
+export const getOwnerMapList = async (): Promise<{success, ownerMaps: Array<{_id: string, name: string}>}> => {
+  try {
+    const response = await axios.get(`${ENDPOINT}/user/index.php?action=getOwnerMapList`)
+    return response.data
+  } catch (e) {
     
   }
 }

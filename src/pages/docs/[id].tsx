@@ -40,14 +40,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const { data } = await getDocumentPath(params.id);
-  // if (!data.success) {
-  //   return;
-  // }
-
-  const path = data.map.documentation.path;
-  // if (!path) {
-  //   return;
-  // }
+  
+  const path = data.data.documentation.path;
 
   const response = await getDocumentRaw(path);
 

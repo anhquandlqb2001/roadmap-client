@@ -1,11 +1,11 @@
 import { current } from "../api/user";
 import useSWR from "swr";
-import { USER_ENDPOINT } from "./endpoints.constant";
+import { ENDPOINT, USER_ENDPOINT } from "./endpoints.constant";
 import React from 'react'
 
 const useCurrent = () => {
   const [mounted, setMounted] = React.useState(false)
-  const { data } = useSWR(mounted ? `${USER_ENDPOINT}` : null, current);
+  const { data } = useSWR(mounted ? `/${ENDPOINT}/user/index.php?action=current` : null, current);
   React.useEffect(()=> {
     setMounted(true)
   }, [])

@@ -46,7 +46,7 @@ const Comment: React.FC<Props> = ({ mapId }) => {
       ...prev,
       ...data.comments.map((comment) => {
         return {
-          commentId: comment.commentId,
+          commentId: ((comment as any)._id["$oid"]),
           mapId: mapId,
           text: comment.text,
           userEmail: comment?.userEmail,

@@ -1,6 +1,6 @@
 import React from "react";
 import { getMap, getMapInfo, getMapList, startMap } from "../../lib/api/road";
-import { MAP_SERVICE_ENDPOINT } from "../../lib/util/endpoints.constant";
+import { ENDPOINT, MAP_SERVICE_ENDPOINT } from "../../lib/util/endpoints.constant";
 import {
   Paper,
   Box,
@@ -18,7 +18,6 @@ import { findOwnerMapIDIfExist } from "../../components/Map/service/service";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { UserContext } from "../../lib/util/userContext";
 import Layout from "../../components/Common/Layout";
-import { mutate } from "swr";
 import Comment from "../../components/Comment/Comment";
 import { useRouter } from "next/router";
 
@@ -102,7 +101,7 @@ const Road: React.FC<Props> = ({ id, description, name }) => {
 
   React.useMemo(() => {
     const fetchMap = async () => {
-      const response = await getMap(`${MAP_SERVICE_ENDPOINT}/${id}`);
+      const response = await getMap(`${ENDPOINT}/user/index.php?action=getUserMap&mapId=${id}`);
       response.data.success && setMap(response.data.data.map);
     };
     if (profile.user) {
@@ -117,6 +116,7 @@ const Road: React.FC<Props> = ({ id, description, name }) => {
   const onStartMap = async () => {
     try {
       const response = await startMap(id);
+      
       if (response.data.success) {
         router.reload()
       }
@@ -221,7 +221,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       name: response.data.data.name,
-      id: response.data.data._id,
+      id: response.data.data._id["$oid"],
       description: response.data.data.description || "Everything you need",
     },
   };

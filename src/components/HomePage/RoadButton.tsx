@@ -6,7 +6,7 @@ import { Button } from "@material-ui/core";
 type Props = {
   href: string;
   name: string;
-  intro: string;
+  intro?: string;
   disabled?: boolean;
   id: string;
 };

@@ -2,9 +2,9 @@ type ServerType = 'node' | 'php'
 
 const SERVER: ServerType = 'php'
 
-const PORT = 8081
+const PORT = 5001
 
-const ENDPOINT = `/api/${SERVER}`
+export const ENDPOINT = `api/${SERVER}`
 
 export const SERVER_ENDPOINT = `http://localhost:${PORT}`
 
