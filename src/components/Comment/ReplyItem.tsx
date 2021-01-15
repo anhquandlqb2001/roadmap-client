@@ -1,6 +1,5 @@
 import { Box, Grid, Avatar } from "@material-ui/core";
 import React from "react";
-
 export interface ReplyProps {
   commentId: string;
   replyId: string;
@@ -18,7 +17,7 @@ interface ReplyItemProps {
   createdAt: any;
 }
 
-const ReplyItem = ({ text, author, createdAt }: ReplyItemProps) => {
+const ReplyItem: React.FC<ReplyItemProps> = ({ text, author, createdAt }) => {
   return (
     <Box mt={2}>
       <Grid container wrap="nowrap" spacing={2}>

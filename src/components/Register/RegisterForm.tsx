@@ -28,7 +28,7 @@ const RegisterForm = () => {
             <LockOutlined />
           </AvatarStyled>
           <Typography component="h1" variant="h3">
-            Đăng ky
+          Đăng ký
           </Typography>
           <Formik
             initialValues={{

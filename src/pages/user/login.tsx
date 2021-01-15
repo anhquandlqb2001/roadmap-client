@@ -5,8 +5,8 @@ const Login = () => {
   return (
     <>
       <Head>
-        <title>Dang nhap</title>
-        <meta name="description" content="Dang nhap de trai nghiem tot hon!" />
+        <title>Đăng nhập</title>
+        <meta name="description" content="Đăng nhập để trải nghiệm tốt hơn!" />
       </Head>
       <LoginForm />
     </>

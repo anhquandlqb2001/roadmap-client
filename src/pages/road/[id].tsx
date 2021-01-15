@@ -18,7 +18,6 @@ import { findOwnerMapIDIfExist } from "../../components/Map/service/service";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { UserContext } from "../../lib/util/userContext";
 import Layout from "../../components/Common/Layout";
-import { mutate } from "swr";
 import Comment from "../../components/Comment/Comment";
 import { useRouter } from "next/router";
 
@@ -131,14 +130,14 @@ const Road: React.FC<Props> = ({ id, description, name, mapUrl }) => {
     <Layout
       profile={profile}
       title={name}
-      content="Lo trinh hoc tap danh cho lap trinh vien"
+      content={`Lộ trình học tập ${name}`}
     >
       <>
         <PaperStyled>
           <Intro description={description} />
           {profile.user && (!userHasStartedMap && !delayed ? (
             <Box my={2}>
-              <Button variant={"outlined"} onClick={onStartMap}>Bat dau lo trinh ngay</Button>
+              <Button variant={"outlined"} onClick={onStartMap}>Bắt đầu lộ trình ngay</Button>
             </Box>
           ) : null)}
         </PaperStyled>
@@ -151,8 +150,8 @@ const Road: React.FC<Props> = ({ id, description, name, mapUrl }) => {
               aria-label="simple tabs example"
               variant="fullWidth"
             >
-              <Tab label="Xem lo trinh" {...a11yProps(0)} />
-              <Tab label="Binh luan" {...a11yProps(1)} />
+              <Tab label="Lộ trình" {...a11yProps(0)} />
+              <Tab label="Bình luận" {...a11yProps(1)} />
             </Tabs>
           </AppBar>
           <TabPanel value={tabIndex} index={0}>

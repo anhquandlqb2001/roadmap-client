@@ -85,7 +85,7 @@ const UserMenu = ({ user }) => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={(e) => onClickLogout(e)}>Logout</MenuItem>
+        <MenuItem onClick={(e) => onClickLogout(e)}>Đăng xuất</MenuItem>
       </Menu>
     </>
   );

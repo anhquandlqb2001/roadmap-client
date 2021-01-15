@@ -54,7 +54,7 @@ const CommentBox: React.FC<CommentBoxProps> = ({ mapId, setComment, user }) => {
           variant={"contained"}
           onClick={(e) => onSendComment(e)}
         >
-          Gui
+          Gửi
         </Button>
       </Box>
     </Box>

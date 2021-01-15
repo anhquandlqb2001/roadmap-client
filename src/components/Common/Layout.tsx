@@ -14,7 +14,7 @@ type Props = {
 const Layout = ({
   children,
   title,
-  content = "Lo trinh hoc tap danh cho lap trinh vien",
+  content = "Lộ trình học tập dành cho lập trình viên",
   maxWidth = "xl",
   profile,
 }: Props) => {
@@ -23,8 +23,6 @@ const Layout = ({
       <Head>
         <title>{title}</title>
         <meta name="description" content={content} />
-        <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
-        <meta charSet="utf-8" />
       </Head>
         <main>
           <NavBar profile={profile} />

@@ -10,18 +10,19 @@ import { getHomePageContent } from "../lib/api/common";
 interface Props {
   maps: TMaps[];
   homePageContent: {
-    heading: string
-    detail: string
-  }
+    heading: string;
+    detail: string;
+  };
 }
 
 const Home: NextPage<Props> = ({ maps, homePageContent }) => {
   const profile = React.useContext(UserContext);
-  
+
+
   return (
     <Layout
-      title="Trang chu"
-      content="Lo trinh hoc tap danh cho lap trinh vien"
+      title="Trang chủ"
+      content="Lộ trình học tập dành cho lập trình viên"
       profile={profile}
       maxWidth={false}
     >
@@ -41,7 +42,7 @@ export const getStaticProps = async () => {
   if (response.data && !response.data.success) {
     return alert("Loi");
   }
-  const data = await getHomePageContent()
+  const data = await getHomePageContent();
   if (data && !data.success) {
     return alert("Loi");
   }

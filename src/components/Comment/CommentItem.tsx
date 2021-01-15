@@ -19,7 +19,7 @@ interface CommentItemProps {
   };
 }
 
-const CommentItem = ({
+const CommentItem: React.FC<CommentItemProps> = ({
   text,
   author,
   commentId,
@@ -27,7 +27,7 @@ const CommentItem = ({
   createdAt,
   hasReply,
   user,
-}: CommentItemProps) => {
+}) => {
   const [showReplys, setShowReplys] = React.useState(false);
   const [openReplyBox, setOpenReplyBox] = React.useState(false);
   const [hasMore, setHasMore] = React.useState<boolean>(false);
@@ -69,7 +69,7 @@ const CommentItem = ({
 
   const viewMoreReplyBtn = () => {
     if (showReplys && hasMore) {
-      return "Xem them";
+      return "Xem thêm";
     }
     return null;
   };
@@ -122,13 +122,13 @@ const CommentItem = ({
             setShowReplys(true);
           }}
         >
-          Tra loi
+          Trả lời
         </StyledReplyComment>
       )}
       {hasReply ? (
         <>
           <StyledReplyComment onClick={(_) => setShowReplys(true)}>
-            {!showReplys ? "Xem tra loi binh luan" : null}
+            {!showReplys ? "Xem trả lời bình luận" : null}
           </StyledReplyComment>
           <StyledReplyComment
             onClick={(_) => setPage((prevPage) => prevPage + 1)}

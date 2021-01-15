@@ -1,29 +1,42 @@
-import NextApp from "next/app";
 import React from "react";
 import { ThemeProvider } from "styled-components";
-import {createMuiTheme} from '@material-ui/core'
+import { createMuiTheme } from "@material-ui/core";
 import UserProvider from "../lib/util/userContext";
-import { Normalize } from 'styled-normalize'
-import '../styles/global.css' // apply global style
+import { Normalize } from "styled-normalize";
+import "../styles/global.css"; // apply global style
+import { askUserPermission, createNotificationSubscription } from "../lib/util/pushNotification";
+import { postUserSubscription } from "../lib/api/user";
 
-export default class App extends NextApp {
-  theme = createMuiTheme()
-
-  componentDidMount() {
-    const jssStyles = document.querySelector('#jss-server-side');
+const App = (props) => {
+  const { Component, pageProps } = props;
+  const theme = createMuiTheme();
+  React.useEffect(() => {
+    const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
-  }
-  render() {
-    const { Component, pageProps } = this.props;
-    return (
-      <ThemeProvider theme={this.theme}>
-        <Normalize /> {/** nomalize css */}
-        <UserProvider>
-          <Component {...pageProps} />
-        </UserProvider>
-      </ThemeProvider>
-    );
-  }
-}
+  }, []);
+
+  React.useEffect(() => {
+    const askPermission = async () => {
+      const response = await askUserPermission()
+      console.log(response);
+      if (response === "granted") {
+        const subscription = await createNotificationSubscription()
+        await postUserSubscription(subscription)
+      }
+    }
+    askPermission()
+  }, []);
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Normalize /> {/** nomalize css */}
+      <UserProvider>
+        <Component {...pageProps} />
+      </UserProvider>
+    </ThemeProvider>
+  );
+};
+
+export default App;

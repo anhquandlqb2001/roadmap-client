@@ -107,3 +107,19 @@ export const logout = async (): Promise<{success: boolean}> => {
     
   }
 }
+
+export const postUserSubscription = async (userSubscription) => {
+  try {
+    return await axios.post(`${USER_SERVICE_ENDPOINT}/subscription`, userSubscription)
+  } catch (error) {
+    
+  }
+}
+
+export const getUserSubscription = async (id) => {
+  try {
+    return await axios.get(`${USER_SERVICE_ENDPOINT}/subscription/${id}`)
+  } catch (error) {
+    
+  }
+}

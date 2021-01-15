@@ -1,4 +1,4 @@
-import { Box, TextField, Button, Divider } from "@material-ui/core";
+import { Box, TextField, Button } from "@material-ui/core";
 import React from "react";
 import { addReply } from "../../lib/api/comment";
 import { UserContext } from "../../lib/util/userContext";
@@ -48,11 +48,11 @@ const ReplyBox: React.FC<ReplyBoxProps> = ({ setReplys, mapId, commentId }) => {
       />
       <Box my={1}>
         <Button variant={"contained"} onClick={(e) => onSendReply(e)}>
-          Gui
+          Gửi
         </Button>
       </Box>
       {/* <Divider /> */}
     </Box>
   );
 };
-export default ReplyBox
+export default ReplyBox;

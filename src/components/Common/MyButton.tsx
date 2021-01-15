@@ -8,7 +8,7 @@ type MyButtonProps = ButtonProps & {
   icon?: any
 };
 
-const MyButton = ({ icon, label, loading, type, onClick, ...props }: MyButtonProps) => {
+const MyButton: React.FC<MyButtonProps> = ({ icon, label, loading, type, onClick, ...props }) => {
   let extend
   if (icon) {
     extend = !loading && icon

@@ -18,7 +18,7 @@ const PHP = ({ markdown }) => {
     <Layout
       title="Documentation"
       profile={profile}
-      content="Tai lieu lo trinh"
+      content="Tài liệu lộ trình"
       maxWidth="lg"
     >
       <Documentation markdown={markdown} />

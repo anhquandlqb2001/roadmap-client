@@ -18,7 +18,7 @@ const checkRetypePassword = ({
   const error: Record<string, string> = {};
   if (retype_password.length !== 0) {
     if (retype_password !== password) {
-      error["repassword"] = "Mat khau phai trung";
+      error["repassword"] = "Sai mật khẩu nhập lại";
     } else {
       error["repassword"] = "";
       return false;

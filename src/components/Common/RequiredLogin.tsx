@@ -11,9 +11,9 @@ const RequiredLogin: React.FC<Props> = ({ pathname, next }) => {
   return (
     <Box my={2} display={"flex"} alignItems={"center"}>
       <p>
-        Ban can dang nhap moi co the binh luan!!&nbsp;
+        Bạn cần đăng nhập mới có thể sử dụng chức năng này!!&nbsp;
         <Link href={`${pathname}/?next=${encodeURIComponent(next)}`}>
-          <a>Dang nhap ngay</a>
+          <a>Đăng nhập ngay</a>
         </Link>
       </p>
     </Box>

@@ -2,9 +2,7 @@ import {
   Paper,
   Box,
   Divider,
-  Button,
 } from "@material-ui/core";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import {
@@ -93,7 +91,7 @@ const Comment: React.FC<Props> = ({ mapId }) => {
 
   return (
     <>
-      <h1>Binh luan</h1>
+      <h1>Bình luận</h1>
       {user.user ? <CommentBox mapId={mapId} setComment={setComment} user={user} /> : <RequiredLogin pathname="/user/login" next={router.asPath} />}
       <Paper>
         {comments.map((comment) => {
@@ -114,7 +112,7 @@ const Comment: React.FC<Props> = ({ mapId }) => {
         })}
       </Paper>
       <div className="loading" ref={loader}>
-        {hasMore ? <h2>Load More</h2> : null}
+        {hasMore ? <h2 style={{textAlign: 'center'}}>Đang tải...</h2> : null}
       </div>
     </>
   );

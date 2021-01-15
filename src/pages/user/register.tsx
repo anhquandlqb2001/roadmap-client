@@ -5,8 +5,8 @@ const Register = () => {
   return (
     <>
       <Head>
-        <title>Dang ky</title>
-        <meta name="description" content="Dang ky de trai nghiem tot hon!" />
+        <title>Đăng ký</title>
+        <meta name="description" content="Đăng ký lotrinh ngay!" />
       </Head>
       <RegisterForm />
     </>
