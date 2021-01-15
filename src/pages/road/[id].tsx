@@ -26,6 +26,7 @@ interface Props {
   name: string;
   id: string;
   description: string;
+  mapUrl: string
 }
 
 interface TabPanelProps {
@@ -68,7 +69,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const Road: React.FC<Props> = ({ id, description, name }) => {
+const Road: React.FC<Props> = ({ id, description, name, mapUrl }) => {
   const profile = React.useContext(UserContext);
   const [userHasStartedMap, setUserHasStartedMap] = React.useState<boolean>(
     false
@@ -90,6 +91,7 @@ const Road: React.FC<Props> = ({ id, description, name }) => {
     }
   };
 
+  
   React.useEffect(() => {
     const prevTabIndex = router?.asPath?.split("?")[1];
     prevTabIndex && setTabIndex(1);
@@ -171,6 +173,7 @@ const Road: React.FC<Props> = ({ id, description, name }) => {
                   profile={profile}
                   map={map}
                   userHasStartedMap={userHasStartedMap}
+                  mapUrl={mapUrl}
                 />
               )}
             </Box >
@@ -223,6 +226,7 @@ export async function getStaticProps({ params }) {
       name: response.data.data.name,
       id: response.data.data._id,
       description: response.data.data.description || "Everything you need",
+      mapUrl: response.data.data?.mapUrl
     },
   };
 }

@@ -80,7 +80,7 @@ export const updateMapProgress = async ({
 
 export const getMapInfo = async (id) => {
   try {
-    return await axios.get<{success: boolean, data: {_id: string, name: string, description: object}}>(`${MAP_ENDPOINT}/${id}`)
+    return await axios.get<{success: boolean, data: {_id: string, name: string, description: object, mapUrl: string}}>(`${MAP_ENDPOINT}/${id}`)
   } catch (error) {
     console.log(error);
     

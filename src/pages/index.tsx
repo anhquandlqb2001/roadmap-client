@@ -17,6 +17,7 @@ interface Props {
 
 const Home: NextPage<Props> = ({ maps, homePageContent }) => {
   const profile = React.useContext(UserContext);
+  
   return (
     <Layout
       title="Trang chu"

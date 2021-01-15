@@ -7,6 +7,7 @@ interface MapProps {
   profile: any;
   map: any;
   userHasStartedMap: boolean;
+  mapUrl: string
 }
 
 const Map: React.FC<MapProps> = ({
@@ -14,6 +15,7 @@ const Map: React.FC<MapProps> = ({
   map,
   id,
   userHasStartedMap,
+  mapUrl
 }): JSX.Element | null => {
   const ImportedMapRef = React.useRef();
   const [loading, setLoading] = React.useState(() => false);
@@ -29,7 +31,7 @@ const Map: React.FC<MapProps> = ({
         //   await import(`../../../public/maps/${id}.svg`)
         // ).default;
         ImportedMapRef.current = (
-          await Axios.get(`https://res.cloudinary.com/duhye49dt/image/upload/v1609838999/maps/${id}.svg`).then(res => {
+          await Axios.get(mapUrl).then(res => {
             return res.data
           })
         );
