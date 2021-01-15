@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import axios from "../util/axios.config";
-import { REGISTER_LOCAL_ENDPOINT, USER_SERVICE_ENDPOINT } from "../util/endpoints.constant";
+import { REGISTER_LOCAL_ENDPOINT, USER_ENDPOINT, USER_SERVICE_ENDPOINT } from "../util/endpoints.constant";
 import { TDefaultResponse, TProvider } from "../util/types";
 
 type TDataToServer = {
@@ -163,3 +163,11 @@ export const updateMapProgress = async ({
     console.log("error in userAPI:, ", error);
   }
 };
+
+export const loginWithFacebook = async () => {
+  try {
+    return await axios.get(`${USER_ENDPOINT}/auth/facebook`)
+  } catch (error) {
+    
+  }
+}

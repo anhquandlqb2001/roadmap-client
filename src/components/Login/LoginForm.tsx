@@ -5,6 +5,7 @@ import {
   Link,
   CssBaseline,
   Avatar,
+  Button as MButton
 } from "@material-ui/core";
 import styled from "styled-components";
 import { LockOutlined } from "@material-ui/icons";
@@ -76,7 +77,7 @@ const LoginForm = () => {
               </FormContainer>
             )}
           </Formik>
-
+          <NextLink href={`http://localhost:5000/api/node/user/auth/facebook`}><a><MButton>Tiếp tục với Facebook</MButton></a></NextLink>
           <Grid container>
             <Grid item xs></Grid>
             <Grid item>
@@ -125,6 +126,5 @@ const AvatarStyled = styled(Avatar)`
   margin: ${(props) => props.theme.spacing(1)};
   background-color: ${(props) => props.theme.palette.secondary.main};
 `;
-
 
 export default LoginForm;
