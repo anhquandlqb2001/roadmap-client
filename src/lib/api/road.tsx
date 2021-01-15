@@ -28,25 +28,6 @@ export type TChangeFieldMapParams = {
   currentValue: boolean;
 };
 
-export const startMap = async (mapID) => {
-  try {
-    const response = await axios.post<TDefaultResponse>(
-      `${MAP_SERVICE_ENDPOINT}/${mapID}`
-    );
-    return response;
-  } catch (error) {
-    console.log("error in userAPI:, ", error);
-  }
-};
-
-export const getMap = async (url: string) => {
-  try {
-    const response = await axios.get<TGetMapResponse>(url);
-    return response;
-  } catch (error) {
-    console.log("error in userAPI:, ", error);
-  }
-};
 
 export const getMapList = async () => {
   try {
@@ -59,24 +40,6 @@ export const getMapList = async () => {
   }
 };
 
-export const updateMapProgress = async ({
-  mapId,
-  fieldChange,
-  currentValue,
-}: TChangeFieldMapParams) => {
-  try {
-    const response = await axios.put<TDefaultResponse>(
-      `${MAP_SERVICE_ENDPOINT}/${mapId}`,
-      {
-        fieldChange,
-        currentValue,
-      }
-    );
-    return response;
-  } catch (error) {
-    console.log("error in userAPI:, ", error);
-  }
-};
 
 export const getMapInfo = async (id) => {
   try {

@@ -1,5 +1,5 @@
 import { NextRouter } from "next/router";
-import { updateMapProgress } from "../../../lib/api/road";
+import { updateMapProgress } from "../../../lib/api/user";
 import { TCurrentUserResponseMap } from "../../../lib/api/user";
 import AutoCompleteClass from "./autocomplete";
 

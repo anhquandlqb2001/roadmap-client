@@ -5,7 +5,6 @@ const pushServerPublicKey = "BIN2Jc5Vmkmy-S3AUrcMlpKxJpLeVRAfu9WBqUbJ70SJOCWGCGX
  */
 function isPushNotificationSupported() {
   return "serviceWorker" in navigator && "PushManager" in window;
-  return true;
 }
 
 /**

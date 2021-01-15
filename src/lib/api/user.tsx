@@ -123,3 +123,43 @@ export const getUserSubscription = async (id) => {
     
   }
 }
+
+
+export const startMap = async (mapID) => {
+  try {
+    const response = await axios.post<TDefaultResponse>(
+      `${USER_SERVICE_ENDPOINT}/${mapID}`
+    );
+    return response;
+  } catch (error) {
+    console.log("error in userAPI:, ", error);
+  }
+};
+
+export const getMap = async (url: string) => {
+  try {
+    const response = await axios.get(url);
+    return response;
+  } catch (error) {
+    console.log("error in userAPI:, ", error);
+  }
+};
+
+export const updateMapProgress = async ({
+  mapId,
+  fieldChange,
+  currentValue,
+}) => {
+  try {
+    const response = await axios.put<TDefaultResponse>(
+      `${USER_SERVICE_ENDPOINT}/${mapId}`,
+      {
+        fieldChange,
+        currentValue,
+      }
+    );
+    return response;
+  } catch (error) {
+    console.log("error in userAPI:, ", error);
+  }
+};

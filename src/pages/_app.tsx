@@ -20,7 +20,6 @@ const App = (props) => {
   React.useEffect(() => {
     const askPermission = async () => {
       const response = await askUserPermission()
-      console.log(response);
       if (response === "granted") {
         const subscription = await createNotificationSubscription()
         await postUserSubscription(subscription)

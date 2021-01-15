@@ -1,6 +1,6 @@
 import React from "react";
-import { getMap, getMapInfo, getMapList, startMap } from "../../lib/api/road";
-import { MAP_SERVICE_ENDPOINT } from "../../lib/util/endpoints.constant";
+import { getMapInfo, getMapList } from "../../lib/api/road";
+import { USER_SERVICE_ENDPOINT } from "../../lib/util/endpoints.constant";
 import {
   Paper,
   Box,
@@ -20,6 +20,7 @@ import { UserContext } from "../../lib/util/userContext";
 import Layout from "../../components/Common/Layout";
 import Comment from "../../components/Comment/Comment";
 import { useRouter } from "next/router";
+import { getMap, startMap } from "../../lib/api/user";
 
 interface Props {
   name: string;
@@ -27,46 +28,6 @@ interface Props {
   description: string;
   mapUrl: string
 }
-
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: any;
-  value: any;
-}
-
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box p={2}>
-          <Typography component={"div"}>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-function a11yProps(index: any) {
-  return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-  };
-}
-
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
 
 const Road: React.FC<Props> = ({ id, description, name, mapUrl }) => {
   const profile = React.useContext(UserContext);
@@ -103,7 +64,7 @@ const Road: React.FC<Props> = ({ id, description, name, mapUrl }) => {
 
   React.useMemo(() => {
     const fetchMap = async () => {
-      const response = await getMap(`${MAP_SERVICE_ENDPOINT}/${id}`);
+      const response = await getMap(`${USER_SERVICE_ENDPOINT}/${id}`);
       response.data.success && setMap(response.data.data.map);
     };
     if (profile.user) {
@@ -216,8 +177,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const response = await getMapInfo(params.id);
-  if (!response.data.success) {
-    return;
+  if (!response.data.success || !response.data) {
+    return {
+      notFound: true
+    };
   }
 
   return {
@@ -236,5 +199,45 @@ const PaperStyled = styled(Paper)`
   flex-direction: column;
   margin: 30px 0;
 `;
+
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: any;
+  value: any;
+}
+
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={2}>
+          <Typography component={"div"}>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+function a11yProps(index: any) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
 
 export default Road;
