@@ -29,7 +29,8 @@ g.node--child.active > rect {
 }
 
 g.node--child.active > g:first-child > line,
-g.node--child.active > g:first-child > path  {
+g.node--child.active > g:first-child > path,
+g.node--child.active > g:first-child > line  {
   stroke: rgb(72, 185, 72) !important;
 }
 
@@ -51,6 +52,11 @@ g.node--parent.active > g:first-child path {
 }
 g.node--parent.active > g:first-child g path {
   fill: yellow;
+}
+
+
+g.node--parent.active > g:first-child > g line {
+  stroke: yellow;
 }
 
 /* mau duong noi giua cac node: kich hoat */

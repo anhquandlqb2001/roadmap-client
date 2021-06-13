@@ -15,6 +15,21 @@ export default class Document extends NextDocument {
           />
           <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
           <meta charSet="utf-8" />
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-6JQ6EGVELY"
+          />
+
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-6JQ6EGVELY');
+        `,
+            }}
+          />
         </Head>
         <body>
           <Main />

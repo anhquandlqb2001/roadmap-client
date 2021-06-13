@@ -1,4 +1,5 @@
-const pushServerPublicKey = "BIN2Jc5Vmkmy-S3AUrcMlpKxJpLeVRAfu9WBqUbJ70SJOCWGCGXKY-Xzyh7HDr6KbRDGYHjqZ06OcS3BjD7uAm8";
+import { PUSH_SERVER_PUBLIC_KEY } from './keys.config'
+const pushServerPublicKey = PUSH_SERVER_PUBLIC_KEY;
 
 /**
  * checks if Push notification and service workers are supported by your browser
@@ -39,10 +40,10 @@ async function createNotificationSubscription() {
 function getUserSubscription() {
   //wait for service worker installation to be ready, and then
   return navigator.serviceWorker.ready
-    .then(function(serviceWorker) {
+    .then(function (serviceWorker) {
       return serviceWorker.pushManager.getSubscription();
     })
-    .then(function(pushSubscription) {
+    .then(function (pushSubscription) {
       return pushSubscription;
     });
 }

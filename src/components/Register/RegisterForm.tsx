@@ -71,7 +71,7 @@ const RegisterForm = () => {
                   required
                   fullWidth
                   name="repassword"
-                  label="Nhap lai mật khẩu"
+                  label="Nhập lại mật khẩu"
                   type="password"
                   id="repassword"
                 />
@@ -81,7 +81,7 @@ const RegisterForm = () => {
                   loading={isSubmitting}
                   variant="contained"
                   color="primary"
-                  label="Đăng ky"
+                  label="Đăng ký"
                 />
               </FormContainer>
             )}
@@ -92,7 +92,7 @@ const RegisterForm = () => {
             <Grid item>
               <NextLink href="/user/login" passHref>
                 <Link variant="body2">
-                  <h4>{"Da có tài khoản? Đăng nhap ngay"}</h4>
+                  <h4>{"Đã có tài khoản? Đăng nhập ngay"}</h4>
                 </Link>
               </NextLink>
             </Grid>
@@ -125,7 +125,7 @@ const SubmitBtnStyled = styled(Button)`
 `;
 
 const GridImage = styled(Grid)`
-  background-image: url("https://source.unsplash.com/random");
+  background-image: url("/images/register.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

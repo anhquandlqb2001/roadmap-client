@@ -116,7 +116,7 @@ const SubmitBtnStyled = styled(Button)`
 `;
 
 const GridImage = styled(Grid)`
-  background-image: url("https://source.unsplash.com/random");
+  background-image: url("/images/login.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
