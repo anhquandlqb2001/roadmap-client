@@ -32,22 +32,19 @@ const Map: React.FC<Props> = ({ map, name }) => {
   };
 
   const onRefChange = React.useCallback((node) => {
-    // ref value changed to node
+    if (!map || map === {}) return
     setRef(node); // e.g. change ref state to trigger re-render
     if (node === null) {
       // node is null, if DOM node of ref had been unmounted before
     } else {
-      
       // ref value exists
-      if (map) {
-        fillChildNodes(map, node, true);
-        fillParentNode(map, node, true);
+      fillChildNodes(map, node, true);
+      fillParentNode(map, node, true);
 
-        const nodeList = node.querySelectorAll(".node--child");
-        nodeList.forEach((btn) => {
-          btn.addEventListener("click", (e) => onClickKey(e, node));
-        });
-      }
+      const nodeList = node.querySelectorAll(".node--child");
+      nodeList.forEach((btn) => {
+        btn.addEventListener("click", (e) => onClickKey(e, node));
+      });
     }
   }, [map]);
 

@@ -16,14 +16,23 @@ interface Props {
 
 const Road: NextPage<Props> = ({ name }) => {
   const [map, setMap] = React.useState({});
+  const [_, setReload] = React.useState<string>()
   const classes = useStyles();
 
   useEffect(() => {
     if (!localStorage.getItem(name)) {
-      import(`../../lib/maps/${name}.json`).then((data) => localStorage.setItem(name, JSON.stringify(data.default)));
+      import(`../../lib/maps/${name}.json`).then((data) => {
+        setMap(data.default)
+        localStorage.setItem(name, JSON.stringify(data.default))
+      });
+      return
     }
     setMap(JSON.parse(localStorage.getItem(name)))
   }, [])
+
+  useEffect(() => {
+    setReload('')
+  }, [map])
 
   return (
     <Layout
