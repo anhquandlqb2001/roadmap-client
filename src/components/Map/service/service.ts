@@ -1,4 +1,3 @@
-import { TCurrentUserResponseMap } from "../../../lib/api/user";
 import AutoCompleteClass from "./autocomplete";
 
 export const recursiveChangeObject = (obj, searchKey, valueChange) => {
@@ -95,23 +94,23 @@ export const fillParentNode = (map: object, node: HTMLElement, firstTimes?: bool
   });
 };
 
-export /**
- *
- * @param map array of user map if user has login
- * @param currentMapId mapID of current map
- */
-  const findOwnerMapIDIfExist = (
-    map: TCurrentUserResponseMap[],
-    currentMapId: string
-  ) => {
-    let a;
-    map.forEach((m) => {
-      if (m.mapHasStarted === currentMapId) {
-        return (a = m.ownerMapId);
-      }
-    });
-    return a;
-  };
+// export /**
+//  *
+//  * @param map array of user map if user has login
+//  * @param currentMapId mapID of current map
+//  */
+//   const findOwnerMapIDIfExist = (
+//     map: [],
+//     currentMapId: string
+//   ) => {
+//     let a;
+//     map.forEach((m) => {
+//       if (m.mapHasStarted === currentMapId) {
+//         return (a = m.ownerMapId);
+//       }
+//     });
+//     return a;
+//   };
 
 export const handleClick = async (
   name: string,
