@@ -8,15 +8,13 @@ type Props = {
   content: string;
   children: JSX.Element;
   maxWidth?: false | "xl" | "xs" | "sm" | "md" | "lg";
-  profile;
 };
 
 const Layout = ({
   children,
   title,
   content = "Lộ trình học tập dành cho lập trình viên",
-  maxWidth = "xl",
-  profile,
+  maxWidth = "xl"
 }: Props) => {
   return (
     <>
@@ -25,7 +23,7 @@ const Layout = ({
         <meta name="description" content={content} />
       </Head>
         <main>
-          <NavBar profile={profile} />
+          <NavBar />
           <Container maxWidth={maxWidth}>{children}</Container>
         </main>
 

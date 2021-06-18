@@ -1,5 +1,3 @@
-import { NextRouter } from "next/router";
-import { updateMapProgress } from "../../../lib/api/user";
 import { TCurrentUserResponseMap } from "../../../lib/api/user";
 import AutoCompleteClass from "./autocomplete";
 
@@ -22,7 +20,7 @@ export const getNodesName = (map, childNodes, parentNodes) => {
     if (val.hasOwnProperty("value")) {
       childNodes.push({ field: key, value: val.value, resources: val?.resources });
     } else if (key.toString() !== "resources" && key.toString() !== "value") {
-      parentNodes.push({field: key})
+      parentNodes.push({ field: key })
     }
     if (typeof value !== "object") {
     } else if (typeof value === "object") {
@@ -71,7 +69,7 @@ export const fillChildNodes = (map, node: HTMLElement, firstTimes?: boolean) => 
 export const fillParentNode = (map: object, node: HTMLElement, firstTimes?: boolean) => {
   const AutoComplete = new AutoCompleteClass(map);
   const parentNodesNameComplete = AutoComplete.getParentNodeNameComplete();
-  const [_, parentNodesName] =  getNodesName(map, [], [])
+  const [_, parentNodesName] = getNodesName(map, [], [])
 
   parentNodesName.map((parentNode) => {
     const pathElement = node.querySelector<HTMLElement>(
@@ -102,45 +100,32 @@ export /**
  * @param map array of user map if user has login
  * @param currentMapId mapID of current map
  */
-const findOwnerMapIDIfExist = (
-  map: TCurrentUserResponseMap[],
-  currentMapId: string
-) => {
-  let a;
-  map.forEach((m) => {
-    if (m.mapHasStarted === currentMapId) {
-      return (a = m.ownerMapId);
-    }
-  });
-  return a;
-};
+  const findOwnerMapIDIfExist = (
+    map: TCurrentUserResponseMap[],
+    currentMapId: string
+  ) => {
+    let a;
+    map.forEach((m) => {
+      if (m.mapHasStarted === currentMapId) {
+        return (a = m.ownerMapId);
+      }
+    });
+    return a;
+  };
 
 export const handleClick = async (
-  mapId: string,
+  name: string,
   map,
   e: React.MouseEvent<SVGPathElement, MouseEvent>,
-  ref, 
-  router: NextRouter
+  ref
 ) => {
   const fieldChange = e.currentTarget.getAttribute("id");
-  const fieldName = e.currentTarget.getAttribute("data-name")
   const currentValue = findVal(map, fieldChange);
 
-  if (e.ctrlKey) {
-    window.open(decodeURIComponent(`/docs/${mapId}#user-content-${fieldName}`))
-    return;
-  }
+  const newMap = recursiveChangeObject(map, fieldChange, !currentValue.value);
 
-  await updateMapProgress({
-    mapId: mapId,
-    fieldChange: fieldChange,
-    currentValue: currentValue.value,
-  }).then((result) => {
-    if (!result.data.success) {
-      return;
-    }
-    const newMap = recursiveChangeObject(map, fieldChange, !currentValue.value);
-    fillChildNodes(newMap, ref);
-    fillParentNode(newMap, ref);
-  });
+  localStorage.setItem(name, JSON.stringify(newMap))
+
+  fillChildNodes(newMap, ref);
+  fillParentNode(newMap, ref);
 };

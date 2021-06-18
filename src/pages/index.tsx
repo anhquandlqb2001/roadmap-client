@@ -1,35 +1,27 @@
 import React from "react";
-import { getMapList, TMaps } from "../lib/api/road";
 import Intro from "../components/HomePage/Intro";
 import Main from "../components/HomePage/Main";
-import { UserContext } from "../lib/util/userContext";
-import { NextPage } from "next";
 import Layout from "../components/Common/Layout";
-import { getHomePageContent } from "../lib/api/common";
+import { NextPage } from "next";
+import fs from 'fs'
+import path from 'path'
 
-interface Props {
-  maps: TMaps[];
-  homePageContent: {
-    heading: string;
-    detail: string;
-  };
+type Props = {
+  maps: []
 }
 
-const Home: NextPage<Props> = ({ maps, homePageContent }) => {
-  const profile = React.useContext(UserContext);
-
+const Home: NextPage<Props> = ({ maps }) => {
 
   return (
     <Layout
       title="Trang chủ"
-      content="Lộ trình học tập dành cho lập trình viên"
-      profile={profile}
+      content="Lộ trình học tập"
       maxWidth={false}
     >
       <>
         <Intro
-          intro={homePageContent.heading}
-          detail={homePageContent.detail}
+          intro={"abc"}
+          detail={"bcd"}
         />
         <Main maps={maps} />
       </>
@@ -38,16 +30,19 @@ const Home: NextPage<Props> = ({ maps, homePageContent }) => {
 };
 
 export const getStaticProps = async () => {
-  const response = await getMapList();
-  if (response.data && !response.data.success) {
-    return alert("Loi");
+  let filenames: string[] = []
+  try {
+    const postsDirectory = path.join(process.cwd(), 'src/lib/maps')
+    filenames = fs.readdirSync(postsDirectory)
+  } catch (error) {
+    console.log(error);
   }
-  const data = await getHomePageContent();
-  if (data && !data.success) {
-    return alert("Loi");
-  }
+  
+  const maps = filenames.map((filename, index) => {
+    return {_id: index.toString(), name: filename.split('.')[0], introduction: ''}
+  })
 
-  return { props: { maps: response.data.maps, homePageContent: data.data } };
+  return { props: { maps: maps } };
 };
 
 export default Home;

@@ -6,19 +6,16 @@ import { Button } from "@material-ui/core";
 type Props = {
   href: string;
   name: string;
-  intro: string;
   disabled?: boolean;
-  id: string;
 };
 
-const RoadButton = ({ href, name, intro, disabled }: Props) => {
+const RoadButton = ({ href, name, disabled }: Props) => {
   return (
     <Button style={{backgroundColor: "transparent"}} disabled={disabled}>
       <Link href={href} passHref>
         <StyledLink isDisable={disabled}>
           <TextContainer>
             <ButtonText>{name}</ButtonText>
-            <ButtonDetail>{intro}</ButtonDetail>
           </TextContainer>
         </StyledLink>
       </Link>

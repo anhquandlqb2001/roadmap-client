@@ -1,40 +1,23 @@
 import React from "react";
-import { fillChildNodes, handleClick, fillParentNode } from "./service/service";
-import { useRouter } from "next/router";
-import Axios from "axios";
-interface MapProps {
-  id: string;
-  profile: any;
+import { fillChildNodes, fillParentNode, handleClick } from "./service/service";
+
+interface Props {
+  name: string;
   map: any;
-  userHasStartedMap: boolean;
-  mapUrl: string
 }
 
-const Map: React.FC<MapProps> = ({
-  profile,
-  map,
-  id,
-  userHasStartedMap,
-  mapUrl
-}): JSX.Element | null => {
+const Map: React.FC<Props> = ({ map, name }) => {
   const ImportedMapRef = React.useRef();
   const [loading, setLoading] = React.useState(() => false);
   const [_, setRef] = React.useState(null);
-
-  const router = useRouter();
 
   React.useEffect((): void => {
     setLoading(true);
     const importMap = async (): Promise<void> => {
       try {
-        // ImportedMapRef.current = (
-        //   await import(`../../../public/maps/${id}.svg`)
-        // ).default;
         ImportedMapRef.current = (
-          await Axios.get(mapUrl).then(res => {
-            return res.data
-          })
-        );
+          await import(`../../../public/maps/${name}.svg`)
+        ).default;
       } catch (err) {
         throw err;
       } finally {
@@ -45,10 +28,7 @@ const Map: React.FC<MapProps> = ({
   }, []);
 
   const onClickKey = async (e, node): Promise<void | boolean> => {
-    if (!profile.user) return console.log("Ban chua dang nhap!");
-    if (userHasStartedMap)
-      return await handleClick(id, { ...map }, e, node, router);
-    return console.log("Ban chua dang ky lo trinh nay!");
+    return await handleClick(name, { ...map }, e, node);
   };
 
   const onRefChange = React.useCallback((node) => {
@@ -57,27 +37,26 @@ const Map: React.FC<MapProps> = ({
     if (node === null) {
       // node is null, if DOM node of ref had been unmounted before
     } else {
+      
       // ref value exists
       if (map) {
-        if (userHasStartedMap) {
-          fillChildNodes(map, node, true);
-          fillParentNode(map, node, true);
-        }
+        fillChildNodes(map, node, true);
+        fillParentNode(map, node, true);
+
         const nodeList = node.querySelectorAll(".node--child");
         nodeList.forEach((btn) => {
           btn.addEventListener("click", (e) => onClickKey(e, node));
         });
       }
     }
-  }, []);
+  }, [map]);
 
   if (!loading && ImportedMapRef.current) {
-    // const { current: ImportedMap } = ImportedMapRef;
+    const { current: ImportedMap } = ImportedMapRef;
     return (
       <>
-        <div ref={onRefChange} style={{backgroundColor: "white", margin: "20px"}}>
-          {/* <ImportedMap /> */}
-          <div dangerouslySetInnerHTML={{__html: ImportedMapRef.current }}></div>
+        <div ref={onRefChange} style={{ backgroundColor: "white", margin: "20px" }}>
+          <ImportedMap />
         </div>
       </>
     );
@@ -85,7 +64,6 @@ const Map: React.FC<MapProps> = ({
 
   return null;
 
-  
 };
 
 export default Map;

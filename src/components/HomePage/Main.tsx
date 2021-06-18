@@ -7,7 +7,6 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import RoadButton from "./RoadButton";
-import { TMaps } from "../../lib/api/road";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -25,7 +24,10 @@ const useStyles = makeStyles(() =>
 );
 
 type Props = {
-  maps: TMaps[];
+  maps: {
+    _id: string,
+    name: string
+  }[];
 };
 
 const Main: React.FC<Props> = ({ maps }) => {
@@ -42,22 +44,11 @@ const Main: React.FC<Props> = ({ maps }) => {
               {maps.map((map) => (
                 <Grid xs={"auto"} item key={map._id}>
                   <RoadButton
-                    href={`/road/${map._id}`}
+                    href={`/road/${map.name}`}
                     name={map.name}
-                    id={map._id}
-                    intro={map.introduction}
                   />
                 </Grid>
               ))}
-              <Grid xs={"auto"} item>
-                <RoadButton
-                  disabled
-                  id="123"
-                  href="/gg"
-                  name="PHP"
-                  intro="Lộ trình để trở thành một lập trình viên PHP"
-                />
-              </Grid>
             </Grid>
           </Box>
         </Box>
