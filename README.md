@@ -31,7 +31,7 @@ JSON file
   }
 }
 ```
-Map svg (inspect for HTML code)
+Map svg (inspect svg for HTML code)
 ![Image](/public/maps/newmap_us.svg)
 
 
