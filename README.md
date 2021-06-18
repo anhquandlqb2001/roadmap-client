@@ -10,9 +10,10 @@ Require in every map:
 - a json file with id (nest step will be nest field) of every step of map \
 
 ie
+JSON file
 ```json
 {
-  "create": {
+  "create-new": {
     "draw": {
       "export": {
         "value": false,
@@ -26,15 +27,13 @@ ie
     "create-data": {
       "value": false,
       "resources": {}
-    },
-    "add": {
-      "value": false,
-      "resources": {}
     }
   }
 }
-
 ```
+Map svg
+![Image](/public/maps/newmap_us.svg)
+
 
 
 
