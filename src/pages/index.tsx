@@ -14,7 +14,7 @@ const Home: NextPage<Props> = ({ maps }) => {
   return (
     <Layout title="Trang chủ" content="Lộ trình học tập" maxWidth={false}>
       <>
-        <Intro intro={"abc"} detail={"bcd"} />
+        <Intro intro={"When the map have it own life"} detail={""} />
         <Main maps={maps} />
       </>
     </Layout>

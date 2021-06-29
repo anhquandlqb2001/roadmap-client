@@ -26,8 +26,6 @@ const Layout: React.FC<Props> = ({
         <NavBar />
         <Container maxWidth={maxWidth}>{children}</Container>
       </main>
-
-      {/* <footer>quanprolazer@copyright</footer> */}
     </>
   );
 };
