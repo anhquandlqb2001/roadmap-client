@@ -5,7 +5,7 @@ import path from "path";
 import React, { useEffect } from "react";
 import Layout from "../../components/Common/Layout";
 import Map from "../../components/Map/Map";
-
+import { Box } from "@material-ui/core";
 interface Props {
   name: string;
   id: string;
@@ -29,7 +29,14 @@ const Road: NextPage<Props> = ({ name }) => {
   return (
     <Layout title={name} content={`Lộ trình học tập ${name}`}>
       <div className={classes.root}>
-        <Map name={name} map={map} />
+        <Box
+          maxWidth={"1400px"}
+          mx={"auto"}
+          border={"1px solid black"}
+          borderRadius={"20px"}
+        >
+          <Map name={name} map={map} />
+        </Box>
       </div>
     </Layout>
   );

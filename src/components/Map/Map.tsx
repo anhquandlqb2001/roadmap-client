@@ -16,7 +16,7 @@ const Map: React.FC<Props> = ({ map, name }) => {
     const importMap = async (): Promise<void> => {
       try {
         ImportedMapRef.current = (
-          await import(`../../../public/maps/${name}.svg`)
+          await import(`../../lib/images/${name}.svg`)
         ).default;
       } catch (err) {
         throw err;
