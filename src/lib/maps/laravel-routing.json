@@ -1,0 +1,97 @@
+{
+  "laravel-routing": {
+    "views": {
+      "php-blade-file": {
+        "value": false
+      },
+      "variables-sharing": {
+        "value": false
+      }
+    },
+    "controllers": {
+      "getting-user-data": {
+        "value": false
+      },
+      "import-library": {
+        "value": false
+      },
+      "resource-controllers": {
+        "value": false
+      }
+    },
+    "route-model-binding": {
+      "value": false
+    },
+    "csrf": {
+      "value": false
+    },
+    "route": {
+      "methods": {
+        "get": {
+          "value": false
+        },
+        "post": {
+          "value": false
+        },
+        "put": {
+          "value": false
+        },
+        "delete": {
+          "value": false
+        },
+        "any": {
+          "value": false
+        }
+      },
+      "naming": {
+        "convention": {
+          "value": false
+        },
+        "model-verb": {
+          "value": false
+        },
+        "route-name": {
+          "value": false
+        }
+      }
+    },
+    "group-route": {
+      "middleware": {
+        "value": false
+      },
+      "path-prefix": {
+        "value": false
+      },
+      "name-prefix": {
+        "value": false
+      }
+    },
+    "redirect-aborting": {
+      "redirect-method": {
+        "home": {
+          "value": false
+        },
+        "refresh": {
+          "value": false
+        },
+        "away": {
+          "value": false
+        },
+        "secure": {
+          "value": false
+        }
+      },
+      "aborting-method": {
+        "abort": {
+          "value": false
+        },
+        "abort-if": {
+          "value": false
+        },
+        "abort-unless": {
+          "value": false
+        }
+      }
+    }
+  }
+}
