@@ -6,39 +6,51 @@ A project let user interactive with a roadmap or mindmap
 Tech: NextJS, NodeJS, MongoDB
 
 Require in every map:
-- a map with svg and every step of map has an id
-- a json file with id (nest step will be nest field) of every step of map \
+- A map as svg file and every step of map has an id
+- A json file with id (nest step will be nest field) of every step of map 
+- A node must follow syntax
 
-ie
+  ![Node syntax](screenshots/node-syntax.png)
+
+  - g tag outside is a container where contain ID 
+    - rect tag is your node border 
+    - g tag is your node content
+
+### Example create an map
+1. Go to to mindmup.com and create your map (you can create it your self by Illustrator or something else)
+  - If you create and export by mindmup, you don't need to do anything else
+  - But if not, you need to draw following syntax above
+  
+  ![Map svg](screenshots/newmap_us.svg)
+
+2. Add your id to map
+   ![Html](screenshots/map-props.png)
+3. Add SVG image to src/images/your-map-name.svg
+4. Create JSON file follow your map (Nest step must be a child)
 ```json
 {
-  "create": {
+  "create-new": {
     "draw": {
       "export": {
-        "value": false,
-        "resources:": {}
+        "value": false
       },
       "insert-id": {
-        "value": false,
-        "resources": {}
+        "value": false
       }
     },
     "create-data": {
-      "value": false,
-      "resources": {}
+      "value": false
     },
-    "add": {
-      "value": false,
-      "resources": {}
+    "export": {
+      "value": false
     }
   }
 }
-
 ```
+5. Add JSON file to src/lib/maps/your-map-name.svg
 
 
-
-# Sample Result:
+## Sample Result:
 
 Sample for laravel map
 ![Sample for laravel map](screenshots/laravel.png) \
