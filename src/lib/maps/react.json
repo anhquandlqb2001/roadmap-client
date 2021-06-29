@@ -1,235 +1,184 @@
 {
   "fundamental-topics": {
     "create-react-app": {
-      "value": false,
-      "resources": {}
+      "value": false
     },
     "jsx": {
-      "value": false,
-      "resources": {}
+      "value": false
     },
     "components": {
       "functional-components": {
-        "value": false,
-        "resources": {}
+        "value": false
       },
       "class-components": {
-        "value": false,
-        "resources": {}
+        "value": false
       }
     },
     "props-vs-state": {
-      "value": false,
-      "resources": {}
+      "value": false
     },
     "conditional-rendering": {
-      "value": false,
-      "resources": {}
+      "value": false
     },
     "component-life-cycle": {
-      "value": false,
-      "resources": {}
+      "value": false
     },
     "lists-and-keys": {
-      "value": false,
-      "resources": {}
+      "value": false
     },
     "composition-and-inheritance": {
-      "value": false,
-      "resources": {}
+      "value": false
     },
     "basic-hook": {
       "usestate": {
-        "value": false,
-        "resources": {}
+        "value": false
       },
       "useeffect": {
-        "value": false,
-        "resources": {}
+        "value": false
       }
     },
     "advanced-topics": {
       "hooks": {
         "writing-your-own-hooks": {
-          "value": false,
-          "resources": {}
+          "value": false
         },
         "common-hooks": {
           "usecallback": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "useref": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "usememo": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "usereducer": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "usecontext": {
-            "value": false,
-            "resources": {}
+            "value": false
           }
         }
       },
       "context": {
-        "value": false,
-        "resources": {}
+        "value": false
       },
       "refs": {
-        "value": false,
-        "resources": {}
+        "value": false
       },
       "render-props": {
-        "value": false,
-        "resources": {}
+        "value": false
       },
       "code-splitting": {
-        "value": false,
-        "resources": {}
+        "value": false
       },
       "high-order-components": {
-        "value": false,
-        "resources": {}
+        "value": false
       },
       "portals": {
-        "value": false,
-        "resources": {}
+        "value": false
       },
       "error-boundaries": {
-        "value": false,
-        "resources": {}
+        "value": false
       },
       "fiber-architecture": {
-        "value": false,
-        "resources": {}
+        "value": false
       },
       "ecosystem": {
         "routers": {
           "react-router": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "reach-router": {
-            "value": false,
-            "resources": {}
+            "value": false
           }
         },
         "ssr": {
           "nextjs": {
-            "value": false,
-            "resources": {}
+            "value": false
           }
         },
         "ssg": {
           "nextjs": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "gatsby": {
-            "value": false,
-            "resources": {}
+            "value": false
           }
         },
         "api-calls": {
           "apollo": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "relay-modern": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "axios": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "unfetch": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "superagent": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "use-http": {
-            "value": false,
-            "resources": {}
+            "value": false
           }
         },
         "mobile": {
           "react-native": {
-            "value": false,
-            "resources": {}
+            "value": false
           }
         },
         "form": {
           "react-hook-form": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "formik": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "final-form": {
-            "value": false,
-            "resources": {}
+            "value": false
           }
         },
         "testing": {
           "jest": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "react-testing-library": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "cypress": {
-            "value": false,
-            "resources": {}
+            "value": false
           }
         },
         "state-management": {
           "context/state": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "redux": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "mobx": {
-            "value": false,
-            "resources": {}
+            "value": false
           }
         },
         "styling": {
           "charkaui": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "materialui": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "ant-design": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "styled-components": {
-            "value": false,
-            "resources": {}
+            "value": false
           },
           "emotion": {
-            "value": false,
-            "resources": {}
+            "value": false
           }
         }
       }
