@@ -3,26 +3,18 @@ import Intro from "../components/HomePage/Intro";
 import Main from "../components/HomePage/Main";
 import Layout from "../components/Common/Layout";
 import { NextPage } from "next";
-import fs from 'fs'
-import path from 'path'
+import fs from "fs";
+import path from "path";
 
 type Props = {
-  maps: []
-}
+  maps: [];
+};
 
 const Home: NextPage<Props> = ({ maps }) => {
-
   return (
-    <Layout
-      title="Trang chủ"
-      content="Lộ trình học tập"
-      maxWidth={false}
-    >
+    <Layout title="Trang chủ" content="Lộ trình học tập" maxWidth={false}>
       <>
-        <Intro
-          intro={"abc"}
-          detail={"bcd"}
-        />
+        <Intro intro={"abc"} detail={"bcd"} />
         <Main maps={maps} />
       </>
     </Layout>
@@ -30,17 +22,21 @@ const Home: NextPage<Props> = ({ maps }) => {
 };
 
 export const getStaticProps = async () => {
-  let filenames: string[] = []
+  let filenames: string[] = [];
   try {
-    const postsDirectory = path.join(process.cwd(), 'src/lib/maps')
-    filenames = fs.readdirSync(postsDirectory)
+    const postsDirectory = path.join(process.cwd(), "src/lib/maps");
+    filenames = fs.readdirSync(postsDirectory);
   } catch (error) {
     console.log(error);
   }
-  
+
   const maps = filenames.map((filename, index) => {
-    return {_id: index.toString(), name: filename.split('.')[0], introduction: ''}
-  })
+    return {
+      _id: index.toString(),
+      name: filename.split(".")[0],
+      introduction: "",
+    };
+  });
 
   return { props: { maps: maps } };
 };

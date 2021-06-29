@@ -5,7 +5,7 @@ class AutoComplete {
   constructor(map: any) {
     this.initMap = map;
 
-    this.getLeafComplete(this.initMap, this.childNodeName)
+    this.getLeafComplete(this.initMap, this.childNodeName);
   }
 
   getLeafComplete = (maps: any, childNode: string[]) => {
@@ -52,7 +52,7 @@ class AutoComplete {
   };
 }
 
-export default AutoComplete
+export default AutoComplete;
 
 /**
  *

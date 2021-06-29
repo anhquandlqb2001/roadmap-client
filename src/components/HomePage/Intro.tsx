@@ -6,10 +6,7 @@ interface Props {
   detail: string;
 }
 
-const Intro: React.FC<Props> = ({
-  intro,
-  detail,
-}) => {
+const Intro: React.FC<Props> = ({ intro, detail }) => {
   return (
     <IntroContainer>
       <div>

@@ -31,28 +31,34 @@ const Map: React.FC<Props> = ({ map, name }) => {
     return await handleClick(name, { ...map }, e, node);
   };
 
-  const onRefChange = React.useCallback((node) => {
-    if (!map || map === {}) return
-    setRef(node); // e.g. change ref state to trigger re-render
-    if (node === null) {
-      // node is null, if DOM node of ref had been unmounted before
-    } else {
-      // ref value exists
-      fillChildNodes(map, node, true);
-      fillParentNode(map, node, true);
+  const onRefChange = React.useCallback(
+    (node) => {
+      if (!map || map === {}) return;
+      setRef(node); // e.g. change ref state to trigger re-render
+      if (node === null) {
+        // node is null, if DOM node of ref had been unmounted before
+      } else {
+        // ref value exists
+        fillChildNodes(map, node, true);
+        fillParentNode(map, node, true);
 
-      const nodeList = node.querySelectorAll(".node--child");
-      nodeList.forEach((btn) => {
-        btn.addEventListener("click", (e) => onClickKey(e, node));
-      });
-    }
-  }, [map]);
+        const nodeList = node.querySelectorAll(".node--child");
+        nodeList.forEach((btn) => {
+          btn.addEventListener("click", (e) => onClickKey(e, node));
+        });
+      }
+    },
+    [map]
+  );
 
   if (!loading && ImportedMapRef.current) {
     const { current: ImportedMap } = ImportedMapRef;
     return (
       <>
-        <div ref={onRefChange} style={{ backgroundColor: "white", margin: "20px" }}>
+        <div
+          ref={onRefChange}
+          style={{ backgroundColor: "white", margin: "20px" }}
+        >
           <ImportedMap />
         </div>
       </>
@@ -60,7 +66,6 @@ const Map: React.FC<Props> = ({ map, name }) => {
   }
 
   return null;
-
 };
 
 export default Map;

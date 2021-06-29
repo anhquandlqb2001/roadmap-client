@@ -9,9 +9,9 @@ type Props = {
   disabled?: boolean;
 };
 
-const RoadButton = ({ href, name, disabled }: Props) => {
+const RoadButton: React.FC<Props> = ({ href, name, disabled }) => {
   return (
-    <Button style={{backgroundColor: "transparent"}} disabled={disabled}>
+    <Button style={{ backgroundColor: "transparent" }} disabled={disabled}>
       <Link href={href} passHref>
         <StyledLink isDisable={disabled}>
           <TextContainer>
@@ -22,7 +22,6 @@ const RoadButton = ({ href, name, disabled }: Props) => {
     </Button>
   );
 };
-
 
 const StyledLink = styled.a<{ isDisable: boolean }>`
   max-width: 400px;

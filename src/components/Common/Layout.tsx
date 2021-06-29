@@ -10,24 +10,24 @@ type Props = {
   maxWidth?: false | "xl" | "xs" | "sm" | "md" | "lg";
 };
 
-const Layout = ({
+const Layout: React.FC<Props> = ({
   children,
   title,
   content = "Lộ trình học tập dành cho lập trình viên",
-  maxWidth = "xl"
-}: Props) => {
+  maxWidth = "xl",
+}) => {
   return (
     <>
       <Head>
         <title>{title}</title>
         <meta name="description" content={content} />
       </Head>
-        <main>
-          <NavBar />
-          <Container maxWidth={maxWidth}>{children}</Container>
-        </main>
+      <main>
+        <NavBar />
+        <Container maxWidth={maxWidth}>{children}</Container>
+      </main>
 
-        {/* <footer>quanprolazer@copyright</footer> */}
+      {/* <footer>quanprolazer@copyright</footer> */}
     </>
   );
 };

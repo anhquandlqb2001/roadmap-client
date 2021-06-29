@@ -1,10 +1,7 @@
-import {
-  makeStyles,
-  Theme
-} from "@material-ui/core";
-import fs from 'fs';
+import { makeStyles, Theme } from "@material-ui/core";
+import fs from "fs";
 import { GetStaticProps, NextPage } from "next";
-import path from 'path';
+import path from "path";
 import React, { useEffect } from "react";
 import Layout from "../../components/Common/Layout";
 import Map from "../../components/Map/Map";
@@ -16,44 +13,33 @@ interface Props {
 
 const Road: NextPage<Props> = ({ name }) => {
   const [map, setMap] = React.useState({});
-  const [_, setReload] = React.useState<string>()
   const classes = useStyles();
 
   useEffect(() => {
     if (!localStorage.getItem(name)) {
       import(`../../lib/maps/${name}.json`).then((data) => {
-        setMap(data.default)
-        localStorage.setItem(name, JSON.stringify(data.default))
+        setMap(data.default);
+        localStorage.setItem(name, JSON.stringify(data.default));
       });
-      return
+      return;
     }
-    setMap(JSON.parse(localStorage.getItem(name)))
-  }, [])
-
-  useEffect(() => {
-    setReload('')
-  }, [map])
+    setMap(JSON.parse(localStorage.getItem(name)));
+  }, []);
 
   return (
-    <Layout
-      title={name}
-      content={`Lộ trình học tập ${name}`}
-    >
+    <Layout title={name} content={`Lộ trình học tập ${name}`}>
       <div className={classes.root}>
-        <Map
-          name={name}
-          map={map}
-        />
+        <Map name={name} map={map} />
       </div>
     </Layout>
   );
 };
 
 export const getStaticPaths = () => {
-  let filenames: string[] = []
+  let filenames: string[] = [];
   try {
-    const postsDirectory = path.join(process.cwd(), 'src/lib/maps')
-    filenames = fs.readdirSync(postsDirectory)
+    const postsDirectory = path.join(process.cwd(), "src/lib/maps");
+    filenames = fs.readdirSync(postsDirectory);
   } catch (error) {
     console.log(error);
   }
@@ -65,16 +51,16 @@ export const getStaticPaths = () => {
     paths,
     fallback: false,
   };
-}
+};
 
 export const getStaticProps: GetStaticProps = async ({ params: { id } }) => {
   return {
     props: {
       name: id,
-      id: id
+      id: id,
     },
   };
-}
+};
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {

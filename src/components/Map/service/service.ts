@@ -17,9 +17,13 @@ export const getNodesName = (map, childNodes, parentNodes) => {
     const value = map[key];
     const val = findVal(map, key);
     if (val.hasOwnProperty("value")) {
-      childNodes.push({ field: key, value: val.value, resources: val?.resources });
+      childNodes.push({
+        field: key,
+        value: val.value,
+        resources: val?.resources,
+      });
     } else if (key.toString() !== "resources" && key.toString() !== "value") {
-      parentNodes.push({ field: key })
+      parentNodes.push({ field: key });
     }
     if (typeof value !== "object") {
     } else if (typeof value === "object") {
@@ -48,27 +52,35 @@ export function isObjEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 
-export const fillChildNodes = (map, node: HTMLElement, firstTimes?: boolean) => {
+export const fillChildNodes = (
+  map,
+  node: HTMLElement,
+  firstTimes?: boolean
+) => {
   const [childNodes] = getNodesName(map, [], []);
   childNodes.map((child) => {
     const pathElement = node.querySelector<HTMLElement>(
       `[id="${child.field}"]`
     );
     if (pathElement) {
-      firstTimes && pathElement.classList.add("node--child") // add class if it is the first time render
+      firstTimes && pathElement.classList.add("node--child"); // add class if it is the first time render
       if (pathElement && child.value === true) {
-        pathElement.classList.add("active")
+        pathElement.classList.add("active");
       } else if (pathElement) {
-        pathElement.classList?.remove("active")
+        pathElement.classList?.remove("active");
       }
     }
   });
 };
 
-export const fillParentNode = (map: object, node: HTMLElement, firstTimes?: boolean) => {
+export const fillParentNode = (
+  map: object,
+  node: HTMLElement,
+  firstTimes?: boolean
+) => {
   const AutoComplete = new AutoCompleteClass(map);
   const parentNodesNameComplete = AutoComplete.getParentNodeNameComplete();
-  const [_, parentNodesName] = getNodesName(map, [], [])
+  const [_, parentNodesName] = getNodesName(map, [], []);
 
   parentNodesName.map((parentNode) => {
     const pathElement = node.querySelector<HTMLElement>(
@@ -77,8 +89,10 @@ export const fillParentNode = (map: object, node: HTMLElement, firstTimes?: bool
     if (!pathElement) {
       return;
     }
-    firstTimes && pathElement.classList.add("node--parent") // add class if it is the first time render
-    if (parentNodesNameComplete.findIndex(p => p === parentNode.field) !== -1) {
+    firstTimes && pathElement.classList.add("node--parent"); // add class if it is the first time render
+    if (
+      parentNodesNameComplete.findIndex((p) => p === parentNode.field) !== -1
+    ) {
       return;
     }
     if (pathElement) {
@@ -123,7 +137,7 @@ export const handleClick = async (
 
   const newMap = recursiveChangeObject(map, fieldChange, !currentValue.value);
 
-  localStorage.setItem(name, JSON.stringify(newMap))
+  localStorage.setItem(name, JSON.stringify(newMap));
 
   fillChildNodes(newMap, ref);
   fillParentNode(newMap, ref);

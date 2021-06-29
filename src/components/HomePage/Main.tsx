@@ -25,8 +25,8 @@ const useStyles = makeStyles(() =>
 
 type Props = {
   maps: {
-    _id: string,
-    name: string
+    _id: string;
+    name: string;
   }[];
 };
 
@@ -43,10 +43,7 @@ const Main: React.FC<Props> = ({ maps }) => {
             <Grid container spacing={3} justify="center">
               {maps.map((map) => (
                 <Grid xs={"auto"} item key={map._id}>
-                  <RoadButton
-                    href={`/road/${map.name}`}
-                    name={map.name}
-                  />
+                  <RoadButton href={`/road/${map.name}`} name={map.name} />
                 </Grid>
               ))}
             </Grid>

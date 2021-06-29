@@ -2,21 +2,14 @@ import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
-const NavBar: React.FC = () => {
-  const [delayed, setDelayed] = React.useState(true);
-
-  React.useEffect(() => {
-    const timeout = setTimeout(() => setDelayed(false), 300);
-    return () => clearTimeout(timeout);
-  }, []);
-
+const NavBar = () => {
   return (
     <NavBarContainer>
-        <LogoContainer>
-      <Link href="/" passHref>
-        <LogoText>lotrinh</LogoText>
-      </Link>
-        </LogoContainer>
+      <LogoContainer>
+        <Link href="/" passHref>
+          <LogoText>lotrinh</LogoText>
+        </Link>
+      </LogoContainer>
     </NavBarContainer>
   );
 };
